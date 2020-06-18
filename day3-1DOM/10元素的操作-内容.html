@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10元素的操作-内容</title>
+	<script>
+		/*
+			10元素的操作-内容
+
+				* innerHTML
+				* innerText
+				
+				* outerHTML
+				* outerText
+		 */
+		
+		window.onload = function(){
+			var box = document.getElementById('box');
+
+			// 获取
+			console.log('innerHTML:',box.innerHTML);
+
+			// 设置
+			box.innerHTML = 'hello <strong>甜甜</strong>';
+
+			box.innerText = 'hello <strong>甜甜</strong>';
+		}
+	</script>
+</head>
+<body>
+	<h1>10元素的操作-内容</h1>
+	<div id="box">
+		hello tiantian
+	</div>
+</body>
+</html>

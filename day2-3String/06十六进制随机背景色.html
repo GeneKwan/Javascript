@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06十六进制随机背景色</title>
+
+</head>
+<body>
+	<h1>06十六进制随机背景色</h1>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			06十六进制随机颜色
+				* #58bc58;
+				* #cccccc; -> #ccc
+
+
+				知识点：
+					* 获取单个字符：索引值
+						* ES5获取方式：[idx]
+						* charAt(idx)
+		 */
+		
+		var str = '0123456789abcdef';//str[0]
+		
+		var color = '#';
+		
+		for(var i=0;i<6;i++){
+			// 获取随机索引值
+			var idx = parseInt(Math.random()*str.length);
+
+			// 根据随机索引值得到随机16进制字符
+			color += str[idx];
+		}
+
+		console.log(randomColor(16));
+
+		// body随机背景颜色
+		document.body.style.backgroundColor = randomColor(16);
+
+
+	</script>
+</body>
+</html>

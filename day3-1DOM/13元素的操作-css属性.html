@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13元素的操作-css属性</title>
+	<style>
+		#box{width:100px;height:100px;padding:20px;border:5px solid #f60;font-size:30px;color:#f60;}
+
+		#box::first-letter{color:#58bc58;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			13元素的操作-css属性
+
+				* style： 获取/设置 内联样式
+				* getComputedStyle(ele,pseudo) （只读）
+					* ele:要获取样式的元素
+					* pseudo:伪元素样式字符(可选)，可获取伪元素样式
+						* ::before
+						* ::after
+						* ::first-line
+						* ::first-letter
+
+				* IE8-：
+					* ele.currentStyle
+
+				* parseInt()
+				* parseFloat()
+		 */
+		
+		window.onload = function(){
+			var box = document.getElementById('box');
+
+			// 修改宽度为200px
+			box.style.width = 200 + 'px';
+
+			// 获取高度height
+			console.log('height：',box.style.height);
+
+			// 获取非内联样式：font-size
+			// 得到box元素的所有计算后的样式
+			// var css = getComputedStyle(box).fontSize;
+			// console.log('getComputedStyle->',parseFloat(css));
+
+			// IE8-
+			// var css_ie = box.currentStyle.fontSize;
+			// console.log('currentStyle->',css_ie)
+
+
+			// 兼容：
+			var css_jr = getCss(box,'font-size');
+			console.log(css_jr)
+		}
+	</script>
+</head>
+<body>
+	<h1>13元素的操作-css属性</h1>
+	<div id="box">
+		Hello Laoxie
+	</div>
+</body>
+</html>

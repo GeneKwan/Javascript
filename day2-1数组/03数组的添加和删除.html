@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03数组的添加和删除</title>
+	<script>
+		/*
+			03数组的添加和删除
+				* 删除：返回删除的元素
+					* pop()：删除数组最后一个元素
+					* shift()：删除数组第一个元素
+				* 添加：返回数组新的长度
+					* push()： 往数组尾部添加一个或多个元素
+					* unshift()：往数组开头添加一个或多个元素
+				* splice(start,deleteNum,…items)：在数组中添加、删除、替换的通用方法（返回删除的元素组成的数组）
+					* start：起始索引位置
+					* deleteNum：要删除的数量
+					* items：插入的元素（可以是多个）
+
+		 */
+		
+		var arr = ['赵丽颖','刘德华','SNH48','徐峥'];
+		
+		// 删除最后一项：徐峥
+		arr.pop();
+
+		// 删除第一项：赵丽颖
+		var res_del = arr.shift();
+		console.log('删除：',res_del);
+
+		// 在尾部添加：王宝强
+		arr.push('王宝强','马*');
+
+		// 在开头添加
+		var res_add = arr.unshift('甜甜');
+		console.log('添加：',res_add);
+
+		console.log(arr);
+
+
+		// 删掉：看SNH48不爽
+		var res1 = arr.splice(2,1);
+		console.log('删除：',res1);
+
+		// 添加：在甜甜和刘德华间插入laoxie
+		var res2 = arr.splice(1,0,'laoxie','zhuzhu');
+		console.log('添加：',res2);
+
+		// 替换：先删后加
+		// 把马*改成妈蛋
+		var res3 = arr.splice(5,1,'妈蛋');
+		console.log('替换：',res3);
+
+		console.log(arr);
+
+
+
+		// 应用：把甜甜移动到最后
+		arr.push(arr.shift());
+		console.log(arr);
+	</script>
+</head>
+<body>
+	<h1>03数组的添加和删除</h1>
+</body>
+</html>

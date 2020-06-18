@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>document事件</title>
+	<script>
+		/*
+			document事件(window.onload替代方案)
+				* onreadystatechange
+					* 这个事件在document.readyState属性改变时触发
+						* interactive
+						* complete
+				* DOMContentLoaded
+					* 只能用事件监听器绑定
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			var box = document.getElementsByClassName('box')[0];
+			console.log('DOMContentLoaded:',box);
+		});
+
+		document.onreadystatechange = function(){
+			if(document.readyState === 'interactive'){
+				var box = document.getElementsByClassName('box')[0];
+				console.log('interactive:',box);
+			}else if(document.readyState === 'complete'){
+				var box = document.getElementsByClassName('box')[0];
+				console.log('complete:',box);
+			}
+		}
+
+		window.onload = function(){
+			var box = document.getElementsByClassName('box')[0];
+			console.log('window.onload:',box);
+		}
+	</script>
+<body>
+	<h1>document事件</h1>
+	<div class="box">.box</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过滤不文明用语</title>
+	<style>
+		ul{padding:0;margin:0;list-style:none;}
+		.container{width:600px;margin:20px auto;}
+		.container li{border-bottom:1px dotted #ddd;padding:10px;margin:10px 0;}
+		textarea{display:block;width:100%;height:60px;}
+	</style>
+	
+</head>
+<body>
+	<div class="container">
+		<h1>过滤不文明用语</h1>
+		<ul id="msglist"></ul>
+		<textarea id="msg"></textarea>
+		<button id="btn">提交</button>
+	</div>
+
+	<script>
+		/*
+			过滤不文明用语
+				* 发送消息
+					* 给按钮绑定事件
+					* 把信息写入数组
+					* 根据数组生成html结构
+				* 替换不文明用于
+					*
+
+
+			了解正则表达式
+				* 格式：/laoxie/
+				* 定义
+					* 字面量：/item/ig
+					* 构造函数：new RegExp('laoxie','gi')
+						* 如果为变量，只能使用构造函数方式
+				* 参数
+					* g：全部匹配
+					* i：忽略大小写
+		 */
+		var msglist = document.getElementById('msglist');
+		var msg = document.getElementById('msg');
+		var btn = document.getElementById('btn');
+
+		// 用于存放消息
+		var data = [];
+
+		// 用于保存不文明用于
+		// 骂人、黄赌毒、政治
+		var dirty = '王八蛋,妈蛋,你妹,操,屌你,shit,fuck,苍老师,金三胖,法轮功'.split(',');
+
+		// * 发送消息
+		btn.onclick = function(){
+			// 获取输入的信息
+			var _msg = msg.value;
+
+			// 过滤不文明用于
+			dirty.forEach(function(item){
+				// 以不文明用于创建正则表达式
+				// var reg = /item/
+				var reg = new RegExp(item,'gi');console.log(reg);
+				_msg = _msg.replace(reg,'**');
+			});
+
+			//问题：1、不能过滤多个不文明用于；2.不能过滤大写英文
+			//解决：正则表达式
+
+
+			// 把信息写入数组
+			data.unshift(_msg);
+
+			// 根据数组生成html结构
+			msglist.innerHTML = data.map(function(item){
+				return '<li>'+item+'</li>';
+			}).join('');
+
+			// 清空并自获得焦点
+			msg.value = '';
+			msg.focus();
+		}
+
+	</script>
+</body>
+</html>

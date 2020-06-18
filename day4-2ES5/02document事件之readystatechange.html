@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>document事件</title>
+	<script>
+		/*
+			document事件(window.onload替代方案)
+				* onreadystatechange
+					* 这个事件在document.readyState属性改变时触发
+		 */
+		
+		document.onreadystatechange = function(){
+			if(document.readyState === 'interactive'){
+				var h1 = document.getElementsByTagName('h1');
+				console.log(document.readyState);
+				
+			}
+		}
+	</script>
+<body>
+	<h1>document事件</h1>
+</body>
+</html>

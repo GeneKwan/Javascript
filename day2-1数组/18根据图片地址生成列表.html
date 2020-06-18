@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>18根据图片地址生成列表</title>
+</head>
+<body>
+	<h1>18根据图片地址生成列表</h1>
+	<div id="imglist"></div>
+	<script>
+		/*
+			18根据图片地址生成列表
+		 */
+		
+		var data = [{
+	        id:'001',
+	        name:'iphone7 plugs',
+	        nickname:'肾7',
+	        imgurl:'img/ip7.jpg',
+	        price:5899.00,
+	        sale:5888.00,
+	        color:'土豪金'
+	    },{
+	        id:'002',
+	        name:'Note7',
+	        nickname:'爆炸7',
+	        imgurl:'img/note7.jpg',
+	        price:3899.00,
+	        sale:998.00,
+	        color:'黑色'
+	    },{
+	        id:'003',
+	        name:'荣耀7',
+	        nickname:'骄傲7',
+	        imgurl:'img/honor7.jpg',
+	        price:1999.00,
+	        sale:1899.00,
+	        color:'白色'
+	    }];
+
+	    // 数组
+	    var res = data.map(function(item){
+	    	return '<img src="'+item.imgurl+'"/>';
+	    });
+
+	    console.log(res);
+
+
+	    var imglist = document.getElementById('imglist');
+
+	    imglist.innerHTML = res.join('');//String
+
+
+	    // 复制数组
+	    var arr = [10,20,30];
+	    var res2 = arr.map(function(item){
+	    	return item;
+	    });
+	    res2.push(50);
+	</script>
+</body>
+</html>

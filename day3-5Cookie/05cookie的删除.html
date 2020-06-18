@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05cookie的删除</title>
+	<script>
+		/*
+			05cookie的删除
+				* cookie是保存在本地硬盘上的文本文件（js不能操作硬盘上的文件）
+				* 利用设置过期时间达到删除的效果。
+		 */
+		
+		window.onload = function(){
+			var now = new Date();
+			now.setDate(now.getDate()+7);
+			document.cookie = 'myname=laoxie;expires='+now.toUTCString();
+			
+
+			var btnDelete = document.getElementsByClassName('btnDelete')[0];
+			btnDelete.onclick = function(){
+				// 设置过期时间
+				var now = new Date();
+				now.setDate(now.getDate()-1);
+
+				document.cookie = 'myname=null;expires=' + now.toUTCString();
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<h1>05cookie的删除</h1>
+
+	<button class="btnDelete">删除myname</button>
+</body>
+</html>

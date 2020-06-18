@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03练习如何描述一个对象（购物车）</title>
+	<script>
+		/*
+			03练习如何描述一个对象（购物车）
+				* 找对象：购物车
+
+			面向对象3步：
+				1）创建对象
+				2）描述一个对象
+					* 属性：有什么
+					* 方法：能做什么
+				3）操作对象
+		 */
+		
+		let shoppingCar = {
+			// 属性：有什么
+			goodslist:[{},{}],
+			totalPrice: 4111.10,
+			step:1,
+
+			// 方法：能做什么
+			// 初始化
+			init(){
+				
+			},
+			// 删除单个商品
+			remove(idx){
+
+			},
+			// 清空购物车
+			clear(){
+
+			},
+
+			// 添加商品
+			add(goods){
+				this.goodslist.unshift(goods);
+			},
+
+			// 结算
+			checkout(){
+
+			},
+
+			// 改变数量
+			changeQty(idx,qty){
+				this.goodslist[idx].qty = qty;
+			}
+
+		}
+
+		shoppingCar.init();
+
+	</script>
+</head>
+<body>
+	<h1>03练习如何描述一个对象（购物车）</h1>
+</body>
+</html>

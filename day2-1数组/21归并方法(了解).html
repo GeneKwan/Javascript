@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20迭代（遍历）方法之some&every</title>
+	<script>
+		/*
+			20迭代（遍历）方法之some&every
+				* reduce(fn,initVal)
+				* reduceRight(fn,initVal)
+					* fn(prev,cur,index,array): fn是每一项调用的函数，函数接受4个参数分别是
+						* prev：前一次fn返回值，
+						* cur：当前值，
+						* index：索引值，
+						* array：当前数组， 函数需要返回一个值，这个值会在下一次迭代中作为prev的值
+						* initVal: 迭代初始值（可选），如果缺省，prev的值为数组第一项
+		 */
+		
+
+		 var arr = [10,15,2,32];
+		 console.log(arr);
+		
+		// 应用：求和
+		var total = arr.reduce(function(prev,item,idx){
+			// prev：前一次fn的返回值
+			console.log(prev,item,idx);
+
+			return prev+item;
+		},0);
+	</script>
+</head>
+<body>
+	<h1>20迭代（遍历）方法之some&every</h1>
+</body>
+</html>

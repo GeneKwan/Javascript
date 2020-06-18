@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		#carList{padding:20px;}
+		#carList li{position:relative;padding-bottom:15px;margin-bottom:15px;border-bottom:1px solid #ddd;}
+		#carList img{display:block;width:100px;}
+		#carList li .btn-close{position:absolute;top:0;right:0;padding:0 5px;cursor:default;}
+		#carList li .btn-close:hover{background-color:#f00;color:#fff;}
+		.subPrice{padding:5px 20px;color:#f00;font-weight:bold;text-align:right;}
+		#carList .price span{color:#f00;}
+		.price span::before,.subPrice::before{
+			content:'￥';
+			font-size:11px;
+		}
+		#carList .price span{font-size:11px;}
+	</style>
+	<script src="js/common.js"></script>
+	<script>
+	window.onload = function(){
+		/*
+			2）读取cookie中的goodslist
+				把json字符串转换成对象/数组：JSON.parse()
+
+		 */
+		var oCarList = document.getElementById('carList');
+		var oSubPrice = oCarList.nextElementSibling;
+		var btnClear = document.getElementById('btnClear');
+
+		// 用于保存商品信息
+		var goodslist;
+
+		render();
+
+
+		// 清空购物车
+		// * 清除cookie
+		// * 清空页面html结构
+		btnClear.onclick = function(){
+			Cookie.remove('goodslist');
+
+			render();
+
+			// location.reload();
+		}
+
+
+		// 删除单个商品
+		// 不是删除cookie,而是修改cookie
+		oCarList.onclick = function(e){
+			e = e || window.event;
+
+			var target = e.target || e.srcElement;
+
+			if(target.className === 'btn-close'){
+				// 获取当前li
+				var currentLi = target.parentNode;
+
+				var guid = currentLi.getAttribute('data-guid');
+
+				// 找出与guid相同的商品
+				for(var i=0;i<goodslist.length;i++){
+					if(goodslist[i].guid === guid){
+						// 从数组中删除
+						goodslist.splice(i,1);
+						break;
+					}
+				}
+
+				// 重写cookie
+				Cookie.set('goodslist',JSON.stringify(goodslist));
+				render();
+			}
+		}
+
+
+		function render(){
+			goodslist = Cookie.get('goodslist');//
+
+			if(goodslist === ''){
+				goodslist = [];
+			}else{
+				goodslist = JSON.parse(goodslist);
+			}
+
+			console.log(goodslist);
+
+			
+			// 用于保存总价金额
+			var total = 0;
+
+
+			// 把商品写入页面
+			// 创建ul
+			var ul = document.createElement('ul');
+			ul.innerHTML = goodslist.map(function(goods){
+				// 计算总价
+				total += goods.price * goods.qty;
+
+				return '<li data-guid="' + goods.guid + '">' + 
+						'<img src="' + goods.imgurl + '"/>' + 
+						'<h4>' + goods.name + '</h4>' + 
+						'<p class="price">价格：<span>' + goods.price + ' &times; ' + goods.qty + '</span></p>' + 
+						'<span class="btn-close">&times;</span>'
+				'</li>'
+			}).join('');
+
+			// 把ul写入页面
+			oCarList.innerHTML = '';
+			oCarList.appendChild(ul);
+
+
+			// 写入总价
+			oSubPrice.innerText = total.toFixed(2);
+		}
+
+
+	}
+		
+	</script>
+</head>
+<body>
+	<h1>购物车</h1>
+	<div id="carList">
+		
+	</div>
+	<div class="subPrice"></div>
+	<a href="#" id="btnClear">清空购物车</a>
+</body>
+</html>

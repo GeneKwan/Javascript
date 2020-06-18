@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<title>Bootstrap的使用</title>
+	<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<style>
+		/*
+			lg:
+			md:
+			sm:
+			xs:
+		 */
+		.left{background-color: #f00;height:100px;}
+		.right{background-color: #efefef;height:100px;}
+
+		.test1{height:100px;background-color: #f60;}
+		.test2{height:100px;background-color: #060;}
+	</style>
+</head>
+<body>
+	<h1>Bootstrap的使用</h1>
+	<div class="container-fluid">
+		<div class="col-md-3 left">left</div>
+		<div class="col-md-6 main">
+			<div class="col-md-6">1</div>
+			<div class="col-md-6">2</div>
+		</div>
+		<div class="col-md-3 right">right</div>
+	</div>
+	<div class="container">
+		<div class="col-sm-4 col-md-6 col-lg-2 test1">left</div>
+		<div class="col-sm-8 col-md-6 col-lg-10 test2">right</div>
+	</div>
+	<button class="btn btn-success">按钮</button>
+	<br>
+	<br>
+</body>
+</html>

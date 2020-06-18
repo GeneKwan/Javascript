@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CORS</title>
+	<script>
+		/*
+			CORS请求：是一个ajax请求
+		 */
+		
+		let statusCode = [200,304];
+
+		let xhr = new XMLHttpRequest();
+		// xhr.onreadystatechange = function(){
+		// 	if(xhr.readyState ===4 && statusCode.indexOf(xhr.status)>=0){
+		// 		console.log(xhr.responseText);
+		// 	}
+		// }
+
+
+		xhr.onload = function(){//等效于xhr.readyState ===4
+			if(statusCode.indexOf(xhr.status)>=0){
+				console.log(xhr.responseText);
+			}
+		}
+		xhr.open('get','http://localhost:1001/cors_1805.php',true);
+		xhr.send();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

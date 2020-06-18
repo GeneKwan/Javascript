@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08ES6继承</title>
+	<script>
+		/*
+			08ES6继承
+				* 类class
+		 */
+		
+		// 类
+		class Person{
+			// 构造函数
+			constructor(name,age,gender){
+				// 属性
+				this.name = name;
+				this.age = age;
+				this.gender = gender;
+			}
+
+			// 方法
+			// 这里的方法会出现在原型对象中
+			eat(){
+				console.log('eat')
+			}
+
+			sleep(){
+				console.log('sleep')
+			}
+
+			coding(){
+				console.log(`hello my name is ${this.name},我日敲800+行代码`);
+			}
+		}
+
+		// Person.prototype.say = function(){
+		// 	console.log('say')
+		// }
+
+		// 静态方法
+		Person.parse = function(){console.log('parse')}
+
+
+		// 实例化
+		let p1 = new Person('tiantian',28,'男');
+		console.log(p1)
+
+		// 子类
+		// 继承父类的属性和方法
+		// * extends
+		class Man extends Person{
+			// 自定构造函数
+			constructor(name,age){
+				// 如何继承属性
+				super(name,age);// 等效于Person.call(this,name,age);
+
+				this.gender = '男';
+			}
+
+			eat(){
+				console.log('子类eat');
+			}
+
+			static show(){
+				console.log(666)
+			}
+		}
+
+		let m1 = new Man('laoxie',18);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

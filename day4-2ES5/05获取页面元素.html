@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05获取页面元素</title>
+	<script>
+		/*
+			05获取页面元素
+				* document.getElementById()		node
+				* getElementsByClassName()		[node]
+				* getElementsByTagName()		[node]
+				* document.getElementsByName()	[node]
+				* 节点关系
+
+	
+				* querySelector(css选择器)		node	获取匹配选择器的第一个元素节点，返回DOM节点
+				* querySelectorAll(css选择器)	[node,node...]
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			// var img = document.getElementsByTagName('img')[0];
+			// var box = document.getElementsByClassName('box')[0];
+
+			var img = document.querySelector('img');
+			var box = document.querySelector('.box');
+			var imgs = document.querySelectorAll('img');
+
+			console.log(imgs);
+		})
+	</script>
+</head>
+<body>
+	<h1>05获取页面元素</h1>
+	<div class="box">
+		<img src="img/g1.jpg">
+	</div>
+	<img src="img/g1.jpg">
+	<img src="img/g1.jpg">
+	<img src="img/g1.jpg">
+	<img src="img/g1.jpg">
+</body>
+</html>

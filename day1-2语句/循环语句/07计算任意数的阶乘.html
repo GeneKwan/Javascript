@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算任意数的阶乘</title>
+	
+</head>
+<body>
+	<h1>计算任意数的阶乘n</h1>
+	<input type="text" id="number">
+	<button onclick="jiecheng()">阶乘计算</button>
+	<div id="output"></div>
+	<script>
+		/*
+			计算任意数的阶乘n
+
+			5! = 1*2*3*4*5
+		 */
+		
+		var number = document.getElementById('number');
+		var output = document.getElementById('output');
+
+		// 声明一个函数，用于计算任意数的阶乘
+		function jiecheng(){
+			// 获取输入的数字
+			var num = number.value;
+
+			// 声明一个变量，用于保存阶乘的值
+			var res = 1;
+			for(var n=2;n<=num;n++){
+				res *= n;//res = 1*2*3*4*5
+			}
+
+			// 把结果写入页面#output
+			output.innerHTML = num + '的阶乘为：' + res;
+		}
+	</script>
+</body>
+</html>

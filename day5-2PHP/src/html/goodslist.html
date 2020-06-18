@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品列表</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		#goodslist img{width:200px;}
+		#goodslist ul{overflow:hidden;}
+		#goodslist li{float:left;padding:15px;border-right:1px dotted #ccc;margin:15px;}
+
+		.price span{color:#f00;}
+		.price span::before{
+			content:'￥';
+		}
+	</style>
+	<script>
+		/*
+			商品列表
+				1）利用ajax从后端获取数据
+					* 在js中获取后端数据
+						* ajax核心步骤
+							1)创建请求对象: new XMLHttpRequest()
+							2）配置参数，建立与服务器的连接 open(请求类型,请求地址,是否异步)
+							3）发送请求 send()
+							4)在js中处理数据 onreadystatechange
+								* 数据存入 responseText属性中
+				2）根据数据生成html结构
+		 */
+		
+		document.addEventListener("DOMContentLoaded",()=>{
+			let goodslist = document.querySelector('#goodslist');
+
+			// ajax核心步骤
+			// 1）创建请求对象
+			let xhr = new XMLHttpRequest();
+
+			// 4)在js中处理数据
+			xhr.onreadystatechange = ()=>{
+				// 事件会执行4次，但只有在最后一次才确认获取到数据
+				if(xhr.readyState === 4){
+					let data = JSON.parse(xhr.responseText);
+					console.log(data)
+					
+
+					// 2）根据数据生成html结构
+					let ul = document.createElement('ul');
+					ul.innerHTML = data.map(goods=>{
+						return `<li data-guid="${goods.guid}">
+							<img src="${goods.imgurl}"/>
+							<h4>${goods.name}</h4>
+							<p class="price">价格：<span>${goods.price}</span></p>
+							<p class="color">颜色：<span>${goods.color}</span></p>
+						</li>`
+					}).join('');
+
+					// 写入页面
+					goodslist.appendChild(ul);
+				}
+			}
+
+			// 2）配置参数，建立与服务器的连接
+			xhr.open('get','../api/goodslist.php');
+
+			// 3）发送请求
+			xhr.send();
+
+
+		})
+		
+	</script>
+</head>
+<body>
+	<div class="toobar">
+		<a href="#">价格排序</a>
+	</div>
+	<div id="goodslist">
+		
+	</div>
+</body>
+</html>

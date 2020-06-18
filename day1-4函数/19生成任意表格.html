@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13生成任意表格</title>
+	<style>
+		table{border:1px solid #ddd;width:100%;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:5px 10px;}
+	</style>
+</head>
+<body>
+	<h1>13生成任意表格</h1>
+	<label for="row">行：</label><input type="text" id="row">
+	<label for="row">列：</label><input type="text" id="col">
+	<button onclick="createTable()">生成表格</button>
+	<div id="output"></div>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			13生成任意表格
+				1)拼接tabel,tbody,tr,td
+				2)一次性写入到页面#output
+		 */
+		
+		// 获取元素
+		var row = document.getElementById('row');
+		var col = document.getElementById('col');
+		var output = document.getElementById('output');
+
+		// 声明一个函数，用于生成一个表格
+		function createTable(){
+			// 获取输入的值
+			var _row = row.value;
+			var _col = col.value;
+
+			// 声明一个变量，用以存放表格的html结构
+			var content = '<table><tbody>'
+
+			// 外层循环：控制行tr
+			for(var r=1;r<=_row;r++){
+				// 拼接tr
+				var bgColor = randomColor();
+				content += '<tr style="color:'+bgColor+'">';
+
+				// 内层循环：控制列tdx
+				for(var c=1;c<=_col;c++){
+					if(r===1){
+						content += '<td colspan="'+_col+'" align="center">淘宝商品列表</td>';
+						break;
+					}
+					// 拼接td
+					content += '<td>单元格'+r+c+'</td>';
+				}
+
+				// 闭合tr
+				content += '</tr>';
+			}
+
+			// 循环完成后闭合tbody,table
+			content += '</tbody></table>';
+
+
+			// 把table的html结构写入#output
+			output.innerHTML = content;
+		}
+	</script>
+	<!-- <table>
+		<tbody>
+			<tr>
+				<td>01</td>
+				<td>02</td>
+				<td>03</td>
+				<td>04</td>
+				<td>05</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>02</td>
+				<td>03</td>
+				<td>04</td>
+				<td>05</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>02</td>
+				<td>03</td>
+				<td>04</td>
+				<td>05</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>02</td>
+				<td>03</td>
+				<td>04</td>
+				<td>05</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>02</td>
+				<td>03</td>
+				<td>04</td>
+				<td>05</td>
+			</tr>
+		</tbody>
+	</table> -->
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>进制(了解)</title>
+	<script>
+		/*
+			进制(了解)
+				* 十进制：符合人类逻辑思维
+				* 二进制：计算机只能识别二进制
+				* 十六进制：颜色表示方式
+				* 八进制：linux权限管理（755,777）
+		 */
+		
+		/*
+			进制表示方式
+		 */
+		// 十进制
+		var num10 = 123;
+
+		// 二进制:0b
+		var num2 = 0b10101101;
+
+		// 十六进制:0x
+		var num16 = 0x58bc58;
+
+		// 八进制：0o
+		var num8 = 0o755;
+
+
+		/*
+			进制转换：
+				* 其他 -> 十 ： parseInt(num,2)//num只能为不带前缀字符串
+				* 十 -> 其他 ： toString(2)
+				* 其他 -> 其他:
+					* 其他-> 十 -> 其他
+		 */
+		
+		parseInt(num16,16);
+		num10.toString(2);
+	</script>
+</head>
+<body>
+	<h1>进制(了解)</h1>
+</body>
+</html>

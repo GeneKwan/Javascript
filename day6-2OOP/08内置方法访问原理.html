@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08内置方法访问原理</title>
+	
+</head>
+<body>
+	<h1>08内置方法访问原理</h1>
+	<script>
+		/*
+			08内置方法访问原理
+				* String
+				* Array
+					* 类数组(伪数组)
+				* Date
+				* Object
+				* RegExp
+		 */
+		
+		var arr = [10,20,30];
+		// var arr = new Array(10,20,30);
+
+		arr.map(item=>item*2);
+
+		console.log(arr);
+
+		let h1 = document.getElementsByTagName('h1');
+		console.log(h1)
+	</script>
+</body>
+</html>

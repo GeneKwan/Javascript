@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+	<script>
+		/*
+			闭包
+				* 变量访问规则
+				* 变量可以往外查找却不能往函数内查找
+
+				闭包写法：在函数的内部定义一个函数并返回
+
+
+			垃圾回收器
+		 */
+		
+		function outer(){
+	       var num=10;
+
+	       // 定义内部函数
+	       function inner(){
+		       num++
+		       console.log(num);
+	       }
+	       
+	       // 返回内部函数
+	       return inner;
+	    }
+
+	    // outer();//11
+
+	    // 在这里操作num的值
+	    let fn = outer();//闭包fn可以实现在外部访问函数内部的变量num
+
+	    /*
+	    	大前提：inner能访问num
+	    	小前提：fn就是inner
+	    	结论：fn能访问num
+	     */
+
+	    // console.log(num);//num is not defined
+	</script>
+</head>
+<body>
+	<h1>闭包</h1>
+</body>
+</html>

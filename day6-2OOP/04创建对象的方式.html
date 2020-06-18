@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04创建对象的方式</title>
+	<script>
+		/*
+			04创建对象的方式
+				* 创建单个对象
+				    * 字面量
+				    * Object构造函数 new Object()
+				* 创建数量较多的对象
+					* 封装工厂函数
+					* 自定义构造函数
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			// 字面量
+			// let student1 = {
+			// 	name:'xxx',
+			// 	age:18
+			// }
+
+			// let student2 = {
+			// 	name:'xxx',
+			// 	age:18
+			// }
+
+			// let student1 = {
+			// 	name:'xxx',
+			// 	age:18
+			// }
+			// let student3 = {
+			// 	name:'xxx',
+			// 	age:18
+			// }
+
+			//....
+
+
+			// 工厂函数
+			// 缺点：识别问题（无法识别对象是由谁生成）
+			function student(name,age,gender){
+				let obj = {
+					name,
+					age,
+					gender,
+
+					type:'学生'
+				}
+
+				return obj;
+			}
+
+			let student1 = student('x1',18,'男');//
+			let student2 = student('x1',18,'男');
+			let student3 = student('x1',18,'男');
+		});
+	</script>
+</head>
+<body>
+	<h1>04创建对象的方式</h1>
+</body>
+</html>

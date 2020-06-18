@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03走动的时间</title>
+	
+</head>
+<body>
+	<h1>03走动的时间</h1>
+	<div id="time"></div>
+	<script>
+		/*
+			将当前日期格式化输出为 “2015年08月24 星期五”格式
+
+				获取年月日
+					* getFullYear()/setFullYear(2014)
+					* getMonth()/setMonth(8)	注意：0-11
+					* getDate()/setDate(25)
+				获取星期
+					* getDay() 0-6:星期天-星期六
+
+				获取时分秒
+					* getHours()/setHours()
+					* getMinutes()/setMinutes()
+					* getSeconds()/setSeconds()
+
+
+				定时器：
+					setInterval(fn,duration)
+						* fn：函数
+						* duration：间隔时间
+
+					每隔duration执行一次fn
+		 */
+		
+		var time = document.getElementById('time');
+
+		// 页面进入执行一次
+		showTime();
+
+		// 每隔一秒执行一次
+		setInterval(showTime,1000);
+		
+		function showTime(){
+			// 创建当前时间
+			var now = new Date();//
+
+			// 提取年月日，星期
+			var year = now.getFullYear();
+			var month = now.getMonth()+1;
+			var date = now.getDate();
+
+			var hour = now.getHours();
+			var min = now.getMinutes();
+			var sec = now.getSeconds();
+
+			// 星期
+			var arr = '天一二三四五六'.split('');
+			var week = now.getDay();
+
+
+			// console.log(year,month,date);
+			// document.write(year + '年' + month + '月' + date + '日 '+ hour + ': '+ min + ': '+ sec +' 星期' + arr[week]);
+
+			time.innerHTML = year + '年' + month + '月' + date + '日 '+ hour + ': '+ min + ': '+ sec +' 星期' + arr[week];
+
+		}
+	</script>
+</body>
+</html>

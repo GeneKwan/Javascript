@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>足球解说</title>
+	<style>
+		body{padding:50px;}
+		ul{list-style: none;padding:0;margin:0;}/*reset*/
+		#datalist{border:1px solid #ddd;padding:15px;}
+		#datalist li{padding:15px 5px;border-bottom:1px dotted #ccc;}
+		#datalist li h4{margin:0;}
+		#page span{display:inline-block;margin:5px;width:40px;line-height:1.8;text-align: center;background-color:#dfdfdf;color:#666;}
+		#page span.active{background-color:#fc0;color:#fff;}
+	</style>
+	<script>
+		/*
+			足球解说
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			let datalist = document.querySelector('#datalist');
+			let page = document.querySelector('#page');
+
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4){
+					let res = JSON.parse(xhr.responseText);
+					console.log(res);
+
+					// 分页
+					// 计算分页数量
+					let len = Math.ceil(res.total/res.qty);
+					page.innerText = '';
+					for(let i=0;i<len;i++){
+						let span = document.createElement('span');
+						span.innerText = i + 1;
+						if(i === res.pageNo-1){
+							span.className = 'active';
+						}
+
+						page.appendChild(span);
+					}
+
+					let ul = document.createElement('ul');
+					ul.innerHTML = res.data.map(item=>{
+						return `<li>
+							<h4>${item.name}</h4>
+							<div class="content">${item.content}</div>
+						</li>`
+					}).join('');
+					datalist.innerText = '';
+					datalist.appendChild(ul);
+				}
+			}
+			xhr.open('get','../api/football.php?page=1&qty=5',true);
+			xhr.send();
+
+
+			// 点击分页加载数据
+			page.onclick = e=>{
+				if(e.target.tagName.toLowerCase() === 'span'){
+					let pageNo = e.target.innerText;
+					xhr.open('get','../api/football.php?page='+pageNo+'&qty=5',true);
+					xhr.send();
+				}
+			}
+		})
+	</script>
+</head>
+<body>
+	<h1>足球解说</h1>
+	<div id="datalist"></div>
+	<div id="page">
+	
+	</div>
+</body>
+</html>

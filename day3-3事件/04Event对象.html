@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04Event对象</title>
+	<style>
+		#box{width:200px;height:100px;background-color: #58bc58;}
+	</style>
+	<script>
+		/*
+			event对象：保存事件发生时的详细信息
+				* 获取 
+					* 事件处理函数的第一个参数
+		 */
+		
+		 window.onload = function(){
+		 	// 什么时候执行：页面所有内容全局加载完成时执行
+		 	var box = document.getElementById('box');
+
+		 	box.onclick = function(event){
+		 		console.log(event);
+		 	}
+		 }
+
+	</script>
+</head>
+<body>
+	<h1>04Event对象</h1>
+	<div id="box"></div>
+</body>
+</html>

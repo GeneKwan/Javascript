@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹幕</title>
+	<style>
+	.container{width:800px;margin:0 auto;padding-bottom:10px;background-color:#dfdfdf;}
+	#barrage{position:relative;height:600px;margin-bottom:10px;background-color:#000;overflow:hidden;}
+	#barrage .bar-item{position:absolute;left:100%;white-space:nowrap;}
+	#msg{margin-left:10px;width:400px;height:30px;border:1px solid #999;border-right:none;box-sizing:border-box;vertical-align:middle;}
+	#msg+button{padding:0 10px;height:30px;vertical-align:middle;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			面向对象的弹幕
+				找对象：
+					* 文字
+						* 属性：随机颜色，速度，字体大小，位置
+						* 方法：走动，消失
+					* 页面
+						* 属性：输入框，按钮，显示区域
+						* 方法：发送消息
+				效果：
+					1）从右往左移动
+					2）离开显示区域消失
+
+				
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+
+			/*
+				页面对象
+			 */
+			
+			let page = {
+				// 属性
+				ele:'#barrage',
+				input:'#msg',
+				button:null,
+
+				// 方法
+				// 初始化
+				// * 获取/创建元素
+				// * 绑定事件
+				init(){
+					// 获取元素
+					this.ele = document.querySelector(this.ele);
+					this.input = document.querySelector(this.input);
+					this.button = this.input.nextElementSibling;
+
+					this.button.onclick = ()=>{
+
+						this.send();
+					}
+
+					// 回车发送消息
+					document.onkeyup = e=>{
+						if(e.keyCode === 13){
+							this.send();
+						}
+					}
+				},
+
+				// 发送信息
+				send(){
+					// 获取输入的值
+					let _msg = this.input.value;
+					new Barrage(_msg);
+					this.input.value = '';
+					this.input.focus();
+				}
+			}
+
+
+			/*
+				文字对象：弹幕
+					* 属性：随机颜色，速度，字体大小，位置
+					* 方法：走动，消失
+			 */
+			
+			function Barrage(msg){
+				// 属性
+				this.color = randomColor();
+				this.speed = randomNumber(-10,-1);
+				this.fontSize = randomNumber(12,40);
+				this.top = randomNumber(10,page.ele.clientHeight-this.fontSize-10);
+
+				// this.msg = msg;
+				this.init(msg);
+			}
+
+			/*
+				封装方法：遵循单一原则
+			 */
+			Barrage.prototype.init = function(msg){
+				// 创建元素
+				let item = document.createElement('span');
+				item.className = 'bar-item';
+				item.innerText = msg;
+
+				// 设置参数（样式）
+				item.style.color = this.color;
+				item.style.fontSize = this.fontSize + 'px';
+				item.style.top = this.top + 'px';
+
+				this.ele = item;
+
+				// 写入页面
+				page.ele.appendChild(item);
+				this.move();
+			}
+
+			Barrage.prototype.move = function(){
+				// 改变item的left值
+				let item = this.ele;
+
+				let timer = setInterval(()=>{
+					item.style.left = item.offsetLeft + this.speed + 'px';
+
+					// 消失时请求定时器
+					if(item.offsetLeft < -item.offsetWidth){
+						clearInterval(timer);
+
+						this.remove();
+					}
+				},30)
+			}
+
+			// 清除元素节点
+			Barrage.prototype.remove = function(){
+				this.ele.parentNode.removeChild(this.ele);
+			}
+
+
+			page.init()
+
+			
+		});
+		
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div id="barrage"></div>
+		<input type="text" id="msg"><button>发送</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01函数的定义</title>
+	
+</head>
+<body>
+	<h1>01函数的定义</h1>
+	<button onclick="sum()">点我有惊喜</button>
+	<div onclick="test()">点我有惊悚</div>
+
+	<button id="btnCreate">生成表格</button>
+	<script>
+		/*
+			01函数的定义(Function)
+				* 声明式
+					格式：function 函数名(){}
+				* 赋值式：var 变量名 = 匿名函数
+
+			执行：
+				* html属性（不推荐）：行为结构三者应该分离
+					格式：<button onclick="函数名()"></button>
+				* 手动调用（主动）：在js中执行函数
+					格式：函数名()
+				* 事件驱动（被动）：事件发生后函数才执行
+					格式：元素.事件 = 函数名
+		 */
+		
+		function sum(){
+			console.log('sum')
+		}
+
+		var test = function(){
+			console.log('test')
+		}
+
+
+		// 手动执行:立即执行
+		sum();
+
+
+		// 事件驱动
+		// 1.获取元素
+		// 2.绑定事件
+		var btnCreate = document.getElementById('btnCreate');
+
+		// test函数不会马上执行（因为不带()）
+		// 会在点击事件发生时执行
+		btnCreate.onclick = test;
+	</script>
+</body>
+</html>

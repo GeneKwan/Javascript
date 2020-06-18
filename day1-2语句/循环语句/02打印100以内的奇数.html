@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打印100以内的奇数</title>
+	<script>
+		/*
+			打印100以内的奇数
+			打印100以内所有偶数的和
+		 */
+		
+		// 变量初始化
+		var num = 1;
+		
+		while(num<=100){
+			// if(num%2 != 0){
+				document.write(num + ', ');
+				
+			// }
+
+			// 变量更新：
+			// num++;
+			num +=2
+		}
+
+
+		// 打印100以内所有偶数的和
+
+		// 声明一个变量，用于计算所有偶数的和
+		var total = 0;
+
+		var num2 = 1;
+		while(num2<=100){
+			if(num2%2===0){
+				total += num2;
+			}
+
+			// 变量更新
+			num2++;
+		}
+
+		console.log('100以内所有偶数的和:' + total)
+	</script>
+</head>
+<body>
+	<h2>打印100以内的奇数</h2>
+	<h2>打印100以内所有偶数的和</h2>
+</body>
+</html>

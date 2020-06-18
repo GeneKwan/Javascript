@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise</title>
+	<script>
+		/*
+			延迟代码执行
+
+			promise对象可以让我们以同步的代码，写出异步的效果
+		*/
+	
+		document.addEventListener('DOMContentLoaded',function(){
+			// function show(callback){
+			// 	setTimeout(()=>{
+			// 		document.body.style.backgroundColor = '#f00';
+
+			// 		callback();
+			// 	},3000);
+			// }
+
+			// // 背景颜色改变后，写入文字
+			// show(function(){
+			// 	document.body.innerText = 'Promise的应用';
+			// });
+
+
+			function show(){
+				return new Promise(resolve=>{
+					setTimeout(()=>{
+						document.body.style.backgroundColor = '#f00';
+
+						resolve();
+					},3000);
+				});
+			}
+
+			show().then(function(){
+				document.body.innerText = 'Promise的应用';
+			});
+			
+		});
+	
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

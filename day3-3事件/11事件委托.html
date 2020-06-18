@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11事件委托</title>
+	<style>
+		table{border:1px solid #ddd;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:3px 5px;}
+	</style>
+	<script>
+		/*
+			事件冒泡是默认的
+				* 对我们无用：就处理它stopPropagation()
+				* 对我们有用：加以利用（事件委托）
+
+
+			事件委托：把本来绑定给某个元素的事件委托给他的父级处理
+				* 事件数量：事件数量大大减少
+				* 事件源对象：利用事件源对象在事件传播过程中不改变的特性，得到点击的元素
+		 */
+		
+		window.onload = function(){
+			var data = document.getElementsByClassName('data')[0]
+			var table = document.createElement('table');
+
+
+			for(var i=0;i<5;i++){
+				var tr = table.insertRow(i);
+				
+				
+				for(var j=0;j<6;j++){
+					var td = tr.insertCell(j);
+					td.innerText = '单元格'+i+j;
+
+				}
+
+				// 行号
+				tr.insertCell(0).innerText = i+1;
+
+				// 添加删除，复制按钮
+				var lastTd = tr.insertCell(j+1);
+				var btnDel = document.createElement('button');
+				btnDel.className = 'btn-del'
+				btnDel.innerText = '删除';
+
+				var btnCopy = document.createElement('button');
+				btnCopy.className = 'btn-copy'
+				btnCopy.innerText = '复制';
+
+				lastTd.appendChild(btnCopy);
+				lastTd.appendChild(btnDel);
+			}
+
+
+
+			console.log(table);
+
+			data.appendChild(table);
+
+
+			// 复制
+			// 删除
+			// 问题：复制后的行，内部按钮无法使用
+			// 解决方案：把事件绑定给父级元素
+			data.onclick = function(e){
+				e = e || window.event;
+				var target = e.target || e.srcElement;
+
+				// 是否复制按钮
+				if(target.className === 'btn-copy'){
+					// 获取当前行
+					var currentLi = target.parentNode.parentNode;
+					var copyLi = currentLi.cloneNode(true);
+
+					// 写入表格
+					currentLi.parentNode.appendChild(copyLi);
+
+				}
+
+
+				// 删除
+				else if(target.className === 'btn-del'){
+					var currentLi = target.parentNode.parentNode;
+
+					currentLi.parentNode.removeChild(currentLi);
+				}
+
+			}
+			
+			
+		}
+	</script>
+</head>
+<body>
+	<h1>事件委托</h1>
+	<div class="data">
+		
+	</div>
+</body>
+</html>

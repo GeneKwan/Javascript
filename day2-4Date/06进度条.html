@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08进度条</title>
+	<style>
+		body{margin:0;}
+		#bar{position:relative;width:0;height:5px;background-color:#58bc58;}
+		#percent{position:absolute;top:100%;left:50%;transform:translate(-50%,0);padding:5px;font-size:10px;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				进度条
+				1)不断改变div的宽度
+					* setInterval(fn,time)，返回一个id标识
+				2)当宽度变化到某个值是，停止变化
+					* 停止定时器:clearInterval(id)
+
+				* 获取浏览器可视区域的宽高
+					* window.innerWidth
+					* window.innerHeight
+			 */
+			var bar = document.getElementById('bar');
+			var percent = document.getElementById('percent');
+
+			// 初始宽度
+			var width = 0;
+
+			// setInterval返回一个id标识（阿拉伯数字）
+			var timer = setInterval(function(){//这里的代码会不断执行，除非停止定时器clearInterval()
+				width += 5;
+
+				if(width >= window.innerWidth){
+					clearInterval(timer);
+
+					width = window.innerWidth;
+				}
+
+				// 显示百分比
+				percent.innerHTML = (width/window.innerWidth*100).toFixed(1) + '%'
+
+				// 格式（内联）：ele.style
+				bar.style.width = width + 'px';
+
+			},30);//最小:10ms
+
+			console.log(timer);
+		}
+	</script>
+</head>
+<body>
+	<div id="bar" ><span id="percent"></span></div>
+</body>
+</html>

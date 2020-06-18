@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>赋值运算</title>
+	<script>
+		/*
+			赋值运算
+				* = 	赋值
+				* +=
+				* -=
+				* *=
+				* /=
+				* %=
+		 */
+		
+		var num = 10;
+
+		// num+5后重新赋值给num
+		// 结果：num在原来的基础上增加5
+		num = num + 5;
+
+		// 简写
+		num += 5;
+
+		var x = 10;
+
+		x *=3;//x:30
+		x /=2;//x:15
+		// ...
+
+
+		// html结构拼接（重点）
+		var content = '<ul>';
+			content += '<li></li>';//content:<ul><li></li>
+			content += '<li><img src="img/xx.jpg"></li>';//<ul><li></li><li><img src=""></li>
+			content += '</ul>';
+	</script>
+</head>
+<body>
+	<h1>赋值运算</h1>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09愤怒的小鸟</title>
+	<style>
+		body{margin:0;overflow:hidden;}
+		#bird{position:absolute;left:0;top:0;width:200px;}
+
+		.d-right{transform: rotateY(180deg)}
+		.d-top{transform: rotateZ(45deg)}
+		.d-bottom{transform: rotateZ(-45deg)}
+	</style>
+	<script>
+		/*
+			09愤怒的小鸟
+				* 利用上下左右方向键移动小鸟
+
+				* 什么事件：keydown
+				* 给谁绑定事件：document
+
+
+			event对象
+				* 标准：事件处理函数的第一个参数
+				* IE8-: window.event
+
+
+			思考：
+				1）如何实现边缘小时候从另一方出现
+		 */
+		window.onload = function(){
+			var bird = document.getElementById('bird');
+
+			document.onkeydown = function(e){
+				// if(e === undefined){
+				// 	e = window.event;
+				// }
+
+				// ||: e有值则使用e，无则使用window.event
+				e = e || window.event;
+
+				// 兼容keyCode
+				var key = e.keyCode || e.which;
+
+				// 获取但前值
+				var left = bird.offsetLeft;
+				var top = bird.offsetTop;
+
+				// 方向
+				var dir;
+
+				switch(key){
+					// 左
+					case 37:
+						left -= 10;
+						dir = '';
+						break;
+					case 39:
+						left += 10;
+						dir = 'd-right';
+						break;
+					case 38:
+						top -= 10;
+						dir = 'd-top';
+						break;
+					case 40:
+						top += 10;
+						dir = 'd-bottom';
+						break;
+				}
+
+				// 设置bird的css样式
+				bird.style.left = left + 'px';
+				bird.style.top = top + 'px';
+
+				bird.className = dir;
+			}
+		}
+	</script>
+</head>
+<body>
+	<img src="img/bird.jpg" id="bird">
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06函数扩展之箭头函数</title>
+	<script>
+		/*
+			06函数扩展之箭头函数
+				* 函数的简写：选择性省略function,(),{},return
+					1）零个参数用 () 表示
+					2）函数只有一个参数
+					3）多个参数
+					4）函数中包含多行代码
+					5）返回结果为一个对象
+						* ES6中的规则是，紧随箭头的{被解析为块的开始，而不是对象的开始
+		 */
+		
+		document.addEventListener('DOMContentLoaded',()=>{
+			// 1.零个参数用 () 表示
+			//传统写法
+			// var sum = function(){
+			//     return 10 + 10;
+			// }
+			// 箭头函数
+			var sum = ()=>10+10;
+
+			// 2.函数只有一个参数（可省略括号）
+			//传统函数写法
+			// var test = function(x){
+			//     return x+2;
+			// } 
+
+			// 箭头函数
+			var test = x=>x+2;
+
+			// 3.多个参数
+			var values = [10,9,16];
+			// 传统写法
+			// values.sort(function (a, b) {
+			//   return a - b;
+			// });
+			// 箭头函数
+			values.sort((a,b)=>a-b);
+
+			// 4.函数中包含多行代码
+			// values.map(function(item,idx){
+			// 	item += idx;
+			// 	item *= 2;
+			// 	return item;
+			// });
+			// 箭头函数
+			values.map((item,idx)=>{
+				item += idx;
+				item *= 2;
+				return item;
+			});
+
+			// 5.返回结果为一个对象
+			//传统写法
+			var createPerson = function(){
+			    return {name:'laoxie',age:18}
+			}
+			// 箭头函数
+			var createPerson = ()=>({name:'laoxie',age:18});
+		});
+	</script>
+</head>
+<body>
+	<h1>06函数扩展之箭头函数</h1>
+</body>
+</html>

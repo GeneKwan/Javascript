@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16数组ES5静态索引方法</title>
+	<script>
+		/*
+			16数组ES5静态索引方法
+				* 静态方法
+					Array.isArray()	判断是否为数组，返回true/false
+
+				* 索引方法
+					* indexOf(keyword)
+					* lastIndexOf(keyword)
+
+					返回keyword在数组中的索引值，如果数组不存在keyword，则返回-1
+
+					* 应用：判断数组中是否存在某个值
+						* arr.indexOf(10)>=0
+						* arr.indexOf(10)!=-1
+		 */
+		
+		typeof 10;//number
+		typeof true; //boolean
+		typeof [10,20];//object
+		typeof {};//object
+
+		Array.isArray({});// false
+		Array.isArray(10);// false
+		Array.isArray([10,2]);//true
+
+
+		// 索引方法
+		var arr = ['laoxie','tiantian','zhuzhu','tiantian','yy'];
+
+		arr.indexOf('tiantian');//1
+		arr.indexOf('tiantian plus');//-1
+
+		// 去重
+		var arr2 = [10,21,10,22,10,8,5,8,12,5];
+
+		var res2 = [];
+
+		for(var i=0;i<arr2.length;i++){
+			// 判断res2中是否已存在当前值
+			if(res2.indexOf(arr2[i])===-1){
+				res2.push(arr2[i]);
+			}
+		}
+
+		console.log(res2);
+	</script>
+</head>
+<body>
+	<h1>16数组ES5静态索引方法</h1>
+</body>
+</html>

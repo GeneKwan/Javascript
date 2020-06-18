@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回调函数</title>
+	<script>
+		/*
+			回调函数
+		 */
+		
+		function sum(a){
+			// 参数可以数任意数据类型
+
+
+		}
+
+		sum(10);//number
+		sum('tt');//string
+		sum(true);//boolean
+
+		var num = 100;
+		sum(num);
+
+		var box = document.getElementById('box');
+		sum(box);
+
+
+		/*
+			回调函数
+				* 回掉函数的执行过程
+			
+		 */
+		// 把函数作为参数出入，那么这个函数就叫回调函数
+		var fn = function(n){
+			// console.log('tiantian的回调');
+			console.log(n+5);
+		}
+
+		// fn(10);//15
+
+		var showGa = function(callback){
+			// var callback = fn;
+			// var callback = 匿名函数
+
+			console.log('原来如此');
+
+			callback(3);
+		}
+
+		// fn：Function
+		// 作为实参传入showGa
+		showGa(fn);
+
+
+		showGa(function(n){
+			console.log('匿名函数'+n);
+		});
+	</script>
+</head>
+<body>
+	<h1>回调函数</h1>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02练习如何描述一个对象</title>
+	<script>
+		/*
+			02利用面向对象的思想练习如何描述一个对象
+				* 人（女神，男神）
+
+
+			面向对象3步：
+				1）创建对象
+				2）描述一个对象
+					* 属性：有什么
+					* 方法：能做什么
+				3）操作对象
+		 */
+		
+		
+		let nvshen = {
+			// 属性
+			name:'陈乔恩',
+			age:39,
+			height:165,
+			xuexing:'O',
+			xingzuo:'白羊',
+
+
+			// 方法
+			yanxi(){
+				console.log(`我叫${this.name}，我是东方不败`)
+			},
+			singing(){
+				console.log(`我叫${this.name}，我会唱歌`)
+			},
+			cooking(){
+				console.log(`我叫${this.name}，我会做饭`)
+			}
+		}
+
+		// 操作对象
+		nvshen.yanxi();
+		nvshen.cooking();
+
+	</script>
+</head>
+<body>
+	<h1>02练习如何描述一个对象</h1>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01js代码的编写位置</title>
+	<!-- 外部样式 -->
+	<link rel="stylesheet" href="css/page.css">
+	<style>
+		/*
+			内部样式
+			css代码编写位置
+		 */
+	</style>
+	<!-- script标签写在html结构的任意位置 -->
+	<script>
+		/*
+			* 内部js
+			js代码编写位置
+
+			script标签
+				* type：默认text/javascript
+				* src：外部js地址
+		 */
+	</script>
+	<script src="js/page.js">
+		//注意：有了src属性，这里的js代码会被忽略
+	</script>
+</head>
+<body>
+	<script></script>
+</body>
+</html>

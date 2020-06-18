@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12tab标签页切换</title>
+	<style>
+		.tab{border:2px solid #ddd;padding:2px;width:353px;}
+		.tab header{padding-bottom:2px;border-bottom:2px solid #ddd;overflow:hidden;}
+		.tab header div{float:left;padding:5px 15px;border-right:1px solid #ddd;}
+		.tab .active{background-color: #fc0;color:#fff;}
+		.tab .content{padding:15px;min-height: 100px;}
+	</style>
+	<script>
+		window.onload = function(){
+			var tab = document.getElementsByClassName('tab')[0];
+			var tabItems = tab.children[0].children;
+			var tabContents = tab.children[1].children;
+
+
+			// 初始化
+			
+			for(var i=0;i<tabItems.length;i++){
+				if(i===0){
+					// 高亮第一个table
+					tabItems[i].className = 'active';
+				}else{
+					// * 隐藏除第一样以外的图片
+					tabContents[i].style.display = 'none';
+				}
+
+				// 给html元素添加idx属性，保存对应索引值
+				// tabItems[i].idx = i;
+				tabItems[i].setAttribute('idx',i);
+
+				// 点击切换
+				tabItems[i].onclick = function(){
+					// 获取点击的索引值
+					var idx = this.getAttribute('idx');
+
+					for(var i=0;i<tabItems.length;i++){
+						if(i == idx){
+							// 高亮当前tab
+							tabItems[i].className = 'active';
+
+							// 显示当前图片
+							tabContents[i].style.display = 'block';
+						}else{
+							// 隐藏其他高亮
+							tabItems[i].className = '';
+							
+							// 先隐藏其他图片
+							tabContents[i].style.display = 'none';
+						}
+					}
+
+
+				}
+			}
+
+
+			console.log('end:',i)
+		}
+	</script>
+</head>
+<body>
+	<div class="tab">
+		<header>
+			<div>Tab1</div>
+			<div>Tab2</div>
+			<div>Tab3</div>
+			<div>Tab4</div>
+			<div>Tab5</div>
+		</header>
+		<div class="content">
+			<div><img src="img/g1.jpg"></div>
+			<div><img src="img/g2.jpg"></div>
+			<div><img src="img/g3.jpg"></div>
+			<div><img src="img/g4.jpg"></div>
+			<div><img src="img/g5.jpg"></div>
+		</div>
+	</div>
+</body>
+</html>

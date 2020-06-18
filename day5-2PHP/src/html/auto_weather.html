@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动获取当前城市的天气预报</title>
+	<script>
+		/*
+			1）获取ip地址
+				* 服务器代理
+					* 利用后端不受限制的特点，获取其他服务器的信息
+					* 接口地址：../api/get_ip.php
+
+			2）根据ip获取城市
+				接口地址：http://ip.taobao.com/service/getIpInfo.php?ip=
+
+			3）根据城市获取天气
+				http://wthrcdn.etouch.cn/weather_mini?city=
+
+
+			问题：ajax嵌套
+				* 回调地狱
+					* 代码难看
+					* 维护困难
+
+
+			解决思路：不嵌套ajax请求，达到相同的效果
+				* 同步（low）
+				* Promise
+
+		 */
+		var statusCode = [200,304];
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function(){
+			if(statusCode.indexOf(xhr.status)>=0){
+				let ip = xhr.responseText;
+
+
+				// 根据ip获取城市
+				let xhr_city = new XMLHttpRequest();
+				xhr_city.onload = function(){
+					if(statusCode.indexOf(xhr_city.status)>=0){
+						// 万一淘宝提供的数据不符合json格式，怎么办
+						// let data = JSON.parse(xhr_city.responseText);
+						let data = eval('('+xhr_city.responseText+')');
+						let city = data.city;
+						console.log(city);
+
+						// 根据城市获取天气预报
+						let xhr_weather = new XMLHttpRequest();
+						xhr_weather.onload = function(){
+							if(statusCode.indexOf(xhr_weather.status)>=0){
+								let weather = JSON.parse(xhr_weather.responseText);
+								console.log(weather);
+
+								// 根据数据生成html
+							}
+						}
+						xhr_weather.open('get','http://wthrcdn.etouch.cn/weather_mini?city='+city,true);
+						xhr_weather.send();
+					}
+				}
+				xhr_city.open('get','../api/get_city.php?ip='+ip,true);
+				xhr_city.send();
+			}
+		}
+		xhr.open('get','../api/get_ip.php',true);
+		xhr.send();
+
+		
+	</script>
+</head>
+<body>
+	<h1>自动获取当前城市的天气预报</h1>
+</body>
+</html>

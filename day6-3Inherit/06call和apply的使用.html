@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06call和apply的使用</title>
+</head>
+<body>
+	<h1>06call和apply的使用</h1>
+	<button class="btn">按钮1</button>
+	<button class="btn">按钮2</button>
+	<button class="btn">按钮3</button>
+	<button class="btn">按钮4</button>
+	<button class="btn">按钮5</button>
+	<script>
+		/*
+			06call和apply的使用
+				* 借用
+				* call(多个参数)
+				* apply(两个参数，第二个参数必须为数组)
+		 */
+		
+		var arr = [10,20,30];
+
+		arr.map(item=>item*item);//[100,400,900]
+		arr.map(function(){})
+
+
+		var btns = document.getElementsByTagName('button');
+		console.log(btns)
+
+		// 获取按钮的内容组成的数组
+		// btns.map(item=>item.innerText);//
+		// * 改变map中的this指向
+		// * 执行map方法
+		let res = Array.prototype.map.call(btns,function(ele,idx,a){
+			
+			return ele.innerText;
+		});
+		console.log(res);
+
+		/*
+			找出数组中最大值，最小值
+				* Math.max()
+				* Math.min()
+		 */
+		let arr2 = [20,2,40,33,21,8,22,46,32]
+
+		Math.max.apply(null,arr2);//46
+		Math.min.apply(null,arr2);//2
+	</script>
+</body>
+</html>

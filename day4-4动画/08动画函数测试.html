@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08动画函数测试</title>
+	<style>
+		.box{width:200px;height:100px;background-color: #fc0;opacity: 0.5}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			let box = document.querySelector('.box');
+
+			box.onmouseover = ()=>{
+				// animate(box,'width',500);
+				// animate(box,'opacity',1);
+
+				animate(box,{height:300,opacity:1})
+				
+			}
+
+			box.onmouseout = ()=>{
+				// animate(box,'width',200);
+				// animate(box,'opacity',0.5);
+				animate(box,{height:100,opacity:0.5})
+			}
+		});
+	</script>
+</head>
+<body>
+	<h1>08动画函数测试</h1>
+
+	<div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装一个显示隐藏页面元素的函数</title>
+	
+</head>
+<body>
+	<h1>封装一个显示隐藏页面元素的函数</h1>
+	<p>
+		<button id="btn">显示/隐藏</button>
+		<!-- <button id="btnHide">隐藏</button> -->
+	</p>
+	<img src="img/g5.jpg" id="girl">
+	<p>666</p>
+	<script>
+		/*
+			封装一个显示隐藏页面元素的函数
+				* 在js中控制html元素的样式：元素.style
+		 */
+		
+		var btn = document.getElementById('btn');
+		var girl = document.getElementById('girl');
+
+		// 声明一个变量，用于保存#girl的显示状态
+		var flag = true;
+
+		btn.onclick = display;
+		
+		// 声明一个函数，用于控制#girl的显示隐藏
+		function display(){
+			// if(flag){
+			// 	girl.style.display = 'none'
+				
+			// 	// 更新显示状态
+			// 	flag = false;
+			// }else{
+			// 	girl.style.display = 'block';
+
+			// 	// 更新显示状态
+			// 	flag = true;
+			// }
+
+			girl.style.display = flag ? 'none' : 'block';
+
+			// 更显显示状态
+			flag = !flag;
+		}
+	</script>
+</body>
+</html>

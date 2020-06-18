@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14找出数组中最大值，最小值和平均值并输出他们的索引</title>
+	<script>
+		/*
+			14找出数组中最大值，最小值和平均值并输出他们的索引
+
+			假设：
+				假设第1个为最大值
+				假设第1个为最小值
+		 */
+		
+		var arr = [10,2,8,32,18,9,11,30,55,16,19,20];
+
+		// 假设
+		var minIdx = 0;
+		var min = arr[minIdx];
+		var maxIdx = 0;
+		var max = arr[maxIdx];
+
+		// 平均值
+		total = arr[0];
+
+		for(var i=1;i<arr.length;i++){
+			// 遍历数组，判断是否存在比min更小的
+			// 更新min,minIdx
+			if(arr[i]<min){
+				min = arr[i];
+				minIdx = i;
+			}
+
+
+			// 遍历数组，判断是否存在比max更大的
+			// 更新max,maxIdx
+			if(arr[i]>max){
+				max = arr[i];
+				maxIdx = i;
+			}
+
+
+			// 求和
+			total += arr[i];
+		}
+
+		document.write('最大值：' + max + ', 索引：' + maxIdx + '<br/>');
+		document.write('最小值：' + min + ', 索引：' +minIdx + '<br/>');
+		document.write('平均值：' + total/arr.length);
+
+	</script>
+</head>
+<body>
+	<h1>14找出数组中最大值，最小值和平均值并输出他们的索引</h1>
+</body>
+</html>

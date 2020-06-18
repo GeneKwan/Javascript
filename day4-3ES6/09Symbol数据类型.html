@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09Symbol数据类型</title>
+	<script>
+		/*
+			09Symbol数据类型
+				* 值类型
+					* Number
+					* String
+					* Boolean
+				* 特殊类型
+					* Null
+					* Undefined
+				* 引用数据类型
+					* Object
+						* Array
+
+
+				* ES6新的数据类型：Symbol
+					* 独一无二
+					* 不能修改
+					* 不能运算
+
+
+				应用
+					* 对象私有属性
+					* 迭代器（了解）
+		 */
+		
+
+		// 1.定义方式一：无标识
+		var s1 = Symbol();
+		var s2 = Symbol();
+
+		console.log(s1,s2);
+
+		// s1 += 5;
+
+		// 定义方式二：添加标识
+		var s3 = Symbol('laoxie');
+		var s4 = Symbol('tt');
+		var s5 = Symbol('tt');//与s4不相等
+		console.log(s3,s4);
+
+		// 定义方式3：添加标识
+		// Symbol.for()：
+		// 1）查找之前是否登记这个Symbol值
+		// 2）有：则拿过来使用
+		// 3）无：则创建
+		var s6 = Symbol.for('laoxie');//创建了一个以laoxie作为标识的Symbol
+		var s7 = Symbol.for('laoxie');//对s6的引用
+		console.log(s6 === s7);
+
+
+		// 用途
+		// 1)对象私有属性（别人不能改的属性）
+		var score = {
+			name:'laoxie',
+			// english:118,
+			// math:130,
+			// chinese:90,
+
+			[Symbol('chinese')]:98,
+			[Symbol('english')]:118,
+			[Symbol('math')]:130
+		}
+
+		var s_math = Symbol.for('math');
+		var s_chinese = Symbol.for('chinese');
+		var s_english = Symbol.for('english');
+
+
+		var score2 = {
+			[Symbol.for('name')]:'laoxie',
+			[s_math]:130,
+			[s_chinese]:102,
+			[s_english]:118
+		}
+
+		// for...of
+		var arr = [10,20,30,40]
+
+		for(let item of arr){
+			console.log(item)
+			if(item === 20){
+				break;
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

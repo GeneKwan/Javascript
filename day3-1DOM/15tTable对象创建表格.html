@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15tTable对象创建表格</title>
+	<style>
+		table{border:1px solid #ddd;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:3px 5px;}
+	</style>
+	<script>
+		/*
+			15tTable对象创建表格
+				* 删除：parent.removeChild(ele)
+				* 复制: ele.clondeNode()
+		 */
+		
+		window.onload = function(){
+			var data = document.getElementsByClassName('data')[0];//类数组/伪数组[ele]
+
+			var table = document.createElement('table');
+
+
+			for(var i=0;i<5;i++){
+				var tr = table.insertRow(i);
+				
+				
+				for(var j=0;j<6;j++){
+					var td = tr.insertCell(j);
+					td.innerText = '单元格'+i+j;
+
+				}
+
+				// 行号
+				tr.insertCell(0).innerText = i+1;
+
+				// 添加删除，复制按钮
+				var lastTd = tr.insertCell(j+1);
+				var btnDel = document.createElement('button');
+				btnDel.className = 'btn-del'
+				btnDel.innerText = '删除';
+
+				var btnCopy = document.createElement('button');
+				btnCopy.className = 'btn-copy'
+				btnCopy.innerText = '复制';
+
+				lastTd.appendChild(btnCopy);
+				lastTd.appendChild(btnDel);
+			}
+
+
+
+			console.log(table);
+
+			data.appendChild(table);
+
+
+			// 复制
+			// 删除
+			// 问题：复制后的行，内部按钮无法使用
+			var btnDels = data.getElementsByClassName('btn-del');
+			var btnCopies = data.getElementsByClassName('btn-copy');
+			
+			for(var i=0;i<btnDels.length;i++){
+				btnDels[i].onclick = function(){
+					// 获取当前行
+					// 但在这里无法识别当前行是哪一个(在此默认得不到相应的i值)
+					var currentTr = this.parentNode.parentNode;
+					currentTr.parentNode.removeChild(currentTr);
+				}
+
+				btnCopies[i].onclick = function(){
+					var currentTr = this.parentNode.parentNode;
+
+					// 复制一行，并写入表格
+					var mytr = currentTr.cloneNode(true);  // true: 深度复制
+					
+					currentTr.parentNode.appendChild(mytr);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>15tTable对象创建表格</h1>
+	<div class="data">
+		
+	</div>
+</body>
+</html>

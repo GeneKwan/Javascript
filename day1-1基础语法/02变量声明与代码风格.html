@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02变量声明与代码风格</title>
+	<script>
+		/*
+			编写js代码：英文字符
+
+			* 变量声明
+				* 格式：var num;
+				* 变量：数据的容器
+
+			* 变量声明规范
+				* 变量名必须是数字,字母,下划线_和美元符$组成;
+				* 第一个字符不能为数字
+				* 不能使用关键字或保留字
+
+			* 代码可读性
+				* 变量命名尽量遵守驼峰原则: myStudentScore
+				* 变量命名尽量见名知意
+				* 保持代码缩进
+				* JS语句的末尾尽量写上分号;
+
+			注释（浏览器忽略的内容）：
+				* 多行注释 ： 不能嵌套
+				* 单行注释 //
+		 */
+		
+		/*
+			1.声明变量不赋值
+			var：关键字
+			num：变量
+
+			声明num变量
+		 */
+		
+		var num;
+
+		/*
+			2.声明变量并赋值
+			var：关键字
+			num：变量
+			=  ：赋值
+			10 ：数据
+
+			声明num变量，并把10赋值给num
+		 */
+		var Num = 10;
+
+
+		/*
+			3.一次声明多个变量
+				* 逗号分隔
+		 */
+		
+		var username,age,weight;
+		var username="laoxie",age=18,weight=110;
+
+
+		// 变量声明规范
+		var num10 = 10;
+		var _age = 18;
+		// var 2num = 2;//第一个字符串不能为数字
+		var $name = 'laoxie';
+		// var first-name = 'xie'; //变量只能有数字、字母、_、$组成
+		var nihaoyuemabuyue = 666;
+
+		var ni_hao_yue_ma_bu_yue = 666;
+
+		// 驼峰命名法（推荐）
+		var niHaoYueMaBuYue = 666;
+	</script>
+</head>
+<body>
+	<h1>02变量声明与代码风格</h1>
+</body>
+</html>

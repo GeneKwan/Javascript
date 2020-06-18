@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<script>
+		document.addEventListener('DOMContentLoaded',()=>{
+			let username = document.querySelector('#username');
+			let password = document.querySelector('#password');
+			let btnReg = document.querySelector('.btnReg');
+
+			let statusCode = [200,304];
+
+
+			let xhr = new XMLHttpRequest();
+			xhr.onload = function(){
+				if(statusCode.indexOf(xhr.status)>=0){
+					let res = xhr.responseText;
+
+					// 获取父元素
+					let formGroup = username.parentNode;
+					let txt = formGroup.querySelector('.help-block');
+					let icon = formGroup.querySelector('.form-control-feedback');
+
+					if(res === 'no'){
+						formGroup.classList.remove('has-success');
+						icon.classList.remove('sr-only','glyphicon-ok');
+						icon.classList.add('glyphicon-remove');
+						formGroup.classList.add('has-error','has-feedback');
+						txt.innerText = '用户名太受欢迎';
+					}else if(res === 'yes'){
+						formGroup.classList.remove('has-error');
+						icon.classList.remove('sr-only','glyphicon-remove');
+						icon.classList.add('glyphicon-ok');
+						formGroup.classList.add('has-success','has-feedback');
+						txt.innerText = '';
+					}
+
+				}
+			}
+
+			// 检测用户是否被占用
+			username.onblur = ()=>{
+				xhr.open('get','../api/check_user.php?username='+username.value,true);
+				xhr.send();
+			}
+
+
+			let xhr_reg = new XMLHttpRequest();
+			xhr_reg.onload = function(){
+				if(statusCode.indexOf(xhr_reg.status)>=0){
+					let res = xhr_reg.responseText;
+					if(res === 'success'){
+						location.href = '../index.html';
+					}else{
+						alert('注册失败');
+					}
+				}
+			}
+
+			// 注册
+			btnReg.onclick = function(){
+				// 获取用户名，密码
+				let _username = username.value;
+				var _password = password.value;
+
+				xhr_reg.open('get',`../api/reg.php?username=${_username}&password=${_password}`,true);
+				xhr_reg.send();
+			}
+		})
+	</script>
+</head>
+<body>
+	<div class="container">
+	<h1>用户注册</h1>
+		<div class="form">
+			<div class="form-group">
+				<label for="username">用户名：</label>
+				<input type="text" id="username" name="username" class="form-control">
+				<span class="glyphicon glyphicon-remove form-control-feedback sr-only"></span>
+				<span class="help-block"></span>
+			</div>
+			<div class="form-group">
+				<label for="password">密码：</label>
+				<input type="password" id="password" name="password" class="form-control">
+			</div>
+			<button class="btn btn-success btnReg">注册</button>
+		</div>
+	</div>
+</body>
+</html>

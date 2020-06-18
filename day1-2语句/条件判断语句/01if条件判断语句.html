@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01if条件判断语句</title>
+	<script>
+		/*
+			01if条件判断语句
+				* 单分支：
+					if(条件){
+						//条件成立执行这里的代码
+					}
+				* 双分支：
+					if(条件){
+						//条件成立执行这里的代码
+					}else{
+						//不成立时执行这里的代码
+					}
+				* 多分支
+					if(条件1){
+					    //条件1成立(返回true)时，执行这里的代码，忽略以下代码
+					}else if(条件2){
+					    //条件2成立(返回true)时，执行这里的代码，忽略以下代码
+					}else if(条件3){
+					    //条件3成立(返回true)时，执行这里的代码，忽略以下代码
+					}
+					...
+					else{
+					    //以上条件都不成立(都返回false)时，执行这里的代码
+					}
+		 */
+		
+		var num = 10;
+
+		// 单分支
+		if(num>5){
+			console.log('单分支：条件成立');
+		}
+
+
+		// 双分支
+		if(num>10){
+			console.log('双分支：条件成立');
+		}else{
+			console.log('双分支：条件不成立');
+		}
+	</script>
+</head>
+<body>
+	<h1>01if条件判断语句</h1>
+</body>
+</html>

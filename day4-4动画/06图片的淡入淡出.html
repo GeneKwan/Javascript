@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片的淡入淡出</title>
+	<style>
+		.girl{opacity: 0.5;}
+	</style>
+	<script>
+		/*
+			图片的淡入淡出
+				* 鼠标移入：opacity->1
+				* 鼠标移出：opacity->0.5
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			let girl = document.querySelector('.girl');
+
+			let timer;
+
+			girl.onmouseover = ()=>{
+				// 目标值：
+				let target = 1;
+
+				// 在这清除mouseout的定时器
+				clearInterval(timer);
+
+				timer = setInterval(()=>{
+					// 获取当前值
+					let current = getComputedStyle(girl).opacity*1;
+
+					// 计算缓冲速度
+					let speed = (target-current)/10;
+
+					// 不能让速度太小，免得动画执行时间过长
+					if(speed<0.01){
+						speed = 0.01;
+					}
+
+					let opacity = current + speed;
+
+					// 到达目标值，停止定时器
+					if(opacity >= target){
+						clearInterval(timer);
+
+						// 重置目标值
+						opacity = target;
+					}
+
+					girl.style.opacity = opacity;
+
+				},50);
+			}
+
+			girl.onmouseout = ()=>{
+				// 目标值：
+				let target = 0.5;
+
+				// 在这清除mouseover的定时器
+				clearInterval(timer);
+
+				timer = setInterval(()=>{
+					// 获取当前值
+					let current = getComputedStyle(girl).opacity*1;
+
+					// 计算缓冲速度
+					let speed = (target-current)/10;
+
+					// 不能让速度太小，免得动画执行时间过长
+					if(speed>-0.01){
+						speed = -0.01;
+					}
+
+					let opacity = current + speed;
+
+					// 到达目标值，停止定时器
+					if(opacity <= target){
+						clearInterval(timer);
+
+						// 重置目标值
+						opacity = target;
+					}
+
+					girl.style.opacity = opacity;
+
+				},50);
+			}
+		})
+	</script>
+</head>
+<body>
+	<h1>图片的淡入淡出</h1>
+	<img src="img/g3.jpg" class="girl">
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打印出1900年到现在所有的闰年，并以每行四个数的形式输出</title>
+	<script>
+		/*
+			打印出1900年到现在所有的闰年，并以每行四个数的形式输出
+		 */
+		
+		// 声明一个变量，用于记录闰年数量
+		var qty = 0;
+		
+		for(var year=1900;year<=2018;year++){
+			if(year%4===0 && year%100!=0 || year%400===0){
+				document.write(year + ', ');
+
+				// 记录闰年个数
+				qty++;
+
+				// 每4个输出一次br
+				if(qty%4===0){
+					document.write('<br>');
+					
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>打印出1900年到现在所有的闰年，并以每行四个数的形式输出</h1>
+</body>
+</html>

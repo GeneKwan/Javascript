@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#popover{
+			position:absolute;width:480px;height:300px;border:2px solid #ddd;
+		}
+		.btn-close{position: absolute;top:5px;right:5px;padding:2px 5px;color:#666;}
+		.btn-close:hover{background-color: #f00;color:#fff;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				window.onload的作用
+					* 延迟代码执行
+					* 避免全局环境污染
+
+				* window.onresize：窗口大小改变时触发
+
+				* 获取元素的宽高(border+padding+content)
+					* offsetWidth	
+					* offsetHeight
+			 */
+			
+			var popover = document.getElementById('popover');
+
+			// 计算left,top值
+			popover.style.left = (window.innerWidth - popover.offsetWidth)/2 + 'px';
+			popover.style.top = (window.innerHeight - popover.offsetHeight)/2 + 'px';
+
+			window.onresize = function(){
+				popover.style.left = (window.innerWidth - popover.offsetWidth)/2 + 'px';
+				popover.style.top = (window.innerHeight - popover.offsetHeight)/2 + 'px';
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="popover">
+		<span class="btn-close">&times;</span>
+	</div>
+</body>
+</html>

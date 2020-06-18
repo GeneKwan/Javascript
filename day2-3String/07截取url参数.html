@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07截取url参数</title>
+
+</head>
+<body>
+	<h1>07截取url参数</h1>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			url：https://www.baidu.com/s?name=laoxie&age=18&sex=male&, 
+
+			要求：取出name, age和sex的值，并组成对象{name:’laoxie’,age:18,sex:’male’}
+			思路：
+				* 查找截取起始位置
+					indexOf()
+				* 截取参数
+					slice()
+				* 转成对象
+					split()
+
+			url组成部分：
+				* 协议		：https
+				* 域名/主机	：baidu.com
+				* 路径		：/s/index.html
+				* 参数		：?name=laoxie&age=18&sex=male
+				* 锚点		：#xx
+
+		 */
+		
+	
+		 var url = 'https://www.baidu.com/s?name=laoxie&age=18&sex=male&';
+
+		 // name=laoxie&age=18&sex=male -> {name:'laoxie',age:18,sex:'male'}
+
+		 // 查找截取起始位置
+		 // 查找?所在位置
+		 var idx = url.indexOf('?');
+
+		 // 截取：
+		 var params = url.slice(idx+1,-1);//name=laoxie&age=18&sex=male
+
+		 // 转成对象
+		 params = params.split('&');//把&化作一把刀：["name=laoxie", "age=18", "sex=male"]
+
+		 // [] -> {}
+		 // 创建空对象，用以保存属性名和属性值
+		 var res = {};
+
+		 params.forEach(function(item){
+		 	// 拆分属性名和属性值
+		 	var arr = item.split('=');//["name", "laoxie"]
+		 	// 属性名：arr[0]
+		 	// 属性值：arr[1]
+
+		 	res[arr[0]] = arr[1];
+
+		 });
+
+		 console.log(res);
+
+	</script>
+</body>
+</html>

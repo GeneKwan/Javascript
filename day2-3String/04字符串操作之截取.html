@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04字符串操作之截取</title>
+	<script>
+		/*
+			04字符串操作之截取
+				* slice(start,end)		截取start到end(不包括end)的字符串，支持负数
+				* substring(start,end)	截取start到end(不包括end)的字符串，
+				* substr(start,length)
+		 */
+		
+		 var str = 'I\'m a good student';
+
+		 str.length;//18
+
+		 // 截取good
+		 var res1 = str.slice(6,10);//good
+		 console.log(res1)
+
+		 var res2 = str.substring(6,10);//good
+		 console.log(res2);
+
+		 var res3 = str.substr(6,10);//截取从索引6开始后10个字符
+		 console.log(res3);
+
+
+		
+		
+	</script>
+</head>
+<body>
+	<h1>04字符串操作之截取</h1>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用递归求5的阶乘</title>
+	
+</head>
+<body>
+	<h1>利用递归求5的阶乘</h1>
+	<input type="text" id="num">
+	<button id="btn">阶乘</button>
+	<div id="output"></div>
+	<script>
+		/*
+			利用递归求5的阶乘
+
+			5! = 5*4*3*2*1
+			   = 5*4!
+			   	   = 4*3!
+			   	   		= 3*2!
+			   	   			= 2*1!
+			   	   				= 1
+		
+			4! = 4*3!
+			3! = 3*2!
+			....
+
+			推导公式：fac(n) = n*fac(n-1);
+
+		 */
+		
+		var num = document.getElementById('num');
+		var btn = document.getElementById('btn');
+		var output = document.getElementById('output');
+
+		btn.onclick = function(){
+			// 获取输入的值
+			var _num = num.value;
+
+			output.innerHTML = _num + '! = ' + fac(_num);//120
+		}
+
+		// 声明一个函数，用于计算阶乘（递归）
+		function fac(n){
+
+			// 跳出条件
+			if(n<=1){
+				return 1;
+			}
+
+			return n*fac(n-1)
+		}
+
+		// fac(n);//
+		// fac(1);//1
+	</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入月份，显示当月的天数</title>
+	
+</head>
+<body>
+	<h1>输入月份，显示当月的天数</h1>
+	<input type="text" id="month">
+	<button onclick="showDay()">天数</button>
+	<div id="output"></div>
+	<script>
+		/*
+			输入月份，显示当月的天数
+				* 多分支语句
+				* switch语句
+		 */
+
+		 // 获取页面元素
+		 var month = document.getElementById('month');
+		 var output = document.getElementById('output');
+
+
+		 // 声明一个函数，用于显示当月天数
+		 function showDay(){
+		 	// 获取输入的月份
+		 	var _month = month.value*1;//String
+
+		 	// if(_month == 1 || _month == 3 || _month == 5 || _month == 7 || _month == 8 || _month == 10 || _month == 12){
+		 	// 	output.innerHTML = _month + '月份有31天';
+		 	// }else if(_month == 2){
+		 	// 	output.innerHTML = _month + '月份有28天';
+		 	// }else if(_month == 4 || _month == 6 || _month == 9 || _month == 11){
+		 	// 	output.innerHTML = _month + '月份有30天';
+		 	// }else{
+		 	// 	output.innerHTML = '您是傻逼吗?';
+		 	// }
+
+
+		 	// 利用switch语句实现
+		 	// switch语句的穿透特性
+		 	switch(_month){
+		 		case 1:
+		 		case 3:
+		 		case 5:
+		 		case 7:
+		 		case 8:
+		 		case 10:
+		 		case 12:
+		 			output.innerHTML = _month + '月份有31天';
+		 			break;
+		 		case 2:
+		 			output.innerHTML = _month + '月份有28天';
+		 			break;
+		 		case 4:
+		 		case 6:
+		 		case 9:
+		 		case 11:
+		 			output.innerHTML = _month + '月份有30天';
+		 			break;
+		 		default:
+		 			output.innerHTML = '你输入的月份666';
+		 		
+	
+		 	}
+
+		 }
+	
+	</script>
+</body>
+</html>

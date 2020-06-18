@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13对象的定义与操作</title>
+	<script>
+		/*
+			13对象的定义与操作
+				* 格式：{属性名:属性值,属性名：属性值}
+				* 定义
+					* 字面量
+					* 构造函数
+				* 对象的操作
+					* 增（添加属性）
+					* 删（删除属性）
+						delete
+					* 改（修改已有属性）
+					* 查（读取属性值）
+						读取不存在的属性，得到undefined
+					* 遍历
+						for...in
+
+				* 操作方式
+					* 方括号
+					* 点语法
+						能用点语法必定能用方括号，反之不成立(属性名为变量时)
+		 */
+		
+
+		// 字面量
+		var obj1 = {name:'laoxie',age:18,gender:'男'}
+
+		// 构造函数
+		// 只能创建空对象
+		var obj2 = new Object();//等效于：var obj2 = {}
+
+
+		// 对象的操作
+		var tiantian = {name:'甜甜'};
+
+		//  增（添加属性）age
+		//  * 方括号
+		//  * 点语法
+		tiantian['age'] = 22;
+		tiantian['nickname'] = '千锋最美睡姿';
+		tiantian.gender = '男';//等效于：tiantian['gender'] = 18
+
+		console.log(tiantian);
+
+		// 删（删除属性）
+		// delete
+		delete tiantian.nickname;
+
+		// 改（修改已有属性）
+		tiantian.gender = '女';
+
+		console.log(tiantian);
+
+
+		// * 查（读取属性值）
+		console.log(tiantian.name);
+		console.log(tiantian['gender']);
+
+
+		// 遍历对象
+		// **理解执行过程
+		for(var key in tiantian){
+			// * 有几个属性就遍历几次
+			// * 每次把属性名赋值给key
+			// * 根据属性名获取相应属性值
+
+			console.log(key,tiantian[key]);
+		}
+
+	</script>
+</head>
+<body>
+	<h1>13对象的定义与操作</h1>
+</body>
+</html>

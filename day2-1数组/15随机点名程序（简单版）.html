@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机点名程序（简单版）</title>
+
+</head>
+<body>
+	<h1>随机点名程序（简单版）</h1>
+	<input type="text" id="username">
+	<button id="btn">随机点名</button>
+	<script>
+		/*
+			随机点名程序（简单版）
+		 */
+		
+		var namelist = ['郭建明','陈裕','李荣生','薛家铭','姚璐','方威','汪阳','李小龙','陈青苗','王子初','崔舒强','林迪熙','黄辉永','陆国栋','黎宣平','宁椿旋','苏玉婷','钟彪','李纪锋','田李明','刘江','张德亮','张勇','方俭勇','林志诚','李廷琛','梁玲','关志勇','冯起君','肖伟','江俊隆','向鼎','曾建军','郑晓锋','刘伟楠','王富民','黄镇安','陈焯斌','卢靖文','何高峰','潘光胄','张光锐','曾李才','郭有明','萧世昇','刘伟胜','陈武城','伦均萍','熊家富','黄倩婷','杨凯','周茂','李献修','陈忠清','陆国栋','陈志豪','陈曼娜'];
+
+
+		// 获取元素
+		var username = document.getElementById('username');
+		var btn = document.getElementById('btn');
+
+
+		getName();
+
+		// 点击随机获取一个名字
+		btn.onclick = function(){
+			// 获取随机索引值
+			
+			// namelist[1]
+			// namelist[20];
+
+			getName();
+		}
+
+		function getName(){
+			var idx = parseInt(Math.random()*namelist.length);
+			username.value = namelist[idx];
+		}
+	</script>
+</body>
+</html>

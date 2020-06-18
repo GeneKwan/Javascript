@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>17拖拽轨迹回放</title>
+	<style>
+		.box{position:absolute;padding:20px;width:200px;border:10px solid #58bc58;background-color: #000;}
+		.box img{display:block;width:100%;}
+		.box p{margin:10px 0;color:#fff;}
+		.box .btnBack{position: absolute;right:10px;top:10px;background-color: #fc0;padding:5px 10px;}
+	</style>
+	<script>
+		/*
+			17拖拽轨迹回放
+				* 拖拽
+					* 记录拖拽过的位置
+				* 回放
+					* 点击回放按钮，遍历一次记录的位置，并设置box的样式
+		 */
+		window.onload = function(){
+			var box = document.getElementsByClassName('box')[0];
+			var btnBack = box.getElementsByClassName('btnBack')[0];
+			var isDrag = box.children[1].children[0];
+			var zb = box.children[2].children[0];
+
+			// 用于记录左上角的坐标
+			var pos = [];
+
+			box.onmousedown = function(e){
+				// 记录按下的位置
+				// var ox = e.offsetX;
+				// var oy = e.offsetY;
+
+				// 按下时记录：按下位置到box边缘的位置
+				var ox = e.pageX - box.offsetLeft;
+				var oy = e.pageY - box.offsetTop;
+
+				// 显示拖拽状态
+				isDrag.innerText = 'true';
+
+				document.onmousemove = function(evt){
+
+					// 求移动时的top,left
+					var left = evt.pageX - ox;
+					var top = evt.pageY - oy;
+
+					box.style.left = left + 'px';
+					box.style.top = top + 'px';
+
+					zb.innerText = left + ',' + top;
+
+					// 写入数组pos
+					pos.push({left:left,top:top});
+
+					evt.preventDefault();
+				}
+			}
+
+
+			// 结束拖拽
+			document.onmouseup = function(){
+				document.onmousemove = null;
+
+				// 显示拖拽状态
+				isDrag.innerText = 'false';
+			}
+
+			// 点击回放
+			btnBack.onclick = function(){
+				var i = pos.length-1;
+				var timer = setInterval(function(){
+					box.style.left = pos[i].left + 'px';
+					box.style.top = pos[i].top + 'px';
+
+					zb.innerText = pos[i].left + ',' + pos[i].top;
+
+					i--;
+
+					// 回放结束
+					if(i<0){
+						clearInterval(timer);
+
+						// 清空数组
+						pos.length = 0;
+					}
+				},30);
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<h1>17拖拽轨迹回放</h1>
+	<div class="box">
+		<img src="img/tiantian.jpg">
+		<p>drag: <span>false</span></p>
+		<p>坐标: <span></span></p>
+		<span class="btnBack">回放</span>
+	</div>
+</body>
+</html>

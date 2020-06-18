@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取ip地址</title>
+	<script>
+		/*
+			获取ip地址
+				* 服务器代理
+					* 利用后端不受限制的特点，获取其他服务器的信息
+		 */
+		var statusCode = [200,304];
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function(){
+			if(statusCode.indexOf(xhr.status)>=0){
+				let ip = xhr.responseText;
+				console.log(ip);
+			}
+		}
+		xhr.open('get','../api/get_ip.php',true);
+		xhr.send();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03表盘刻度制作</title>
+	<style>
+		#biao{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:300px;height:300px;border:5px solid #ccc;border-radius: 50%;box-sizing:border-box;}
+		#biao span{position: absolute;left:0;top:0;width:10px;height:10px;background-color: #bbb;border-radius: 50%;}
+	</style>
+	
+</head>
+<body>
+	<h1>03表盘刻度制作</h1>
+	<div id="biao"></div>
+	<script>
+		/*
+			03表盘刻度制作
+				* 把刻度
+
+
+			角度计算：
+				索引		角度
+				0		0
+				1		6
+				2		12
+				3		18
+
+
+			deg = i*360/60;
+
+
+			全局作用域下不能使用的变量
+				* name
+				* top
+				* status
+				* ...
+		*/
+		
+		// 用于保存html结构
+		var content = '';
+
+		var r = 150;
+
+		for(var i=0;i<60;i++){
+			// 计算角度
+			var deg = i*360/60;
+
+			// 求弧度
+			var rad = deg * Math.PI/180;
+
+			// 求直角边
+			var a = r * Math.cos(rad);
+			var b = r * Math.sin(rad);
+
+			// 计算left,top
+			var myleft = r + a -10;
+			var mytop = r + b -10;
+
+			var bgColor = '#bbb';
+			if(i%15===0){
+				bgColor = '#f60';
+			}
+
+			// 设置样式
+			content += '<span style="left:'+myleft+'px;top:'+mytop+'px;background-color:'+bgColor+'"></span>';
+
+		}
+
+		var biao = document.getElementById('biao');
+		biao.innerHTML = content;
+
+	</script>
+</body>
+</html>

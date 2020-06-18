@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动应答机器人</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		.msg-list{position:relative;width:600px;margin:0 auto;}
+		.msg-list ul{padding:10px;min-height:200px;max-height:400px;overflow-y:auto;border:1px solid #ddd;}
+		.msg-list li{float:left;clear:both;margin:10px 0;padding:5px;line-height:2;border-radius:5px;background-color:#efefef;}
+		.msg-list li.active{float:right;background-color:#58bc58;color:#fff;}
+		.msg-list textarea{display:block;min-height:50px;margin:10px 0;width:100%;box-sizing: border-box;}
+		.status{display:none;position: absolute;left:0;bottom:0;right:0;padding:5px 10px;text-align:center;color:#999;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				自动应答机器人
+					* 发送消息
+						* 获取输入信息
+						* 生成li
+						* 写入ul
+					* 自动回复
+						* 根据输入的信息回复
+						* 预设回复内容
+
+
+				PS：节点也是一个对象
+			 */
+			// 获取元素
+			var autoAnswer = document.getElementById('autoAnswer');
+			var msglist = autoAnswer.getElementsByTagName('ul')[0];
+			var msg = autoAnswer.getElementsByTagName('textarea')[0];
+			var btn = autoAnswer.getElementsByTagName('button')[0];
+			var status = autoAnswer.getElementsByClassName('status')[0];
+
+			// 预设回复内容
+			var q = '你好，约吗，呵呵，有钱吗'.split('，');
+			var a = '他好我也好，叔叔在哪约，呵你妹，滚'.split('，');
+
+			var statusCode = [200,304]
+
+			// * 发送消息
+			btn.onclick = function(){
+				// 获取输入的信息
+				var _msg = msg.value;
+
+				// 创建li
+				var li = document.createElement('li');
+				li.innerHTML = _msg;
+				li.className = 'active';
+				// li写入ul
+				msglist.appendChild(li);
+
+
+				// 清空并获得焦点
+				msg.value = '';
+				msg.focus();
+
+				// 显示打字状态
+				status.style.display = 'block';
+
+				let xhr = new XMLHttpRequest();
+				xhr.open('POST','../api/msg.php',true);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState === 4 && statusCode.indexOf(xhr.status)>=0){
+						 var ali = document.createElement('li');
+						 if(xhr.responseText === ''){
+						 	ali.innerHTML = '你说什么，风太大我听不到';
+						 }else{
+						 	ali.innerHTML = xhr.responseText;
+						 }
+
+						 msglist.appendChild(ali);
+
+						 // 隐藏打字状态
+						status.style.display = 'none';
+					}
+				}
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');//text/plain
+				xhr.send('msg='+_msg);
+
+
+				// // 判断输入的内容在q数组中是否有相同信息
+				// var idx = q.indexOf(_msg);
+				// var ali = document.createElement('li');
+				// if(idx>=0){
+				// 	// 有对应信息，则做出相应的回复
+				// 	ali.innerHTML = a[idx];
+				// }else{
+				// 	// 没有对应信息，则直接回复“你说什么，风太大我听不到”
+				// 	ali.innerHTML = '你说什么，风太大我听不到';
+				// }
+
+				// // 显示打字状态
+				// status.style.display = 'block';
+
+				// // 延迟写入页面
+				// setTimeout(function(){
+				// 	msglist.appendChild(ali);
+
+				// 	// 隐藏打字状态
+				// 	status.style.display = 'none';
+				// },3000);
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<h1>自动应答机器人</h1>
+	<div id="autoAnswer" class="msg-list">
+		<ul>
+		</ul>
+		<textarea></textarea>
+		<button>提交</button>
+		<div class="status">对方正在输入...</div>
+	</div>
+</body>
+</html>

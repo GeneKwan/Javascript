@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16拖拽效果</title>
+	<style>
+		#tt{position:absolute;top:100px;left:100px;width:100px;height:100px;background-color: #f60;}
+	</style>
+	<script>
+		/*
+			16拖拽效果
+
+				* 按下鼠标并移动，不断改变元素的top,left
+				* 鼠标松开，意味着拖拽结束，应该清除mousemove事件
+				* 移动：其实就是不断改变元素的left,top
+		 */
+		
+		window.onload = function(){
+			var tt = document.getElementById('tt');
+
+			// 要达到按下并移动鼠标效果,必须嵌套事件
+			tt.onmousedown = function(evt){
+				// 按下时记录光标位置与，事件源对象的偏移量
+				var ox = evt.offsetX;
+				var oy = evt.offsetY;
+
+				document.onmousemove = function(e){
+					// 在mousemove中不断改变tt的left,top
+
+					tt.style.left = e.pageX - ox + 'px';
+					tt.style.top = e.pageY - oy + 'px';
+
+					e.preventDefault();
+				}
+			}
+
+			// 鼠标松开，清除mousemove事件
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<h1>16拖拽效果</h1>
+	<div id="tt"></div>
+	<!-- <img src="img/tiantian.jpg" id="tt"> -->
+</body>
+</html>

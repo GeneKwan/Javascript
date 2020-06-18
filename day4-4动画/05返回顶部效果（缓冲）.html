@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>返回顶部效果（缓冲）</title>
+	<style>
+		.toTop{display:none;position: fixed;right:10px;bottom:10px;background-color:#58bc58;padding:10px 15px;color:#fff;}
+	</style>
+	<script>
+		/*
+			返回顶部效果（缓冲）
+				* 滚动到800px时显示返回顶部按钮
+		 */
+		
+		document.write('<p>出现滚动条</p>'.repeat(1000));
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			// 获取元素
+			let btnTop = document.querySelector('.toTop');
+			window.onscroll = ()=>{
+				// 获取滚动过的距离
+				let scrollTop = window.scrollY;
+
+				if(scrollTop >= 800){
+					btnTop.style.display = 'block';
+				}else{
+					btnTop.style.display = 'none';
+				}
+			}
+
+
+			// 点击返回顶部
+			btnTop.onclick = ()=>{
+	
+				let timer = setInterval(()=>{
+					// 计算缓冲速度（差值越大速度越大）
+					let speed = window.scrollY/10;
+
+
+					scrollBy(0,-speed);
+
+					if(window.scrollY <= 0){
+						clearInterval(timer);
+
+						// 重置目标值
+						scrollTo(0,0);
+					}
+				},30);
+			}
+
+			
+		});
+	</script>
+</head>
+<body>
+	<h1>返回顶部效果（缓冲）</h1>
+	<div class="toTop">返回顶部</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13事件监听器</title>
+	<style>
+		img{box-sizing: border-box;width:300px;}
+	</style>
+	<script>
+		/*
+			13事件监听器
+
+			事件绑定方式
+				* html属性（不推荐）
+				* 节点绑定
+					* 缺点：同名事件被覆盖
+				* 事件监听器
+					* 格式： ele.addEventListener(type,handler)
+						* type：事件类型（不带on）
+						* handler：事件处理函数
+		 */
+		window.onload = function(){
+			var girl = document.getElementById('girl');
+
+
+			// // 绑定点击事件
+			girl.onclick = function(){
+				girl.style.border = '10px solid #f00';
+			}
+
+
+			// // 
+			// girl.onclick = function(){
+			// 	girl.style.borderRadius = '20px';
+			// }
+
+
+			girl.addEventListener('click',function(){
+				console.log('甜甜你好');
+			});
+			girl.addEventListener('click',function(){
+				console.log('甜甜你好骚');
+			});
+		}
+	</script>
+</head>
+<body>
+	<h1>13事件监听器</h1>
+	<img src="img/tiantian.jpg" id="girl">
+</body>
+</html>

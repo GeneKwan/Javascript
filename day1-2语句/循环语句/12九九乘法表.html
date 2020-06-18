@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12九九乘法表</title>
+	<style>
+		span{display:inline-block;margin:5px;background-color: #efefef;width:80px;height:30px;line-height:30px;text-align:center;}
+		span:hover{background-color: #f90}
+	</style>
+	
+	
+</head>
+<body>
+	<h1>12九九乘法表</h1>
+	<div id="output"></div>
+	<script>
+		/*
+			12九九乘法表
+				* innerHTML：拼接完成，一次性写入所有代码
+		 */
+		var output = document.getElementById('output');
+
+		// 定义一个变量，用于存放99乘法表所有html内容
+		var content = '';
+
+		// 外层循环：控制行
+		 for(var row=1;row<=9;row++){
+
+		 	// 内容循环
+		 	for(var col=1;col<=row;col++){
+		 		// document.write('<span>'+col + '&times;' + row +'</span>');
+		 		content += '<span>'+col + '&times;' + row +'=' + col*row + '</span>';
+		 	}
+
+		 	// 输出换行标识
+		 	// document.write('<br/>');
+		 	content += '<br/>';
+		 }
+
+		 console.log(content);
+
+		 // 写入页面
+		 output.innerHTML = content;
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数递归</title>
+	<script>
+		/*
+			函数递归
+				* 自己调用自己
+				* 避免死循环
+					* return
+
+			搞懂执行过程
+				sum(5)
+					sum(4)
+						sum(3)
+							sum(2) 结束
+								sum(1) 结束
+									sum(0) 结束
+									console.log(0)
+								console.log(1)
+							console.log(2)
+						console.log(3)
+					console.log(4)
+		 */
+		function sum(n){
+			if(n === 0){
+				return;
+			}
+			n--;
+
+			sum(n);
+
+			console.log(n);
+		}
+
+		sum(5);//4,3,2,1
+	</script>
+</head>
+<body>
+	<h1>函数递归</h1>
+</body>
+</html>

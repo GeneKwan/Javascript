@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断一个数是偶数还是奇数，并输出判断结果</title>
+	<style>
+		strong{color:#58bc58;}
+	</style>
+</head>
+<body>
+	<h1>判断一个数是偶数还是奇数，并输出判断结果</h1>
+	<input type="text" id="number">
+	<button onclick="check()">奇偶判断</button>
+	<div id="output"></div>
+	<script>
+		/*
+			判断一个数是偶数还是奇数，并输出判断结果
+		 */
+		
+		var number = document.getElementById('number');
+		var output = document.getElementById('output');
+
+		// 声明一个函数，用于判断奇偶性
+		function check(){
+			// 获取输入的值
+			var num = number.value;
+
+			// if(num%2 === 0){
+			// 	output.innerHTML = '<strong>' + num + '</strong>是偶数';
+			// }else{
+			// 	output.innerHTML = num + '是奇数'
+			// }
+
+			// 简单的双分支语句，可以使用三元运算代替
+			output.innerHTML = num%2===0 ? '<strong>' + num + '</strong>是偶数' : num + '是奇数';
+		}
+	</script>
+</body>
+</html>

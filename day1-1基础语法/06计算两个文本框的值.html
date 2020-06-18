@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算两个文本框的值</title>
+	<style>
+		#num1{}
+	</style>
+
+</head>
+<body>
+	<h1>计算两个文本框的值</h1>
+	<input type="text" id="num1">
+	<input type="text" id="num2">
+	<button onclick="sum()">求和</button>
+	<!-- <input type="text" id="output"> -->
+	<div id="output"></div>
+	<script>
+		/*
+			计算两个文本框的值
+				3）点击按钮求两个文本框的和
+				2）获取文本框的值
+				1）获取文本框
+
+			练习：计算两个文本框的加、减、乘、除、求余
+
+			知识点：
+				* 获取文本框的值：
+					* value 得到String类型
+				* 点击操作
+					* html元素的onclick属性
+					* 函数声明
+						* 格式：function 函数名(){}
+						* 函数名：与变量命名规则一致
+					* 函数的执行：
+						* 格式：函数名()
+				* 输出
+					* alert()
+					* console.log()
+					* 输出到元素
+						* 表单： value
+						* 双标签： innerHTML
+		 */
+		
+		// 1）获取文本框
+		var number1 = document.getElementById('num1');
+		var number2 = document.getElementById('num2');
+		var output = document.getElementById('output');//得到div
+		
+
+		function sum(){
+			// 2）获取文本框的值
+			// 元素的value：元素.value
+			var num1 = Number(number1.value);
+			var num2 = Number(number2.value);
+			
+			// 字符串拼接
+			console.log(num1+num2);
+
+			// 输出到文本框
+			// 输出到div标签
+			output.innerHTML = num1 + num2;
+
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>值类型与引用类型的区别</title>
+	<script>
+		/*
+			值类型与引用类型的区别
+		 */
+		
+		// 数据复制
+		
+		var num = 10;
+
+		// 复制数字：复制成功
+		var copyNum = num;
+
+		copyNum++;
+
+		console.log('num:',num,'copyNum:',copyNum);
+
+		// 字符串复制：复制成功
+		var str = 'tiantian';
+		var copyStr = str;
+		copyStr += ' plus';
+
+		console.log('str:',str);
+		console.log('copyStr:',copyStr);
+
+
+		// 数组的复制：复制失败
+		var arr = ['tiantian','laoxie'];
+		var copyArr = arr;
+
+		// 更新copyArr
+		copyArr.push('zhuzhu');
+
+		console.log('arr:',arr);
+		console.log('copyArr:',copyArr);
+
+	</script>
+</head>
+<body>
+	<h1>值类型与引用类型的区别</h1>
+</body>
+</html>

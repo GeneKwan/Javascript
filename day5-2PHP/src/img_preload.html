@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用promise对象获取图片宽高</title>
+	<script>
+		/*
+			利用promise对象获取图片宽高
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			var preloadImage = function (path) {
+			      return new Promise(function (resolve, reject) {
+			      	// 创建一个图片节点
+			        var image = new Image();
+
+			        image.onload  = ()=>{
+			        	// Pending -> Resolved
+			            resolve(image);
+			        }
+
+			        // 图片加载不成功时
+			        image.onerror = reject;//等效与：function(e){reject(e)}
+
+			        // 设置图片路径
+			        image.src = path;
+			      });
+			};
+
+		    //使用
+		    preloadImage('http://laoxie.com/123.jpg').then(img=>{
+		        document.body.appendChild(img);
+		        console.log(img.offsetWidth,img.offsetHeight);
+		    },data=>{
+		    	console.log('图片加载不成功');
+		    	console.log(data);
+		    })
+		})
+	</script>
+</head>
+<body>
+	<h1>利用promise对象获取图片宽高</h1>
+</body>
+</html>

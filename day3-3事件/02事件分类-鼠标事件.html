@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02事件分类-鼠标事件</title>
+	<style>
+		.box{width:200px;height:100px;background-color: #58bc58;}
+	</style>
+	<script>
+		/*
+			弄清楚：每个事件的执行时机
+
+			02事件分类-鼠标事件
+				* onclick 当用户点击某个对象时调用的事件。
+				* ondblclick 当用户双击某个对象时调用的事件。
+				* onmousedown 鼠标按钮被按下。
+				* onmouseup 鼠标按键被松开。
+				* onmouseover 鼠标移到某元素之上。
+				* onmouseout 鼠标从某元素移开。
+				* onmousemove 鼠标被移动时触发。
+				* onmouseenter 在鼠标光标从元素外部移动到元素范围之内时触发。这个事件不冒泡
+				* onmouseleave 在位于元素上方的鼠标光标移动到元素范围之外时触发。这个事件不冒泡，
+				* oncontextmenu 鼠标右键菜单展开时触发。
+
+
+			绑定事件：给事件添加事件处理函数
+					 没有事件处理函数，事件也在发生
+		 */
+		
+		window.onload = function(){
+			var btn = document.getElementById('btn');
+			var box = document.getElementsByClassName('box')[0];
+
+			// dblclick = click*2
+			// click = mousedown + mouseup
+
+			btn.onclick = function(){
+				console.log('click');
+			}
+
+			btn.ondblclick = function(){
+				console.log('dblclick');
+			}
+
+			btn.onmousedown = function(){
+				console.log('mousedown');
+			}
+
+			btn.onmouseup = function(){
+				console.log('mouseup');
+			}
+
+			box.onmouseover = function(){
+				console.log('mouseover');
+			}
+			box.onmouseout = function(){
+				console.log('mouseout');
+			}
+			// box.onmousemove = function(){
+			// 	console.log('mousemove');
+			// }
+		}
+	</script>
+</head>
+<body>
+	<h1>02事件分类-鼠标事件</h1>
+	<button id="btn">点我啊</button>
+
+	<div class="box"></div>
+</body>
+</html>

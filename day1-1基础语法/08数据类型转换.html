@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据类型转换</title>
+	<script>
+		/*
+			数据类型转换
+				* 显性转换（手动写代码实现的转换）
+					* Number
+						* NaN
+					* String
+						* 带引号
+					* Boolean
+						* true
+						* false
+				* 隐式转换（看不到的转，内部自动完成）
+		 */
+		
+
+		// Number -> String
+		// Boolean -> String
+		var num = 100;
+		String(num);//'100'
+		String(true);//'true'
+
+		// String -> Number
+		// Boolean -> Number
+		var age = '18';
+		Number(age);//18
+		Number(true);//1
+		Number(false);//0
+
+		// Number -> Boolean
+		// String -> Boolean
+		console.log(Boolean(10));//true
+		console.log(Boolean(-10));//true
+		console.log(Boolean(0));//false
+
+
+		// 隐式转换（看不到的转，内部自动完成）
+		var num2 = '100';
+		var res2 = num2 - '5';
+		// 内部：Number(num2) - Number('5')
+		console.log(res2);//1005
+		
+	</script>
+</head>
+<body>
+	<h1>数据类型转换</h1>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>篮球自由落体效果（加速，抛物线）</title>
+	<style>
+		body{background-color: #000;}
+		#bb{position:absolute;left:0;top:0;width:100px;}
+		h1{color:#fff;}
+	</style>
+	<script>
+		/*
+			篮球自由落体效果（加速，抛物线）
+				* 速度不断增加的运动
+				* 抛物线运动
+				* 练习：如何实现篮球反弹的效果
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			let bb = document.querySelector('#bb');
+
+			let speed = 0;
+
+			// 水平速度
+			let hspeed = 40;
+
+			let timer = setInterval(()=>{
+				// 速度不断增加
+				speed +=5 ;
+
+
+				// 获取当前值
+				let top = bb.offsetTop;
+				let left = bb.offsetLeft;
+
+
+				top += speed;
+				left += hspeed;
+
+				// 到达目标值（地面）停止定时器
+				if(top >= window.innerHeight - bb.offsetHeight){
+					clearInterval(timer);
+
+					// 重置目标值
+					top = window.innerHeight - bb.offsetHeight;
+				}
+
+
+				bb.style.top = top + 'px';
+				bb.style.left = left + 'px';
+
+			},30);
+		});
+	</script>
+</head>
+<body>
+	<h1>篮球自由落体效果（加速，抛物线）</h1>
+	<img src="img/basketball.jpg" id="bb">
+</body>
+</html>

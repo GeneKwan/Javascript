@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02保存拖拽位置</title>
+	<style>
+		#tt{position:absolute;top:100px;left:100px;width:100px;height:100px;background-color: #f60;}
+	</style>
+	<script>
+		/*
+			Cookie的应用场景：
+				* 保存拖拽位置（利用cookie保存简单信息left,top）
+				* cookie是保存在硬盘上的文本文件
+
+			Cookie的操作
+				* 写入：document.cookie = 'name=value'
+					* 只能写入字符串
+					* 一次只能写入一个cookie
+				* 读取
+					* document.cookie：读取所有cookie
+
+			思路：
+				1) 拖拽结束，把left,top值保存起来（保存到cookie）
+				2）页面重载时，读取cookie，并写入元素样式
+		 */
+		
+		window.onload = function(){
+			var tt = document.getElementById('tt');
+
+			// 要达到按下并移动鼠标效果,必须嵌套事件
+			tt.onmousedown = function(evt){
+				// 按下时记录光标位置与，事件源对象的偏移量
+				var ox = evt.offsetX;
+				var oy = evt.offsetY;
+
+				document.onmousemove = function(e){
+					// 在mousemove中不断改变tt的left,top
+
+					tt.style.left = e.pageX - ox + 'px';
+					tt.style.top = e.pageY - oy + 'px';
+
+					e.preventDefault();
+				}
+			}
+
+			// 鼠标松开，清除mousemove事件
+			document.onmouseup = function(){
+				document.onmousemove = null;
+
+				// 拖拽结束后：保存left,top到cookie
+				document.cookie = 'left=' + tt.style.left;
+				document.cookie = 'top=' + tt.style.top;
+			}
+
+
+			// 页面重载：读取cookie
+			// 读取所有cookie
+			var all = document.cookie;
+			console.log(all);
+
+			// 获取目标值：left,top
+			var cookies = all.split('; ');console.log(cookies);
+
+			// 遍历数组，获取left,top对应的cookie
+			cookies.forEach(function(item){
+				// 拆分name,value
+				var arr = item.split('=');//['left','47px']
+
+				if(arr[0] === 'left' || arr[0] === 'top'){
+					// 设置样式
+					tt.style[arr[0]] = arr[1];
+				}
+			})
+
+		}
+	</script>
+</head>
+<body>
+	<h1>02保存拖拽位置</h1>
+	<img src="img/tiantian.jpg" id="tt">
+</body>
+</html>

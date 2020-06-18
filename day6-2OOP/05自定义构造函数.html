@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05自定义构造函数</title>
+	<script>
+		/*
+			05自定义构造函数
+
+			 * 内置构造函数 
+			 	* Date
+			 	* RegExp
+			 	* XMLHttpRequest
+			 	* String
+			 	* Object
+			 	* Array
+			 	* ....
+			 * 自定义构造函数
+			 	* 通过new调用构造函数执行过程
+			 		1）创建一个对象
+			 		2）将构造函数的this指向这个对象
+			 		3）执行构造函数中的代码
+			 		4）返回Object对象
+
+			 	* 构造函数中的this：指向实例
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			//1. 构造函数
+			//创建自定义构造函数
+			function Person(name,age,gender){
+				// 以下代码为构造函数内部置动执行
+				// 1. let obj = {}
+				// 2. Person.bind(obj)
+
+				// 3. 执行下面的代码
+				this.name = name;
+				this.age = age;
+				this.gender = gender;
+
+				// 4. return obj;
+			}
+
+			// 调用自定义构造函数
+			let lx = Person('laoxie',18,'男');
+			console.log('lx:',lx);//undefined
+
+			// 2. 实例
+			// 通过new调用构造函数的方式：实例化，返回一个对象
+			let tt = new Person('甜甜',28,'男');
+			console.log('tt:',tt)
+		});
+	</script>
+</head>
+<body>
+	<h1>05自定义构造函数</h1>
+</body>
+</html>

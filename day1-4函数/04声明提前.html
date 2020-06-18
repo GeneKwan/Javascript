@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04声明提前</title>
+	<script>
+		// 声明提前（js内部的行为）
+		// function showName(){
+		// 	console.log('tiantian');
+		// }
+		// var showTime;//undefined
+		/*
+			04声明提前：搞清楚那部分是声明
+				
+				* 函数定义
+					* 俱名函数
+						* 声明式
+						* 赋值式
+					* 匿名函数
+
+
+			代码执行顺序：
+				1.声明提前：把声明部分代码拿到最前面
+				2.逐行执行：上->下逐行执行代码
+		 */
+
+		// 声明式
+		showName();//tiantian
+		function showName(){
+			console.log('tiantian');
+		}
+
+
+		// 赋值式
+		// showTime();//showTime is not a function ：showTime不是一个函数
+		var showTime = function(){
+			console.log('2018-8-2 10:08:32');
+		}
+		showTime();//'2018-8-2 10:08:32
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

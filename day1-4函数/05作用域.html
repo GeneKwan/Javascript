@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05作用域</title>
+	<script>
+		/*
+			05作用域：变量的使用范围
+				* 全局作用域
+					* 全局变量
+				* 局部作用域
+					* 局部变量
+
+			声明提前：把声明部分代码提前到当前作用域最开始的位置
+
+			变量访问规则：（就近原则）
+				* 当前作用域->上级作用域...->全局作用域（终点）
+				* 如果到终点还是无法找到，则报xxx is not defined
+
+
+
+		 */
+		
+		// 全局作用域
+		var num = 10;//全局变量
+		
+		function sum(){
+			// 局部作用域
+			var x = 5;
+			var num = 20;
+
+			console.log(num+x);//15;
+
+			// 函数嵌套（作用域嵌套）
+			// function(){
+			// 	function(){
+			// 		button.onclick = function(){
+
+			// 		}
+			// 	}
+			// }
+		}
+
+		sum();
+
+
+		console.log(num+8);//18
+		// console.log(num+x);//x is not defined
+
+
+		// 面试题
+		// 声明提前
+		var age=18;
+		function show(){
+			// var age
+			console.log(age);
+
+
+
+
+			var age = 20;
+
+			console.log('end',age);
+		}
+
+		show();//undefined
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

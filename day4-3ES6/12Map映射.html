@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12Map映射</title>
+	<script>
+		/*
+			12Map映射（键值对，key/value，属性名/属性值）
+				* 能让所有类型的数据作为键
+
+				* 定义：new Map();
+				* 方法
+					* set(key,value);
+					* 获取get(key)
+					* has(key)
+					* delete(key)
+					* clear()
+				* 历方法
+					* keys() 获取所有键
+					* values() 获取所有值
+					* entries() 获取所有键值对
+					* forEach()：遍历 Map 的所有成员。
+		 */
+		
+		 var myMap = new Map();//new Object();
+
+		 myMap.set('name','tiantian');
+		 myMap.set('age',28);
+		 myMap.set('score',{english:100,math:88,chinese:58});
+
+		 // 让所有类型的数据作为键
+		 myMap.set({nickname:'小甜甜',nickname2:'胖田'},'小名');
+		 console.log(myMap);
+
+		 // for..of遍历
+		 for(let [k,v] of myMap){
+		 	// 遍历过程把数组[key,value]赋值给item
+		    console.log(k,v);
+		}
+	</script>
+</head>
+<body>
+	<h1>12Map映射</h1>
+</body>
+</html>

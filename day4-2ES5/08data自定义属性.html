@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08data自定义属性</title>
+	<script>
+		/*
+			08data自定义属性
+				* data-
+				* dataset（是一个对象）
+					* 获取
+					* 设置
+
+				* getAttribute('data-*');
+				* setAttribute('data-*');
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			var box = document.querySelector('#box');
+
+			// 获取guid
+			box.dataset.guid;
+			console.log(box.dataset);
+
+			// 设置符合W3C标准的自定义属性
+			box.dataset.myName = 'laoxie';
+		});
+	</script>
+</head>
+<body>
+	<h1>08data自定义属性</h1>
+
+	<div id="box" data-idx="10" data-guid="g01" data-first-name="xie">
+		
+	</div>
+</body>
+</html>

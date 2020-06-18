@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06函数扩展之bind方法</title>
+	<script>
+		/*
+			06函数扩展之bind方法
+				fn.bind(obj);
+				* 用于将当前函数fn和指定对象obj绑定(通俗理解：把fn的this指向obj)
+				* 返回一个新的函数
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			var output = document.querySelector('#output');
+
+			// 获取5个按钮
+			var btns = document.querySelectorAll('.btn');
+
+			// 需求：
+			// * 点击每个按钮，输出按钮的内容
+			// * 延迟1s输出按钮内容
+			for(var i=0;i<btns.length;i++){
+			    btns[i].onclick = function(){
+			    	// 这里的this指向按钮
+			    	// var self = this;
+
+			    	setTimeout(function(){
+			    		// 这里的this指向window
+			    		output.innerText = this.innerText;
+
+			    	}.bind(this),1000)
+			    }
+			}
+		})
+		
+	</script>
+</head>
+<body>
+	<h1>06函数扩展之bind方法</h1>
+	<button class="btn">按钮1</button>
+	<button class="btn">按钮2</button>
+	<button class="btn">按钮3</button>
+	<button class="btn">按钮4</button>
+	<button class="btn">按钮5</button>
+	<div id="output"></div>
+</body>
+</html>

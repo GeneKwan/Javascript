@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08键盘事件下的event对象</title>
+	<script>
+		/*
+			08键盘事件下的event对象
+			* document绑定事件
+			* event对象属性
+				* keyCode/which		被敲击的键的虚拟键盘码
+					* 常用键
+						* 上下左右:
+						* ESC
+						* 空格
+						* 回车
+				* altKey	alt键是否被按下
+				* ctrlKey	ctrl键是否被按下
+				* shiftKey	shift键是否被按下
+		 */
+		window.onload = function(){
+			document.onkeydown = function(e){
+				console.log(e.keyCode)
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>08键盘事件下的event对象</h1>
+</body>
+</html>

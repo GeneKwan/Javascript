@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01重置原型对象</title>
+	<script>
+		/*
+			01重置原型对象
+		 */
+		
+		function Fireworks(){
+
+		}
+
+		console.log(Fireworks.prototype);
+
+		// 重置原型对象
+		Fireworks.prototype = {
+			// 识别问题
+			constructor:Fireworks,
+
+			init(){
+
+			},
+			move(){
+
+			},
+			remove(){
+
+			},
+			bomb(){
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>01重置原型对象</h1>
+</body>
+</html>

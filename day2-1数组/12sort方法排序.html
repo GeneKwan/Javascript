@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12sort方法排序</title>
+	<script>
+		/*
+			12sort方法排序
+				* 冒泡排序法
+				* 选择排序
+				* sort()排序
+					* 默认：以字符串编码排序
+					* 指定排序规则：把函数作为参数传入sort方法
+		 */
+		
+		var arr = [10,2,8,55,32,18,9,11,30,16,19,20];
+		console.log(arr);
+
+		// 回调函数
+		arr.sort(function(a,b){
+			// 在此指定a,b的排列顺序：利用返回值实现
+			// * return负数：告诉sort方法，b排在a前面[b,a...]
+			// * return正数：告诉sort方法，b排在a后面[a,b...]
+			// * return 0  : 告诉sort方法，保留现有位置
+
+			// if(a>b){
+			// 	return 1;
+			// }else if(a<b){
+			// 	return -1;
+			// }else{
+			// 	return 0;
+			// }
+
+			return a-b;
+		});
+
+		// reverse()：倒序
+		arr.reverse();
+
+
+		console.log(arr);
+	</script>
+</head>
+<body>
+	<h1>12sort方法排序</h1>
+</body>
+</html>

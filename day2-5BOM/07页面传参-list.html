@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07页面传参-商品列表</title>
+	<script>
+		window.onload = function(){
+
+			var goods = {
+		        id:'001',
+		        name:'iphone7 plus',
+		        nickname:'肾7',
+		        imgurl:'img/ip7.jpg',
+		        price:5899.00,
+		        sale:5888.00,
+		        color:'土豪金'
+		    }
+
+
+		    // 'id=001&name=iphone7 plus'
+
+		    // 1. 跳转
+		    // 从这个页面跳转到另外一个页面
+		    // 2. 传递参数
+		    // 附带商品信息（url只能是字符串）
+		    // 3. Object -> String(name=value&name=value);
+
+		    var ip7 = document.getElementById('ip7');
+
+		    // 遍历goods
+		    // 把商品信息转成特定格式的字符串
+		    var params = '';
+		    for(var key in goods){
+		    	params += key + '=' + encodeURI(goods[key]) + '&'
+		    }
+
+		    // 去除多余的&
+		    params = params.slice(0,-1);
+		    console.log(params);
+
+		    ip7.onclick = function(){
+		    	
+		    	location.href = '07页面传参-goods.html?' + params;
+		    }
+		}
+	</script>
+</head>
+<body>
+	<h1>商品列表</h1>
+	<img src="img/ip7.jpg" id="ip7">
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20迭代（遍历）方法之some&every</title>
+	<script>
+		/*
+			20迭代（遍历）方法之some&every
+				* 无返回值
+					* forEach(fn) 遍历方法，for循环没有太大差别，比for循环方便
+				* 返回数组
+					* map(fn) 返回一个数量相等的数组，内容是什么取决于在fn中返回的值
+					* filter(fn) fn后返得到执行回true时对应的数组元素，利用这个方法可对数组元素进行过滤筛选
+				* 返回boolean
+					* some(fn) 如果该函数中任何一项返回 true，则返回true
+					* every(fn) 如果该函数对每一项都返回 true，则返回true
+		 */
+		
+
+		 var arr = [10,15,2,32];
+
+		 // true,true,true,true   =>	true
+		 // false,false,false,false   =>	false
+		 // false,false,true,false	 => true
+		 var res1 = arr.some(function(item){
+		 	return item<10;
+		 });
+		 console.log(res1);
+
+		 // true,true,true,true   =>	true
+		 // true,false,true,true   =>	false
+		 var res2 = arr.every(function(item){
+		 	return item>2;
+		 });
+		 console.log(res2);
+
+
+		 // 应用：判断数组中是否存在某个值
+		 var res3 = arr.some(function(item){
+		 	return item===15;
+		 })
+		
+	</script>
+</head>
+<body>
+	<h1>20迭代（遍历）方法之some&every</h1>
+</body>
+</html>

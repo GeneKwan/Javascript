@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02字符串操作之大小写转换</title>
+	<script>
+		/*
+			02字符串操作之大小写转换
+				* oLowerCase()：转换成小写
+				* toUpperCase()：转换成大写
+
+				* 首字母大写
+		 */
+		
+
+		var username = 'LaoXie';
+
+		// 大写
+		var res1 = username.toUpperCase();
+		console.log(res1);
+
+		// 小写
+		var res2 = username.toLowerCase();
+		console.log(res2);
+
+		 // 首字母大写
+		 var res3 = username.substr(0,1).toUpperCase() +  username.substring(1).toLowerCase();
+		 console.log(res3);
+
+		 
+	</script>
+</head>
+<body>
+	<h1>02字符串操作之大小写转换</h1>
+</body>
+</html>

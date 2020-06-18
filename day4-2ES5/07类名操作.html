@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07类名操作</title>
+	<style>
+		.box{width:200px;height:100px;background-color: #ffc;border:5px solid #f90;}
+		.dspn{display:none;}
+	</style>
+	<script>
+		/*
+			07类名操作
+				* className		用于单个类名操作
+				* classList		用于多个类名操作，是一个对象
+					* length : class类名的个数
+					* add() : 添加class方法
+					* remove() : 删除class方法
+					* toggle() : 切换class方法
+					* contains():是否含有某个类,返回布尔值
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			var box = document.querySelector('.box');
+			var btn = document.querySelector('.btn');
+
+			// 添加一个类名title
+			// box.className += ' title';
+			console.log(box.classList);
+
+			// 添加一个类名content
+			box.classList.add('content','tes1','test2');
+			box.classList.add('title');
+
+
+			// 显示隐藏效果
+			btn.onclick = function(){
+				// 判断box中是否存在dspn
+				// * 有则删除
+				// * 无则添加
+				// if(box.classList.contains('dspn')){
+				// 	box.classList.remove('dspn');
+				// }else{
+				// 	box.classList.add('dspn');
+				// }
+
+				box.classList.toggle('dspn');
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<h1>07类名操作</h1>
+	<button class="btn">显示隐藏</button>
+	<div class="box title"></div>
+</body>
+</html>

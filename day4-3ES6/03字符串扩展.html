@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串扩展</title>
+	<script>
+		/*
+			字符串扩展
+
+				* 方法扩展
+					* includes
+					* startsWith()	 是否以某一字符开头
+					* endsWith() 	 是否以某一字符结尾
+					* repeat()
+				* 字符串模板：``
+					* 使用变量格式：${变量名}
+		 */
+		
+		var str = 'hello my name is laoxie';
+
+		// 判断是否包含某个字符
+		if(str.indexOf('laoxie') >= 0){
+
+		}
+
+		// ES6解决方案
+		if(str.includes('laoxie')){
+
+		}
+
+		if(str.startsWith('hello')){
+
+		}
+
+
+		// 拼接
+		var arr = [];
+
+		arr.map(function(item){
+			return '<li data-guid="'+item.guid+'">' + 
+				'<img src="'+item.imgurl+'" />'
+			'<li>'
+		});
+
+		// ES6解决方案：字符串模板：``
+		arr.map(function(item){
+			return `
+				<li data-guid="${item.guid}">
+					<img src="${item.imgrul}" />
+					<h4>${item.name}</h4>
+				<li>
+			`
+		});
+
+	</script>
+</head>
+<body>
+	<h1>字符串扩展</h1>
+</body>
+</html>

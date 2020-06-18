@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 200px;
+				height: 400px;
+				background: red;
+				position: absolute;
+				left: -200px;
+				top: 0;
+			}
+			#share{
+				width: 30px;
+				height: 100px;
+				background: blue;
+				position: absolute;
+				right: -30px;
+				top: 150px;
+			}
+		</style>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				//垂直方向居中
+				var iH=($(window).height()-$('#box').height())/2;
+				$('#box').css('top',iH);
+				
+				//运动
+				$('#box').hover(function(){
+					$('#box').stop();
+					$(this).animate({'left':0},1000,'linear');
+				},function(){
+					$('#box').stop();
+					$(this).animate({'left':-200},1000,'linear');
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div id="share">
+				
+			</div>
+		</div>
+	</body>
+</html>

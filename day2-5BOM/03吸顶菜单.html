@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03吸顶菜单</title>
+	<style>
+		body{margin:0;}
+		.container{width:1100px;margin:0 auto;}
+		.top{height:200px;background-color: #58bc58;}
+		.content{height:800px;background-color: #dfdfdf;}
+		#search{text-align:center;background-color: #fff}
+		.fixed{position: fixed;top:0;left:0;right:0;box-shadow:0 5px 5px rgba(0,0,0,0.1);}
+	</style>
+	
+</head>
+<body>
+	<div class="container">
+		<div class="top" id="top"></div>
+		<div id="search">
+			<img src="img/search.bmp">
+		</div>
+		<div class="content">
+			laoxie is 666
+		</div>
+	</div>
+	<script>
+		/*
+			03吸顶菜单
+
+			window事件：
+				* onscroll//窗口滚动条滚动时触发
+
+			给元素添加类名：
+				* 元素.className
+		 */
+		(function(){
+			var search = document.getElementById('search');
+			var top = document.getElementById('top');
+
+			window.onscroll = function(){
+				// 获取滚动条滚动过的距离
+				if(window.scrollY>=200){
+					search.className = 'fixed';
+
+					top.style.marginBottom = 114 + 'px';
+				}else{
+					search.className = '';
+					top.style.marginBottom = 0;
+				}
+			}
+		})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装一个函数，计算所有传入参数的和</title>
+	<script>
+		/*
+			封装一个函数，计算所有传入参数的和
+				函数内一个特殊值：arguments
+					* 保存实参的信息（数组）
+					* 实参数量：arguments.length
+					* 格式：[实参1,实参2,实参3...86]
+					* 索引值:0,1,2,3...85
+					* 获取：arguments[1]
+		 */
+		
+		function sum(){
+			// console.log(arguments);
+
+			// 声明变量，用于求和
+			var res = 0;
+
+			// res = arguments[0] + arguments[1] + arguments[3]...
+			for(var i=0;i<arguments.length;i++){
+				res += arguments[i];
+			}
+
+			console.log(res);
+		}
+
+		sum(10,20);//30
+		sum(1,2,3,4,5);//15
+		sum(23);//23
+		sum(10,11,20,33,21,2,4,6,77,23,13);
+	</script>
+</head>
+<body>
+	<h1>封装一个函数，计算所有传入参数的和</h1>
+</body>
+</html>

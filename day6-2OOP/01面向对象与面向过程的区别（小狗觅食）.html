@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01面向对象与面向过程的区别（小狗觅食）</title>
+	<script>
+		/*
+			小狗觅食
+				* 闻一闻smell
+				* 舔一舔lick
+				* 咬一咬bite
+		 */
+		
+		/*
+			@面向过程
+				* 凡事亲力亲为
+
+			主角：小狗
+		 */
+		function smell(){
+			console.log('闻一闻');
+		}
+
+		function lick(){
+			console.log('舔一舔');
+		}
+
+		function bite(){
+			console.log('咬一咬');
+		}
+
+		console.log('面向过程：');
+		smell();
+		lick();
+		bite();
+
+
+		/*
+			@面向对象
+				1）创建对象：把谁当对象（小狗）
+				2）描述对象
+					* 对象有什么
+					* 对象能做什么
+				3）操作对象
+
+
+			主角：我（指挥官）
+			对象：小狗
+		*/
+	
+
+		let wangcai = {
+			smell(){
+				console.log('闻一闻');
+			},
+			lick(){
+				console.log('舔一舔');
+			},
+			bite(){
+				console.log('咬一咬');
+			}
+		}
+
+		console.log('面向对象：');
+		wangcai.smell();
+		wangcai.lick();
+		wangcai.bite();
+		
+
+		
+
+	</script>
+</head>
+<body>
+	<h1>01面向对象与面向过程的区别（小狗觅食）</h1>
+</body>
+</html>

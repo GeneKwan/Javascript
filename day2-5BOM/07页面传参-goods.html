@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07页面传参-商品详情页面</title>
+	<script>
+		/*
+			获取url参数信息
+				* location.search
+
+				* URL编码
+					* encodeURI();//转码
+					* decodeURI();//解码
+		 */
+		
+		var params = location.search;//'?id=001&name=xxx';
+
+		// 截取
+		params = params.substring(1);
+		console.log(params);
+
+		// String -> Object
+			// 1) 转成Array
+		params = params.split('&');//
+		console.log(params)
+
+		// 用于存放name,value
+		var obj = {};
+
+		params.forEach(function(item){
+			// 拆分name/value
+			var arr = item.split('=');
+
+			obj[arr[0]] = decodeURI(arr[1]);
+		});
+
+		console.log('最终格式：',obj);
+
+		document.write(obj.color)
+
+	</script>
+</head>
+<body>
+	<h1>商品详情页面</h1>
+</body>
+</html>

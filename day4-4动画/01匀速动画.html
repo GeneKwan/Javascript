@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>飞翔的小鸟（匀速）</title>
+	<style>
+		#bird{position: absolute;left:0;top:100px;}
+	</style>
+	<script>
+		/*
+			飞翔的小鸟（匀速）
+				* 从左到右飞翔：left
+				* 停止定时器
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			let bird = document.querySelector('#bird');
+
+			let speed = 7;
+
+			// 不断改变小鸟的left值
+			var timer = setInterval(()=>{
+				// 获取当前left值
+				let left = bird.offsetLeft;
+
+				left += speed;
+
+				if(left >= window.innerWidth-bird.offsetWidth){
+					clearInterval(timer);
+
+					// 重置目标值
+					left = window.innerWidth-bird.offsetWidth;
+				}
+
+				bird.style.left = left + 'px';
+			},30);
+		});
+	</script>
+</head>
+<body>
+	<h1>飞翔的小鸟（匀速）</h1>
+	<img src="img/bird.gif" id="bird">
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打印2月份除2和12号中的天数</title>
+	<script>
+		/*
+			打印2月份除2和12号中的天数
+				* 28天（循环次数） -> for
+		 */
+		
+		for(var day=1;day<=28;day++){
+			if(day===2 || day===12){
+				continue;
+			}
+			document.write(day + ', ');
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>打印2月份除2和12号中的天数</h1>
+</body>
+</html>

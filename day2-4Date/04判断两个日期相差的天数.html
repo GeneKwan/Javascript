@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04判断两个日期相差的天数</title>
+
+</head>
+<body>
+	<h1>04判断两个日期相差的天数</h1>
+	<label for="start">开始：</label>
+	<input type="date" id="start">
+	<label for="end">结束：</label>
+	<input type="date" id="end">
+	<button id="btn">相差天数</button>
+	<div id="output"></div>
+	<script>
+		/*
+			04判断两个日期相差的天数
+				1) 获取两个输入的日期
+				2）以指定日期创建时间对象
+				3）计算差值（毫秒）
+				4）转换成天数
+		 */
+		
+		var start = document.getElementById('start');
+		var end = document.getElementById('end');
+		var btn = document.getElementById('btn');
+		var output = document.getElementById('output');
+
+		// 绑定事件
+		btn.onclick = function(){
+			// 1) 获取两个输入的日期
+			var _start = start.value;
+			var _end = end.value;
+
+			// // 2）以指定日期创建时间对象
+			// var date_start = new Date(_start);
+			// var date_end = new Date(_end);
+
+			// // 3）计算差值（毫秒）
+			// var offset = date_end.getTime() - date_start.getTime();
+
+
+			// ES5简化：
+			var offset = Date.parse(_end) - Date.parse(_start);
+
+			// 4）转换成天数
+			var days = Math.ceil(offset/1000/60/60/24);
+			
+
+			output.innerHTML = _start + '距' + _end + '还差' + days + '天';
+		}
+	</script>
+</body>
+</html>

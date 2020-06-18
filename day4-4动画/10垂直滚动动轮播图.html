@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直滚动动轮播图</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		.banner{position:relative;width:320px;height:320px;border:10px solid #58bc58;overflow: hidden;}
+		.banner ul{position: absolute;left:0;top:0;}
+		.banner img{display: block;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			垂直滚动动轮播图
+
+			index		top
+			0			0
+			1			-320
+			2			-640
+			3			-960
+
+			推导公式：top = -index*320
+
+
+			知识点：
+				* offset
+					* offsetTop: 当前元素离<定位父级>元素顶部的距离。
+					* offsetLeft: 当前元素离<定位父级>元素左边的距离。
+						以上两个属性如果没定位的父级，则相对于根元素html的距离
+
+					* offsetWidth: 当前元素的宽度（border + padding + content）
+					* offsetHeight: 当前元素的高度（border + padding + content）
+				* client
+					* clientWidth: 当前元素宽度（padding + content，不包括border）
+					* clientHeight: 当前元素高度（padding + content，不包括border）
+					
+					* clientTop: 当前元素上边框的宽度（border-top,不常用）
+					* clientLeft: 当前元素左边框的宽度（border-left,不常用）
+				* scroll
+					* scrollTop: 当前元素<垂直滚动条>滚动过的距离
+					* scrollLeft: 当前元素<水平滚动条>滚动过的距离
+					* scrollWidth: 当前元素滚动宽度（不包括边框，不常用）
+					* scrollHeight: 当前元素滚动高度（不包括边框，不常用）
+
+
+				练习：
+					* 鼠标移入移出实现暂停/继续动画的效果
+					* 水平滚动的效果
+		 */
+		
+		document.addEventListener('DOMContentLoaded',()=>{
+			let banner = document.querySelector('.banner');
+			let ul = banner.querySelector('ul');
+
+			// 默认显示第一张
+			let index = 0;
+
+			let timer = setInterval(show,3000);
+
+			banner.onmouseover = ()=>{
+				clearInterval(timer);
+			}
+
+			banner.onmouseout = ()=>{
+				timer = setInterval(show,3000);
+			}
+
+			function show(){
+				index++;
+
+				// 显示最后一张以后，重新显示第一张
+				if(index >= ul.children.length){
+					index = 0;
+				}
+
+				// 计算top值
+				let top = -index*banner.clientHeight;
+				
+				animate(ul,{top});
+			}
+		})
+	</script>
+</head>
+<body>
+	<h1>垂直滚动动轮播图</h1>
+	<div class="banner">
+		<ul>
+			<li><img src="img/g1.jpg"></li>
+			<li><img src="img/g2.jpg"></li>
+			<li><img src="img/g3.jpg"></li>
+			<li><img src="img/g4.jpg"></li>
+			<li><img src="img/g5.jpg"></li>
+		</ul>
+	</div>
+</body>
+</html>

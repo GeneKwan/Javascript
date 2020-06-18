@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>生成随机背景色表格</title>
+	<style>
+		table{margin-top:20px;width:100%;border:1px solid #ddd;border-collapse:collapse;}
+		td,th{border:1px solid #ddd;padding:5px 10px;}
+		td{padding:0;height:30px;}
+		td input{width:100%;height:30px;border:none;background-color:#ffc;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			parent.appendChild(node) 在元素parent最后追加node（不影响原来的内容）
+		 */
+		window.onload = function(){
+			// 获取元素
+			var row = document.getElementById('row');
+			var col = document.getElementById('col');
+			var btnCreate = document.getElementById('btnCreate');
+			var container = document.getElementsByClassName('container')[0];
+
+			// 点击生成表格
+			btnCreate.onclick = function(){
+				// 获取输入的行，列
+				var _row = row.value;
+				var _col = col.value;
+
+				// 生成table,tbody
+				var table = document.createElement('table');
+				var tbody = document.createElement('tbody');
+
+				// tbody插入table，称为它子节点
+				table.appendChild(tbody);
+
+				// 外层循环：控制行
+				for(var i=0;i<_row;i++){
+					// 创建tr
+					var tr = document.createElement('tr');
+
+					// 随机背景颜色
+					tr.style.backgroundColor = randomColor();
+
+					// tr插入tbody称为子元素
+					tbody.appendChild(tr);
+
+					// 添加行号列
+					var firstTd = document.createElement('td');
+					firstTd.innerHTML = i+1;
+					tr.appendChild(firstTd);
+
+					// 内层循环：控制列
+					for(var j=0;j<_col;j++){
+						// 创建td
+						var td = document.createElement('td');
+						td.innerHTML = '单元格' + i+j;
+
+						// td插入tr称为子元素
+						tr.appendChild(td);
+					}
+				}
+
+				console.log(table);
+
+				// 插入前先清空
+				container.innerHTML = '';
+
+				// table插入container称为子元素
+				container.appendChild(table);
+
+			}
+		}
+		
+	</script>
+</head>
+<body>
+	行<input type="text" id="row"> 列<input type="text" id="col"><button id="btnCreate">生成随机背景色表格</button>
+	<div class="container"></div>
+</body>
+</html>

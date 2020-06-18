@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07原型对象</title>
+	<script>
+		/*
+			07原型对象
+				* 只要创建了构造函数，原型对象就伴随而来
+				* 获取
+					* 通过构造函数获取：构造函数.prototype
+					* 通过实例获取：__proto__
+
+				* 解决内存占用问题：
+					* 把所有的方法和公共属性提取到原型对象中
+
+			自定义构造函数创建多个对象存在的问题：
+				* 相同的方法出现在多个对象上：内存占用过多的问题
+
+			属性访问规则（查找name属性）：
+				1. 在当前对象查找是否有这个属性
+					* 有：使用
+					* 无：进入第2步
+				2. 往对象的原型对象中查找
+					* 有：使用
+					* 无：进入第3步
+				3. 往原型对象的原型对象查找，依此类推
+					* 有：则使用
+					* 无：则继续查找
+				4. 终点：Object的原型对象
+					* 有：则使用
+					* 无：
+						* 属性：undefined
+						* 方法：报错xxx is not a function
+
+		 */
+		
+			// 创建自定义构造函数
+			let Person = function(name,age,gender){
+				// 属性
+				this.name = name;
+				this.age = age;
+				this.gender = gender;
+
+				// 方法
+				// this.eat = function(){
+				// 	// 这里的this指向：对象方法中的this指向实例
+				// 	console.log(`hello everyone my name is ${this.name}，我超能吃`);
+				// }
+
+				// this.sleep = function(){
+				// 	console.log('sleep');
+				// }
+
+				// this.coding = function(){
+				// 	console.log(`我是${this.name},今年${this.age}，我会敲代码`);
+				// }
+			}
+
+			// 获取原型对象
+			// 为什么原型对象能解决内存占用的问题？
+			//  * 放在原型对象中的属性/方法能被所有实例共享
+			// 为什么对象没有coding方法也能访问？
+			// * 属性访问规则
+			 
+			// 把方法放进原型对象里
+			Person.prototype.eat = function(){
+				console.log(`hello everyone my name is ${this.name}，我超能吃`);
+			}
+			Person.prototype.sleep = function(){
+				console.log('sleep');
+			}
+			Person.prototype.coding = function(){
+				console.log(`我是${this.name},今年${this.age}，我会敲代码`);
+			}
+
+
+			let laoxie = new Person('laoxie',18,'男');
+			let tiantian = new Person('tiantian',28,'男');
+			let zhuzhu = new Person('zhuzhu',30,'女');
+
+			console.log(laoxie);
+			console.log(tiantian);
+			console.log(zhuzhu);
+	</script>
+</head>
+<body>
+	<h1>07原型对象</h1>
+</body>
+</html>

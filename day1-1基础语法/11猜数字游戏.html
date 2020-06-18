@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11猜数字游戏</title>
+
+</head>
+<body>
+
+	<h1>11猜数字游戏</h1>
+
+	<p>现在已生成一个1-100的数字，猜中有奖</p>
+	<input type="number" id="num">
+	<button onclick="guess()">确定</button>
+	<script>
+		/*
+			思路：
+				1.生成1-100随机数
+					Math.random()：得到一个0-1但不包括1的数字
+				2.点击按钮时判断输入的数字与随机数的关系
+					* 定义一个函数
+					* 获取输入的值
+					* 判断
+
+
+			知识点：
+				* 条件判断语句：if(条件){条件成立执行这里的代码}
+		 */
+		
+		// 生成1-100随机数
+		var ranNumber = parseInt(Math.random()*100)+1;//0-99
+		console.log(ranNumber)
+
+		// 获取页面元素
+		var num = document.getElementById('num');
+
+		function guess(){
+			// 点击时获取输入的数字
+			var _num = num.value*1;//String
+
+			// 提示用于输入的值_num与ranNumber的关系
+			if(_num>ranNumber){
+				alert('大了');
+			}
+
+			if(_num < ranNumber){
+				alert('小了');
+			}
+
+			// 猜中
+			if(_num === ranNumber){
+				alert('恭喜你，又可以请客了');
+			}
+		}
+	</script>
+</body>
+</html>

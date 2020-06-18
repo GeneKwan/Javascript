@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12函数的返回值</title>
+	<script>
+		/*
+			12函数的返回值
+				* 默认：undefined
+
+				* return
+					* 终止函数的执行，return后的代码不会被执行
+					* 返回值：return 100 （把100返回到函数执行的地方）
+		 */
+		var num = 10;
+
+		num-5;//返回值：5
+		num++;//返回值：10
+
+
+		function total(){
+			var username = 'tiantian';
+			var age = 20;
+			var gender = '不详';
+
+			console.log(username);
+			// 结束函数
+			return;
+			console.log(age);
+			console.log(gender);
+
+		}
+
+		total();//
+
+
+		// 返回值
+		function sum(a,b){
+			// var a=10,b=20
+			return a+b;
+			
+			console.log('end');
+		}
+
+		var res1 = sum(10,20);//30
+		var res2 = sum(5,35);//40
+		console.log('res1:',res1);
+		console.log('res2:',res2);
+	</script>
+</head>
+<body>
+	<h1>12函数的返回值</h1>
+</body>
+</html>

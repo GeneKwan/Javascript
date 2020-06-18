@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>单一按钮</title>
+    <link href="../css/xiala.css" rel="stylesheet" type="text/css" />
+    <!-- <script type="text/javascript" src="../js/qf.js">
+    </script> -->
+    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+        
+        $(function(){
+            // let isCheck = true;
+            let i = 1;
+            $('#drop h2').click(function(){
+                // console.log(i);
+                
+                // 开关判断
+                // if(isCheck){}
+                if(i === 1){
+                    $('#drop ul').css('display','none');
+                    $('#drop h2').removeClass('up');
+                    $(this).addClass('down');
+                    i = 2;
+                }
+
+                else{
+                    $('#drop ul').css('display','block');
+                    $('#drop h2').removeClass('down');
+                    $(this).addClass('up');
+                    i = 1;
+                }
+                // isCheck = !isCheck;
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div id="drop" class="down_list">
+        <h2 class="up">播放列表</h2>
+        <ul>
+            <li><a href="#">玩爱之徒 - 蔡依林</a></li>
+            <li><a href="#">原谅我就是这样的女生 - 戴佩妮</a></li>
+            <li><a href="#">猜不透 - 丁当</a></li>
+            <li><a href="#">自导自演 - 周杰伦</a></li>
+            <li><a href="#">浪漫窝 - 弦子</a></li>
+            <li><a href="#">流年 - 王非</a></li>
+        </ul>
+    </div>
+</body>
+</html>

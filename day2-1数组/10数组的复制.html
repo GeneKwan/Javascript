@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10数组的复制</title>
+	<script>
+		/*
+			10数组的复制
+				第一种：遍历法
+					* 创建新数组
+					* 遍历写入
+				第二种：slice(0)
+					* 从第一项截取到最后
+
+				....
+
+
+		 */
+		
+
+
+		// 数组的复制：复制失败
+		// var arr = ['tiantian','laoxie'];
+		// var copyArr = arr;
+
+		// // 更新copyArr
+		// copyArr.push('zhuzhu');
+
+		// console.log('arr:',arr);
+		// console.log('copyArr:',copyArr);
+
+
+		var arr = ['tiantian','zhuzhu','laoxie'];
+
+		// 遍历法
+		var copyArr = [];
+		for(var i=0;i<arr.length;i++){
+			copyArr[i] = arr[i];
+		}
+
+		copyArr.push('yy');
+
+		console.log('arr:',arr);
+		console.log('copy:',copyArr);
+
+		// 函数方法复制
+		var copyArr2 = arr.slice(0);
+		copyArr2.push('666');
+
+
+	</script>
+</head>
+<body>
+	<h1>10数组的复制</h1>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编写生成4位数字验证码的函数，并显示在页面，点击重新生成验证码</title>
+	<style>
+		#showCode{display: inline-block;margin-left:5px;background-color: #fe0;border:1px solid #f60;padding:2px 4px;}
+	</style>
+</head>
+<body>
+	<h1>编写生成4位数字验证码的函数，并显示在页面，点击重新生成验证码</h1>
+	<form action="09success.html" class="form">
+		<div>
+			<label for="username">用户名：</label>
+			<input type="text" id="username" name="username">
+		</div>
+		<div>
+			<label for="password">密码：</label>
+			<input type="text" id="password" name="password">
+		</div>
+		<div>
+			<label for="code">验证码：</label>
+			<input type="text" id="code"><span id="showCode">9789</span>
+		</div>
+		<button id="btnLogin">登录</button>
+	</form>
+
+	<script>
+		/*
+			编写生成4位数字验证码的函数，
+				* 显示在页面，
+				* 点击重新生成验证码
+				* 登录验证有效性
+		 */
+		
+		// 获取页面元素
+		var code = document.getElementById('code');
+		var showCode = document.getElementById('showCode');
+		var btnLogin = document.getElementById('btnLogin');
+
+		// 显示在页面
+		createCode();
+
+
+		// 点击更换验证码
+		showCode.onclick = function(){
+			createCode();
+		}
+
+
+		// 登录验证有效性
+		btnLogin.onclick = function(){
+			// 获取输入的值
+			var _code = code.value;
+
+			// 获取随机验证码
+			var mycode = showCode.innerHTML;
+
+			if(_code != mycode){
+				alert('验证码输入有误');
+
+				// 避免表单提交
+				return false;
+			}
+		}
+
+		function createCode(){
+			// 显示4为随机验证码
+			// 字符串拼接
+			var mycode = '';
+			for(var i=0;i<4;i++){
+				mycode += parseInt(Math.random()*10);
+			}
+
+			showCode.innerHTML = mycode;
+		}
+
+	</script>
+</body>
+</html>

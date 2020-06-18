@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>轮播图</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			#slider{
+				width: 310px;
+				height: 250px;
+				position: relative;
+				margin: 50px auto;
+				overflow: hidden;
+				/*border: 1px solid #000;*/
+			}
+			/*图片的样式*/
+			#slider_img{
+				
+				width: 310px;
+    			height: 220px;
+			}
+			#slider_img li{
+				width: 310px;
+    			height: 220px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			/*焦点的样式*/
+			#light{
+				width:310px;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				text-align: center;
+			}
+			#light span{
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				background: url(images/slider/icon.png) no-repeat -24px -780px;
+				/*隐藏里面的文字*/
+				text-indent: -99999px;
+				cursor: pointer;
+				margin: 0 5px; 
+			}
+			#light .active{
+				background: url(images/slider/icon.png) no-repeat -0px -760px;
+			}
+			/*左右按钮*/
+			#posi_ctrl{
+				position: absolute;
+				top: 50%;
+				width: 310px;
+				height: 35px;
+				margin-top:-17px ;
+				/*background: red;*/
+				z-index: 5;
+				cursor: pointer;
+			}
+			#posi_ctrl span{
+				position: absolute;
+				width: 30px;
+				height: 35px;
+				
+			}
+			#posi_ctrl #prev{
+				left: 10px;
+				background: url(images/slider/icon.png) no-repeat;
+			}
+			#posi_ctrl #next{
+				right: 10px;
+				background: url(images/slider/icon.png) 0 -44px no-repeat;
+			}
+		</style>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/js.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="slider">
+			<!--图片-->
+			<div id="slider_img">
+				<ul>
+					<li><a href="#"><img src="images/slider/1.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="images/slider/2.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="images/slider/3.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="images/slider/4.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="images/slider/5.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="images/slider/6.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			<p id="light">
+				<!--焦点图：一会写好样式，删掉，用js去动态创建-->
+				<!--<span class="active">1</span>
+				<span>2</span>
+				<span>3</span>
+				<span>4</span>
+				<span>5</span>
+				<span>6</span>-->
+			</p>
+			<div id="posi_ctrl">
+				<!--控制左右切换的按钮-->
+				<span id="prev"></span>
+				<span id="next"></span>
+			</div>
+		</div>
+	</body>
+</html>

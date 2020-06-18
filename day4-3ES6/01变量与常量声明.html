@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01变量与常量声明</title>
+	<script>
+		/*
+			变量声明
+				* var
+				* let 变量声明
+					* 块级作用域
+					* 不允许相同作用域内多次声明相同变量
+					* 变量声明不会提前
+				* const 常量声明
+					* 块级作用域
+					* 不允许相同作用域内多次声明相同常量
+					* 常量声明不会提前
+					* 常量不可修改
+					
+					约定：字母都为大写
+		 */
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			var btns = document.querySelectorAll('button');
+
+			
+
+			var num = 100;
+
+
+			// var：无法获知是否声明了重名变量
+			var num = 120;
+
+			// var：无法在点击事件中获取相应的i值
+			// 相当于在此声明i: var i
+			// for(var i=0;i<5;i++){
+			// 	btns[i].idx = i;
+			// 	btns[i].onclick = function(){
+			// 		// console.log(i);
+			// 		console.log(this.idx)
+			// 	}
+			// }
+
+			// ES6解决方案：
+			for(let i=0;i<5;i++){
+				// 相当于在此声明i：let i
+				btns[i].onclick = function(){
+					console.log(i);
+				}
+			}
+
+
+			// 块级作用域
+			{
+				console.log('myage:',myage);//undefined
+				// console.log('myname:',myname);//myname is not defined
+
+				var myage = 18;
+				let myname = 'laoxie';
+				let num = 200;
+				console.log('块：',myname);
+			}
+
+			// console.log('外：',myname);//myname is not defined
+			console.log('外：',myage);//18
+
+			// let num = 200;//Identifier 'num' has already been declared
+
+
+			// 常量
+			const NICK_NAME = 'tiantian';
+			// NICK_NAME = 'tiantian plus';//Assignment to constant variable.（常量不可修改）
+
+			console.log(NICK_NAME);
+			
+		})
+		
+	</script>
+</head>
+<body>
+	<h1>01变量与常量声明</h1>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+</body>
+</html>

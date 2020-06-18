@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为抵抗洪水，战士连续作战89小时，编程计算共多少天零多少小时</title>
+
+</head>
+<body>
+	<h1>07抗洪时间计算</h1>
+	<script>
+		/*
+			为抵抗洪水，战士连续作战89小时，编程计算共多少天零多少小时
+
+			知识点：
+				* 取整：parseInt()
+		 */
+		
+		var total = 89;
+
+		// 计算天数
+		var days = parseInt(total/24);//2.3,2.8,2.99
+
+		// 计算小时数
+		var hours = total%24;
+
+
+		// console.log('为抵抗洪水，战士连续作战89小时，共' + days +'天' + hours + '小时');
+		document.write('为抵抗洪水，战士连续作战89小时，共' + days +'天' + hours + '小时');
+	</script>
+</body>
+</html>

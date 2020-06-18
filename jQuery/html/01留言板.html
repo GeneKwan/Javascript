@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				//任务一：简易留言板：补充按回车提交功能
+				$('#btn').click(function(){
+					update();
+				});
+				
+				function update(){
+					$val=$('#tex').val();
+					if($val){
+						$li=$('<li></li>');
+						$li.html($val);
+						$('#conlist').prepend($li);
+						$('#tex').val('');
+					}
+				}
+				
+				$(document).keydown(function(ev){
+					if(ev.which==13){//jq取键值
+						update();
+					}
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<input type="text" name="tex" id="tex" value="" />
+		<input type="button" name="btn" id="btn" value="提交" />
+		<ul id="conlist">
+			<!--<li>这是内容</li>
+			<li>这是内容</li>
+			<li>这是内容</li>
+			<li>这是内容</li>-->
+		</ul>
+	</body>
+</html>

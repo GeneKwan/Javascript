@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动定位城市</title>
+	<script>
+		/*
+			1）获取ip地址
+				* 服务器代理
+					* 利用后端不受限制的特点，获取其他服务器的信息
+					* 接口地址：../api/get_ip.php
+
+			2）根据ip获取城市
+				接口地址：http://ip.taobao.com/service/getIpInfo.php?ip=
+
+		 */
+		var statusCode = [200,304];
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function(){
+			if(statusCode.indexOf(xhr.status)>=0){
+				let ip = xhr.responseText;
+
+
+				// 根据ip获取城市
+				let xhr_city = new XMLHttpRequest();
+				xhr_city.onload = function(){
+					if(statusCode.indexOf(xhr_city.status)>=0){
+						// 万一淘宝提供的数据不符合json格式，怎么办
+						// let data = JSON.parse(xhr_city.responseText);
+						let data = eval('('+xhr_city.responseText+')');
+						let city = data.city;
+						console.log(city);
+					}
+				}
+				xhr_city.open('get','../api/get_city.php?ip='+ip,true);
+				xhr_city.send();
+			}
+		}
+		xhr.open('get','../api/get_ip.php',true);
+		xhr.send();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

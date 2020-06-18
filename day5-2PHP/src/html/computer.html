@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组装电脑</title>
+	<script>
+		/*
+			接口：
+				* computer_cpu.php
+				* computer_hd.php
+				* computer_ram.php
+				* computer_mb.php
+				* computer_monitor.php
+		 */
+		
+		let statusCode = [200,304];
+		
+		// cpu
+		let p_cpu = new Promise(resolve=>{
+			let xhr_cpu = new XMLHttpRequest();
+			xhr_cpu.onload = function(){
+				if(statusCode.indexOf(xhr_cpu.status)>=0){
+					let cpu = xhr_cpu.responseText;
+
+					console.log(cpu);
+
+					resolve(cpu);
+				}
+			}
+			xhr_cpu.open('get','../api/computer_cpu.php',true);
+			xhr_cpu.send();
+
+		});
+
+		// hd
+		let p_hd = new Promise(resolve=>{
+			let xhr_hd = new XMLHttpRequest();
+			xhr_hd.onload = function(){
+				if(statusCode.indexOf(xhr_hd.status)>=0){
+					let hd = xhr_hd.responseText;
+
+					console.log(hd);
+					resolve(hd);
+				}
+			}
+			xhr_hd.open('get','../api/computer_hd.php',true);
+			xhr_hd.send();
+		});
+
+
+		// ram
+		let p_ram = new Promise(resolve=>{
+			let xhr_ram = new XMLHttpRequest();
+			xhr_ram.onload = function(){
+				if(statusCode.indexOf(xhr_ram.status)>=0){
+					let ram = xhr_ram.responseText;
+
+					console.log(ram);
+					resolve(ram);
+				}
+			}
+			xhr_ram.open('get','../api/computer_ram.php',true);
+			xhr_ram.send();
+		});
+
+
+		// mb
+		let p_mb = new Promise(resolve=>{
+			let xhr_mb = new XMLHttpRequest();
+			xhr_mb.onload = function(){
+				if(statusCode.indexOf(xhr_mb.status)>=0){
+					let mb = xhr_mb.responseText;
+
+					console.log(mb);
+					resolve(mb);
+				}
+			}
+			xhr_mb.open('get','../api/computer_mb.php',true);
+			xhr_mb.send();
+		});
+
+		// monitor
+		let p_monitor = new Promise(resolve=>{
+			let xhr_monitor = new XMLHttpRequest();
+			xhr_monitor.onload = function(){
+				if(statusCode.indexOf(xhr_monitor.status)>=0){
+					let monitor = xhr_monitor.responseText;
+
+					console.log(monitor);
+					resolve(monitor);
+				}
+			}
+			xhr_monitor.open('get','../api/computer_monitor.php',true);
+			xhr_monitor.send();
+		});
+
+
+		// 输出电脑配件信息
+		// 所有的请求都加载完成后才可以输出信息
+
+		// Promise.all()将多个Promise实例，包装成一个新的Promise实例
+		let p_computer = Promise.all([p_cpu,p_hd,p_ram,p_mb,p_monitor]);
+
+		// 所有参数中的promise状态都为resolved是，新的promise状态才为resolved
+		p_computer.then(function(data){
+			// 此处确认所有的电脑配件加载完成
+			// data为每一个promise对象传入数据组成的数组
+			console.log(data);
+		});
+
+		// 竞速
+		Promise.race([p_cpu,p_hd,p_ram,p_mb,p_monitor]).then(function(data){
+			console.log('race: ',data);
+		})
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

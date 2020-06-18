@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度搜索</title>
+	<script>
+		/*
+			接口地址：https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su
+				* 支持jsonp请求
+				* 参数：
+					* json=1
+					* cb=getData
+					* wd=html5
+
+
+				同源策略：由于安全性的元素，xhr请求要求“页面访问地址”和“数据接口地址”必须同源
+					* 同源：协议、域名、端口三者一致
+
+					* 跨域：实际开发过程中，某些操作不得不请求别人的数据，所以必须寻找解决方案
+					
+					* 跨域解决方案
+						* jsonp  不是ajax请求
+							1) 定义一个全局函数
+							2）生成script标签，并写入页面
+								* 设置src属性为接口地址
+								* 传递全局函数名
+							3）处理数据
+								服务器返回js代码（js文件里面包含我们预先定义的函数执行） 请求成功后，得到的js代码为
+							4）删除script标签
+								* 得到数据后删除
+					
+		 */
+		
+
+		
+		document.addEventListener("DOMContentLoaded",()=>{
+			let keyword = document.querySelector('#keyword');
+			let script
+
+			// 1) 定义一个全局函数
+			window.getData = function(data){
+				// 3）处理数据
+				console.log(data);
+
+				// 4）删除script标签
+				script.parentNode.removeChild(script)
+			}
+
+			let timer;
+
+			keyword.oninput = function(){//html5
+				// 获取输入的值
+				let _keyword = keyword.value;
+
+				clearTimeout(timer);
+
+				timer = setTimeout(function(){
+					// 2）生成script标签，并写入页面
+					script = document.createElement('script');
+					script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=getData&wd='+_keyword;
+					document.body.appendChild(script);
+
+				},500);
+
+			}
+		});
+	</script>
+</head>
+<body>
+	<h1>山寨百度搜索</h1>
+	<input type="search" id="keyword"><button>百度一下</button>
+</body>
+</html>

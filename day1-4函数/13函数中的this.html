@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13函数中的this</title>
+	
+</head>
+<body>
+	<h1>13函数中的this</h1>
+	<button id="btn">注册</button>
+	<script>
+		/*
+			13函数中的this
+				* 函数中的this是一个关键字，表示当前对象，而当前对象是谁，取决于谁调用了这个函数
+		 */
+		
+		function say(){
+			console.log(this);
+		}
+
+		// 手动执行：指向window
+		say();//this指向window对象
+
+
+		var btn = document.getElementById('btn');
+
+		// 事件驱动:指向绑定事件的元素
+		btn.onclick = say;//
+	</script>
+</body>
+</html>

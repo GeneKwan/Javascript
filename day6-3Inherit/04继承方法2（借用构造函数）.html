@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04继承方法2（借用构造函数）</title>
+	<script>
+		/*
+			04继承方法
+				* 原型链继承法
+					* 核心：拿父类实例来充当子类原型对象
+					* 缺点：
+						* 无法继承构造函数中的属性
+						* 创建子类实例时，无法向父类构造函数传参
+						* 原型对象中存在多余的属性
+				* 借用构造函数
+					* 核心：借父类的构造函数来增强子类实例
+						* 函数的方法call()
+
+				* 组合继承法：原型链继承法+借用构造函数法
+		 */
+		
+		// 父类
+		function Person(name,age,gender){
+			// 属性
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+		}
+
+
+		Person.prototype = {
+			say(){
+				console.log('say')
+			},
+			sleep(){
+				console.log('sleep')
+			},
+			sport(){
+				console.log('sport')
+			},
+			coding(){
+				console.log('coding')
+			}
+		}
+
+
+		// 子类
+		function Man(name,age){
+			// this.name = name;
+			// this.age = age;
+			// this.gender = '男';
+
+			// 借用构造函数法：借父类的构造函数来增强子类实例
+			// call的作用:改变Person的this指向并执行内部代码
+			Person.call(this,name,age,'男');
+		}
+
+		// 原型链继承法：拿父类实例来充当子类原型对象
+		Man.prototype = new Person();
+
+
+		let m = new Man('laoxie',18)
+	</script>
+</head>
+<body>
+	<h1>04继承方法1（借用构造函数）</h1>
+</body>
+</html>

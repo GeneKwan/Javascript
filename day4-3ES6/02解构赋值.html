@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>解构赋值</title>
+	<script>
+		/*
+			解构赋值
+				* 声明多个变量并赋值（可以对Object,Array进行解构）
+				* 解构失败：得到undefined
+				* 指定默认值：当解构失败时才会使用默认值
+		 */
+		document.addEventListener('DOMContentLoaded',function(){
+			// var a,b,c;
+			// var a=10,b=20,c=30;
+
+			var tiantian = {
+				name:'tiantian',
+				nickname:'小甜甜',
+				age:28,
+				gender:'男',
+				isDanshen:true,
+				marry:false
+			}
+
+			// 声明多个变量，并从对象的属性中赋值
+			// var name = tiantian.name,
+			// 	age = tiantian.age,
+			// 	isDanshen = tiantian.isDanshen
+
+			// ES6解构赋值（等效于上面的代码）
+			// 声明3个变量，并赋值对象person中的<同名>属性
+			// let {name,age,isDanshen} = tiantian;
+			// console.log(name,age,isDanshen);
+
+			// 声明的变量为n,age,ds
+			let {name:n,age,isDanshen:ds,marry='是'} = tiantian;
+			console.log(n,age,ds,marry);
+
+
+			// 数组解构
+			let arr = ['tiantian','laoxie','zhuzhu','yy','abc'];
+
+			// n5指定默认值
+			let [name1,name2,name3,n4,n5='laoxie'] = arr;
+			console.log('数组解构：',name1,name2,name3,n5);
+
+
+
+			// 解构用途：
+			// 1）交换变量
+			let x=10,y=20;
+			[x,y] = [y,x];
+			console.log('交换变量：',x,y)
+
+
+			// 2）函数返回多个值
+			function example(){
+			     return [1,2,3]
+			}
+
+			//接收
+			var [a,b,c] = example();
+
+
+			// 3）定义函数形参（重点） 函数的参数定义方式, 不用再考虑参数的顺序
+			// function test(name,age,gender){
+
+			// }
+			// test('laoxie',18,'male');
+
+			// 指定默认值
+			function test({name,age,gender='male'}){
+				// var {name,age,gender} = {name:'laoxie',age:18,gender:'male'}
+			}
+
+			//传参
+			test({name:'laoxie',age:18,gender:'male'});
+			test({name:'tiantian',age:28});
+
+
+			
+		});
+	</script>
+</head>
+<body>
+	<h1>解构赋值</h1>
+</body>
+</html>

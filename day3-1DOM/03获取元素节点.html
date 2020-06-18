@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03获取元素节点</title>
+	<script>
+		/*
+			节点						属性
+			Node					nodeType
+				* Element 			1
+				* Attribute			2
+				* Text 				3
+
+			获取元素节点:
+				* document.getElementById()	得到一个元素：Element
+					* 速度最快
+					* 必须通过document向下获取
+				* getElementsByClassName()	得到一个数组：[Element,Element,Element]
+				* getElementsByTagName()	得到一个数组：[Element]
+				* document.getElementsByName()	得到一个数组：[Element,Element]
+					* 一般用于表单元素
+					* 必须通过document向下获取
+		 */
+		window.onload = function(){
+			var meinv = document.getElementById('meinv');
+			
+			// 美女这个节点属性什么类型？ 
+			// nodeType => 1 => Element
+			console.log(meinv.nodeType);
+
+			// 通过类名获取元素s
+			var girl = document.getElementsByClassName('girl');//[img,img,img]
+			console.log(girl[1].nodeType);
+
+			// 获取h1
+			var title = document.getElementsByTagName('h1');//[h1]
+			console.log(title[0].nodeType);
+
+
+			var goodslist = document.getElementsByClassName('goodslist')[0];
+			var imgs = goodslist.getElementsByTagName('img');
+			console.log(imgs);
+		}
+		
+
+	</script>
+</head>
+<body>
+	<h1>03获取元素节点</h1>
+	<div class="goodslist">
+		<img src="img/g1.jpg" id="meinv">
+		<img src="img/g2.jpg" class="girl">
+		<img src="img/g3.jpg" class="girl">
+		<img src="img/g4.jpg" class="girl">
+		<img src="img/g5.jpg">
+	</div>
+	<!-- <img src=""> -->
+</body>
+</html>

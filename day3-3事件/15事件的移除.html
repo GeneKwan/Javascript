@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15事件的移除</title>
+	<style>
+		#tt{width:300px;box-sizing: border-box;}
+	</style>
+	<script>
+		/*
+			15事件的移除
+				* 节点绑定方式：利用同名事件会覆盖的原理实现事件的移除
+				* 事件监听器：
+					* removeEventListener(type,handler, isCapture)：三个参数必须跟绑定事件时一致
+		 */
+		
+		window.onload = function(){
+			// 
+			// document.onclick = function(){
+			// 	console.log(123);
+			// }
+
+			var tt = document.getElementById('tt');
+			var btnRemove = document.getElementById('btnRemove');
+			var btnRemove2 = document.getElementById('btnRemove2');
+
+			// 节点绑定：
+			tt.onclick = function(){
+				console.log('tiantian');
+			}
+
+			// 事件监听器绑定：
+			// 需要移除事件时，事件处理函数必须单独编写，这样才能是移除事件效果
+			var handler = function(){
+				tt.style.border = '10px solid #f00';
+			}
+			tt.addEventListener('mouseover',handler,true);
+			tt.addEventListener('mouseout',function(){
+				tt.style.border = 'none';
+			});
+
+
+			// 事件移除：node
+			btnRemove.onclick = function(){
+				// 利用同名事件会覆盖的原理实现移除
+				tt.onclick = null;
+			}
+
+
+			// 事件移除:addEventListener
+			btnRemove2.onclick = function(){
+				tt.removeEventListener('mouseover',handler);
+			}
+
+
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>15事件的移除</h1>
+	<p>
+		<button id="btnRemove">移除节点绑定方式</button>
+		<button id="btnRemove2">移除事件监听器绑定方式</button>
+	</p>
+	<img src="img/tiantian2.png" id="tt">
+</body>
+</html>

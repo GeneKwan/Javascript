@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#con {
+				width: 200px;
+				height: 200px;
+				background: red;
+				display: none;
+			}
+			#box{
+				width: 80px;
+			}
+			#btn{
+				width: 80px;
+				height: 40px;
+				background: #d8d8d8;
+			}
+		</style>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				
+				
+//				$('#box').mouseenter(function() {
+//					//鼠标进入：显示
+//					//show(速度，回调函数)  速度：1、单词 fast200  normal400 slow600  2、写时间：500  css('display','block')
+////					$('#con').show();
+////					$('#con').slideDown();
+//					$('#con').fadeIn(1000);//渐现
+//				});
+//
+//				$('#box').mouseleave(function() {
+//					//鼠标离开：隐藏  
+////					$('#con').hide();
+////					$('#con').slideUp();
+//					$('#con').fadeOut(1000);//渐隐
+//				});
+				
+				$('#box').hover(function(){
+					$('#con').fadeIn(1000);
+				},function(){
+					$('#con').fadeOut(1000);
+				});
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<input type="button" name="btn" id="btn" value="运动" />
+			<div id="con">
+
+			</div>
+		</div>
+
+	</body>
+
+</html>

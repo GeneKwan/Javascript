@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			li {
+				list-style: none;
+				clear: both;
+				width: 800px;
+			}
+			
+			ul li p {
+				float: left;
+				margin: 10px;
+			}
+			
+			ul li p span {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background: #d8d8d8;
+				cursor: pointer;
+				text-align: center;
+				line-height: 20px;
+			}
+			
+			ul li p span::selection {
+				background: transparent;
+			}
+			
+			div {
+				clear: both;
+				margin-left: 40px;
+			}
+			
+			div p {
+				float: left;
+				margin: 10px;
+			}
+		</style>
+		<script src="../js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/js.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<ul id="cart">
+			<li>
+				<p><input type="checkbox" name="" id="" value="" /></p>
+				<p>商品</p>
+				<p style="padding-left: 20px;">单价</p>
+				<p style="padding-left: 100px;">数量</p>
+				<p style="padding-left: 120px;">小计</p>
+				<p style="padding-left: 10px;">操作</p>
+			</li>
+			<li>
+				<p class="good_check"><input type="checkbox" name="good" value="" /></p>
+				<p class="good_name">西瓜</p>
+				<p class="good_price">￥&nbsp;99.99</p>
+				<p class="num">
+					<span class="cutnum">-</span>
+					<input class="nownum" type="text" value="1" />
+					<span class="addnum">+</span>
+				</p>
+				<p class="good_total">￥&nbsp;99.99</p>
+				<p class="good_del">
+					<a href="javascript:;">删除</a>
+				</p>
+			</li>
+			<li>
+				<p class="good_check"><input type="checkbox" name="good" id="" value="" /></p>
+				<p class="good_name">荔枝</p>
+				<p class="good_price">￥&nbsp;55.99</p>
+				<p class="num">
+					<span class="cutnum">-</span>
+					<input class="nownum" type="text" value="1" />
+					<span class="addnum">+</span>
+				</p>
+				<p class="good_total">￥&nbsp;55.99</p>
+				<p class="good_del">
+					<a href="javascript:;">删除</a>
+				</p>
+			</li>
+			<li>
+				<p class="good_check"><input type="checkbox" name="good" id="" value="" /></p>
+				<p class="good_name">芒果</p>
+				<p class="good_price">￥&nbsp;65.99</p>
+				<p class="num">
+					<span class="cutnum">-</span>
+					<input class="nownum" type="text" value="1" />
+					<span class="addnum">+</span>
+				</p>
+				<p class="good_total">￥&nbsp;65.99</p>
+				<p class="good_del">
+					<a href="javascript:;">删除</a>
+				</p>
+				
+			</li>
+		</ul>
+		<div id="del">
+			<p id="allchecked"><input type="checkbox" name="" id="" value="" />全选</p>
+			<p id="delall">
+				<a href="javascript:;">删除</a>
+			</p>
+			<p id="allnum">已选 0 件商品</p>
+			<p id="totalprice">总计（不含运费）：￥0.00</p>
+		</div>
+	</body>
+
+</html>

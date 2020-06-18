@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 2000px;
+			}
+			#box{
+				width: 50px;
+				height: 50px;
+				background: red;
+				position: fixed;
+				right: 50px;
+				bottom: 50px;
+				cursor: pointer;
+				display: none;
+			}
+		</style>
+		<script src="myjquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onscroll=function(){
+				//滚动距离:滚动事件里面使用，并且在滚动中才能获取
+				var scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+				if(scrollTop>=300){
+					//当滚动到300px的时候，盒子显示，否则隐藏
+					$('#box').style.display='block';
+				}
+				else{
+					$('#box').style.display='none';
+				}
+				
+				$('#box').onclick=function(){
+					//点击缓慢回到顶部
+					var scrollTop=window.setInterval(function(){
+						//pageYOffset获取窗口离上面的距离
+						console.log(window.pageYOffset+':'+scrollTop);
+						var pop=window.pageYOffset;
+						if(pop>0){
+							window.scrollTo(0,pop-20);
+						}
+						else{
+							window.clearInterval(scrollTop);
+						}
+					},20);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			回到顶部
+		</div>
+	</body>
+</html>

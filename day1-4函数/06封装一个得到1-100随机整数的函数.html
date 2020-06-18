@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装一个得到1-100随机整数的函数</title>
+	<script>
+		/*
+			封装一个得到1-100随机整数的函数
+				* Math.random()
+		 */
+		
+		function randomInt(){
+			var num  = parseInt(Math.random()*100)+1;
+			console.log(num);
+		}
+
+		for(var i=0;i<100;i++){
+			randomInt();
+		}
+	</script>
+</head>
+<body>
+	<h1>封装一个得到1-100随机整数的函数</h1>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08找出所有水仙花数</title>
+	<script>
+		/*
+			找出所有的水仙花数，
+				* 三位数，
+				* 各位立方和等于该数本身
+
+			153 = 1*1*1 + 5*5*5 + 3*3*3
+		 */
+		
+		for(var num=100;num<1000;num++){
+			// 判断是否为水仙花数
+			// 153 = 1, 5, 3
+
+			// 个位
+			var g = num%10;
+			// 十位
+			var s = parseInt(num/10)%10;
+			// 百位
+			var b = parseInt(num/100);
+
+			if(num===b*b*b + s*s*s + g*g*g){
+				document.write(num + ', ')
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>08找出所有水仙花数</h1>
+</body>
+</html>

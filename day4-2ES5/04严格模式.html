@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES5的严格模式</title>
+	<script>
+		
+
+		/*
+			ES5的严格模式
+				* 全局：在开头写   use strict
+				* 局部：在函数内写 use strict
+		 */
+		
+		var num = 100;
+		age = 18;
+
+		console.log(num+age);
+
+		(function(){
+			// 局部严格模式
+			'use strict';
+
+			// delete window.num;
+
+			// var obj={name:"小王",name:'王大锤'}
+
+			// function sum(a,a,b){}
+
+			for(var i=0;i<10;i++){
+				// function test(){
+					
+				// }
+			}
+		})();
+	</script>
+</head>
+<body>
+	<h1>ES5的严格模式</h1>
+</body>
+</html>

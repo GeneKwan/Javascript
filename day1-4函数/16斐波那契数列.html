@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16斐波那契数列</title>
+	<script>
+		/*
+			16斐波那契数列
+
+
+			斐波那契数列（兔子数列）
+
+			月分：	1	2	3	4	5	6	7	8	9	10
+			--------------------------------------------------
+			数量： 	1	1	2	3	5	8	13	21	34	55
+
+			推导公式：fib(n) = fib(n-1) + fib(n-2)
+		 */
+		
+		function fib(month){
+			// 跳出条件
+			if(month<=2){
+				return 1;
+			}
+
+			return fib(month-1) + fib(month-2);
+		}
+
+		fib(12);//144;
+	</script>
+</head>
+<body>
+	<h1>16斐波那契数列</h1>
+</body>
+</html>

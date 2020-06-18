@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>login</title>
+	<style type="text/css">
+	    body{
+		    background-color:rgb(177, 208,224); font: normal 12px Trebuchet MS; color:#000;
+	    }
+	    .roundedCorners{ 
+		    width:350px; padding:10px;
+		    background-color:#DDEEF6; 
+		    box-shadow: 0px 0px 10px 0px #888888;
+		    border:1px solid #DDEEF6;
+		    border-radius:6px;
+		    margin: auto;
+	    }
+	    .roundedCorners-textbox{ 
+			border:1px solid #999; width:250px;
+	    }
+		.checkbox {
+			margin-left: 30px;
+			border:1px solid #999; width:20px;
+		}
+		.label {
+			display: inline-block;
+			width: 50px;
+			text-align: center;
+		}   
+    	.default {
+    		color: grey;
+    		font-size: 12px;
+    	}
+		.input {
+    		color: grey;
+    		font-size: 12px;			
+		}
+	</style>
+</head>
+<script>
+window.onload= function(){
+	/*
+		表单提交是默认行为
+			* preventDefault()
+			* returnValue = false;
+		知识点：
+			* 正则表达式的方法
+				* test()
+				* exec()	等同于 match
+
+			* 表示一个范围
+				* - ： 在方括号中使用表示一个范围
+
+			* 分组：()
+				* 引用
+					* 正则内引用：\n    \1,\2
+					* 正则外引用：$n		$1,$2
+			* 非：
+				* ^
+				* [^\d]
+			* 表示所有字符：[\s\S],[\w\W],[\d\D]
+	 */
+	var btnCheck = document.getElementById('btnCheck');
+	btnCheck.onclick = function(e){
+		// 一般判断不合法的情况
+		// * test()
+
+		e = e || window.event;
+		/*
+		验证账号
+			* 不能为空，
+			* 不能使用特殊字符（只能用：数字、字母、下划线、横杠），
+			* 必须以字母开头，
+			* 长度6-20
+		*/
+		var username = document.getElementById('username').value;//6laoxie
+		var reg = /^[a-z][\w\-]{5,19}$/;
+		if(!reg.test(username)){
+			alert('用户名不合法');
+			// e.preventDefault();
+			// return;
+			return false;
+		}
+		
+		
+		//昵称只能输入中文
+		var nickname = document.getElementById('nickname').value;
+		var reg = /^[\u2E80-\u9FFF]+$/;
+		if(!reg.test(nickname)){
+			alert('昵称只能输入中文');
+			return false;
+		}	
+		
+		/*
+			电子邮件
+				jinrong.xie@qq.com
+				123@qq.com
+				x_x@163.com
+				x-x@a-r.com.cn
+				x.x@laoxie.com
+
+				域名：数字字母- {2,67}
+
+		 */
+		var email = document.getElementById('email').value;
+		var reg = /^[a-z0-9][\w\-\.]{2,15}@[0-9a-z][0-9a-z\-]{1,66}(\.[a-z\u2E80-\u9FFF]{2,6}){1,2}$/;
+		if(!reg.test(email)){
+			alert('邮箱地址不合法');
+			return false;
+		}
+
+		/*
+			身份证
+				18/15
+				445655 19900707 2165
+				445655 19900707 211x
+		 */
+		var identity = document.getElementById('identity').value;
+		var reg = /^(\d{17}|\d{14})[\dx]$/;
+		if(!reg.test(identity)){
+			alert('身份证不合法');
+			return false;
+		}
+		
+
+		/*
+			手机号码
+				11位
+				158 8888 8888
+				1 [34578]
+		 */
+		var phone = document.getElementById('phone').value;
+		var reg = /^1[3-9]\d{9}$/;
+		if(!reg.test(phone)){
+			alert('手机号码不合法');
+			return false;
+		}
+
+		/*
+			生日 
+				1999/05/08
+				1999-5-8
+				19990508
+				1999-05/08	不合法
+
+				引用分组
+					* 正则内：\n
+					* 正则外:$n
+				分组顺序：以左括号出现的顺序为分组顺序
+
+
+				练习：把身份证上的生日提取到birthday元素
+		 */
+		var birthday = document.getElementById('birthday').value;
+		var reg = /^\d{4}([\-\/]?)\d{1,2}\1\d{1,2}$/;
+		if(!reg.test(birthday)){
+			alert('生日不合法');
+			return false;
+		}
+
+		/*
+			密码  
+				长度6-20 
+				不能包含空格
+		 */
+		var password = document.getElementById('password').value;
+		// var reg = /^\S{6,20}$/;
+		var reg = /^[^\s]{6,20}$/;
+		if(!reg.test(password)){
+			alert('密码不合法');
+			return false;
+		}
+		
+		var confirm_pwd = document.getElementById('confirm_pwd').value;
+		if(confirm_pwd != password){
+			alert('两次输入密码不一致');
+		}
+		
+	}
+}
+</script>
+<body>
+	<form id="myform" action="04success.html" method="get">	
+		<div class="roundedCorners">
+			<label class="label">账号</label>
+			<input id="username" name="username" type="text" placeholder="用户名不得使用特殊字符，长度在6-20之间" class="default roundedCorners-textbox" /><br /><br />
+			<label class="label">昵称</label>
+			<input id="nickname" name="nickname" type="text" class="roundedCorners-textbox" /><br /><br />
+			<label class="label">电子邮件</label>
+			<input id="email" name="email" type="text" class="roundedCorners-textbox" /><br /><br />
+			<label class="label">身份证</label>
+			<input id="identity" name="identity" type="text" class="roundedCorners-textbox" /><br /><br />
+			<label class="label">手机号码</label>
+			<input id="phone" name="phone" type="text" class="roundedCorners-textbox" /><br /><br />
+			<label class="label">生日</label>
+			<input id="birthday" name="birthday" type="text" class="roundedCorners-textbox" /><br /><br />
+			<label class="label">密码</label>
+			<input id="password" name="password" type="password" class="roundedCorners-textbox" /><br /><br />	
+			<label class="label">确认密码</label>
+			<input id="confirm_pwd" name="confirm_pwd" type="text" class="roundedCorners-textbox" /><br /><br />	
+		    	<input type="checkbox" class="checkbox" />
+				<label>10天内免登陆</label>
+		    	<br/><br/>
+			
+			<input type="submit" id="btnCheck" value="确定" />
+			
+			<input type="reset" value="清空" />
+		</div>
+	</form>
+	
+</body>
+</html>

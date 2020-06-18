@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节点关系</title>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			节点关系：任意两个节点间存在直接或间接的联系
+
+			获取父级节点
+				* ele.parentNode 		得到ele元素的父节点
+			获取子节点(可能得到文本节点)
+				* ele.childNodes 		得到ele元素的全部子节点列表（类数组）
+				* ele.firstChild 		获得ele元素的第一个子节点
+				* ele.lastChild 		获得ele元素的最后一个子节点
+			获取兄弟节点
+				* ele.nextSibling 		获得ele元素的下一个兄弟节点
+				* ele.previousSibling 	得到ele元素的上一个兄弟节点
+		 */
+
+		window.onload = function(){
+			var goods = document.getElementById('goods');
+
+			// 获取goods的父节点
+			console.log(goods.parentNode);
+
+			// 获取goods的子节点
+			var img = goods.childNodes;
+			console.log('childNodes:',img);
+			console.log('firstChild:',goods.firstChild);//
+
+
+			var res1 = Element.get(goods.childNodes);//[img]
+			console.log('封装：',res1);
+
+			// 获取兄弟节点.page
+			var page = goods.nextSibling.nextSibling;
+			// var page = Element.next(goods)
+			console.log(page);
+
+			// 获取.page下的所有子元素
+			var spans = page.childNodes;
+			// var spans = Element.children(page);//得到page下所有子元素
+			console.log(spans)
+
+		}
+	</script>
+</head>
+<body>
+	<h1>节点关系</h1>
+	<div id="goods">
+		<img src="img/g3.jpg">
+	</div>
+	<div class="page">
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+	</div>
+</body>
+</html>

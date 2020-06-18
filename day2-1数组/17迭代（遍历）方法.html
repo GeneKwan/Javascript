@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>迭代（遍历）方法</title>
+	<script>
+		/*
+			迭代（遍历）方法
+				* forEach(fn) 遍历方法，for循环没有太大差别，比for循环方便
+				* map(fn) 返回一个数量相等的数组，内容是什么取决于在fn中返回的值
+				* filter(fn) 得到执行fn后返回true时对应的数组元素，利用这个方法可对数组元素进行过滤筛选
+				* some(fn) 如果该函数中任何一项返回 true，则返回true
+				* every(fn) 如果该函数对每一项都返回 true，则返回true
+		 */
+		
+
+		// forEach()单纯的循环，用以替代for循环
+
+		var arr = ['陈乔恩','高圆圆','彭于晏','胡歌','laoxie'];
+
+		for(var i=0;i<arr.length;i++){
+			// 欲获取数组元素，必先获取索引值
+			arr[i];
+		}
+
+
+		arr.forEach(function(item,idx,a){
+			// 这里的代码：有几个数组元素就跑几遍
+			// item: 数组元素
+			// idx ：索引值
+			// a   :数组的引用
+			console.log(item)
+		});
+
+
+		// map()：返回一个数量相等的数组，内容是什么取决于在fn中返回的值
+		var arr2 = [10,15,2,32,5,4,20,8,48,54,6];console.log(arr2);
+		var res2 = arr2.map(function(item){
+			return item*1.2
+		});
+		var res3 = arr2.map(function(item){
+			return item*2;
+		});
+		var res4 = arr2.map(function(item){
+			return item+10;
+		});
+		console.log('1.2倍：',res2);
+		console.log('2倍：',res3);
+		console.log('+10：',res4);
+
+		 // 实现：['陈乔恩','高圆圆','彭于晏','胡歌','laoxie'] ->  ['<strong>陈乔恩</strong>','<strong>高圆圆</strong>','<strong>彭于晏</strong>','<strong>胡歌</strong>','<strong>laoxie</strong>'];
+		 var res5 = arr.map(function(item){
+		 	return '<strong>'+item+'</strong>';
+		 });
+		 console.log(res5);
+
+
+
+
+
+		// 理解map原理
+		// * 回调函数执行过程
+		// * 返回值返回到哪里
+		var myArr = [10,15,6,8];
+		function laoxie(fn){
+			// 用于存放结果
+			var res = [];
+
+			for(var i=0;i<myArr.length;i++){
+				res.push(fn(myArr[i],i,myArr));
+			}
+
+
+			return res;
+		}
+
+
+		var myRes1 = laoxie(function(item,i,a){
+			return item*1.2;
+		});//[12,18,7.2,9.6]
+
+		var myRes2 = laoxie(function(item){
+			return item*2;
+		})
+		console.log('my1：',myRes1);
+		console.log('my2：',myRes2);
+	</script>
+</head>
+<body>
+	<h1>迭代（遍历）方法</h1>
+</body>
+</html>

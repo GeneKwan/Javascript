@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一元运算</title>
+	<script>
+		/*
+			一元运算
+				* ++	加1
+					* 后置：num++	得到num
+					* 前置：++num	得到num+1
+				* --    减1
+					* 后置
+					* 前置
+		 */
+		var num = 10;
+
+		num > 5;//关系运算，得到true
+
+		num>5 && num>10;//逻辑运算，得到false
+
+		num+5;//算术运算，得到15
+
+
+		/*
+			一元运算
+		 */
+		var x = 5;
+		var res1 = x++;//一元运算，得到5（x的值为6）
+		console.log(res1,x)
+
+		var y=5;
+		var res2 = y--;//一元运算，得到5（y的值为4）
+		console.log(res2,y)
+
+		// 计算：
+		var k=0;
+		var res3 = k++ + ++k +k +k++;//6
+		//         0   + 2   +2 +2
+
+		var j=0
+		var res4 = j++ + j-- + ++j - j-- + --j + j++;//-1
+				// 0   + 1	 + 1   - 1   + -1  + -1
+
+	</script>
+</head>
+<body>
+	<h1>一元运算</h1>
+</body>
+</html>

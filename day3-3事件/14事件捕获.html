@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14事件捕获</title>
+	<style>
+		#box{position:relative;width:200px;height:200px;background: #58bc58;}
+
+		#box span{position: absolute;left:50%;top:50%;margin:-50px 0 0 -50px;width:100px;height:100px;background-color: #fc0;}
+	</style>
+	<script>
+		/*
+			14事件捕获
+				* 事件监听器addEventListener(type,handler,isCapture)
+					* type 事件类型（不带on）
+					* handler 事件处理函数
+					* isCapture 是否捕获，默认false（冒泡）
+				* 所谓捕获：就是否把事件处理函数提前到捕获阶段执行（IE8-不支持捕获）
+
+
+				* IE8-事件监听器：attachEvent('on'+type,handler)
+
+				* 事件监听器的好处：
+					* 同名事件不会被覆盖
+					* 支持捕获（标准浏览器）
+		 */
+		
+		window.onload = function(){
+			var box = document.getElementById('box');
+			var span = box.children[0];
+
+			// 绑定事件
+			// box
+			box.addEventListener('click',function(){
+				console.log('box');
+			});
+
+			// span
+			span.addEventListener('click',function(){
+				console.log('span');
+			});
+
+			// body
+			document.body.addEventListener('click',function(){
+				console.log('body');
+			},true);
+
+			// html
+			// document.documentElement.addEventListener('click',function(){
+			// 	console.log('html');
+			// });
+
+			// document
+			document.addEventListener('click',function(){
+				console.log('document');
+			},true);
+
+
+			// window
+			window.addEventListener('click',function(){
+				console.log('window');
+			});
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>14事件捕获</h1>
+	<div id="box">
+		<span></span>
+	</div>
+</body>
+</html>

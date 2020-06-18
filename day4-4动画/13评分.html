@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>五星评分</title>
+    <style type="text/css">
+    #star {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: 300px;
+        height: 28px;
+    }
+    
+    #star li {
+        float: left;
+        background: url(img/star.gif) no-repeat 0 0;
+        width: 27px;
+        height: 28px;
+    }
+    
+    #star .active{background-position:0 -29px;}
+    
+    </style>
+    <script>
+        /*
+            评分效果
+                * 鼠标移入
+                    * 当前及之前的星星高亮
+                    * 当前后的星星灰色
+                * 鼠标移出
+                * 鼠标点击
+                    * 评分
+
+                关键：找出当前索引值
+         */
+        document.addEventListener('DOMContentLoaded',function(){
+            var star = document.querySelector('#star');
+            var info = document.querySelector('#info');
+            var lis = star.children;
+
+            var len = lis.length;
+
+            // 声明变量，用于存放分数（0-4）
+            var score=0;
+            var arr_txt = ['差评','一般','良好','满意','非常满意'];
+
+          
+            //  * 鼠标移入
+            star.onmouseover = (e)=>{
+                if(e.target.tagName.toLowerCase() === 'li'){
+                    // 找出当前索引值
+                    let currentIdx;
+                    for(let i=0;i<len;i++){
+                        if(lis[i] === e.target){
+                            currentIdx = i;
+                        }
+                    }
+
+                     // 当前及之前的星星高亮
+                    // 当前后的星星灰色
+                    for(let i=0;i<len;i++){
+                        if(i<=currentIdx){
+                            lis[i].className = 'active';
+                        }else{
+                            lis[i].className = '';
+                        }
+                    }
+                    
+                }
+            }
+
+            // * 鼠标点击
+            star.onclick = e=>{
+                if(e.target.tagName.toLowerCase() === 'li'){
+                    // 找出当前索引值
+                    let currentIdx;
+                    for(let i=0;i<len;i++){
+                        if(lis[i] === e.target){
+                            score = i;
+
+                            // 显示文字
+                           info.innerText =  arr_txt[score];
+                           break;
+
+                        }
+                    }
+
+
+                }
+            }
+
+            // 鼠标移开
+            // 显示对应评分
+            star.onmouseout = ()=>{
+                for(let i=0;i<len;i++){
+                    if(i<=score){
+                        lis[i].className = 'active';
+                    }else{
+                        lis[i].className = '';
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <ul id="star">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div id="info"></div>
+</body>
+
+</html>

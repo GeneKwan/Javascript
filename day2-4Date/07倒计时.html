@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09倒计时</title>
+	<style>
+		.btn{position:relative;}
+		#countDown{position:absolute;left:55px;top:50%;transform:translate(0,-58%);}
+	</style>
+
+</head>
+<body>
+	<div class="goods">
+		<img src="img/g3.jpg" id="meinv">
+		<h4>今年过节不收礼，收礼只收黑妹子</h4>
+		<p class="price">价格：<span>9.8W</span></p>
+		<div class="btn">
+			<div id="countDown"></div>
+			<img src="img/btn_buy0.jpg" id="btnBuy">
+		</div>
+	</div>
+	<script>
+			/*
+				倒计时
+					1）指定结束时间
+					2）不断拿当前时间跟结束时间对比，计算差值
+					3）把差值转换成《剩余时间》
+					4）拼接时间格式，写入页面
+					5）倒计时结束时
+						* 停止定时器
+						* 替换购买按钮
+						* 隐藏倒计时
+
+
+				剩余时间
+					* 30s	00:00:30
+					* 65s	00:01:05
+					* 5m	00:05:00
+					* 68m	01:08:00
+			 */
+			
+			// 获取元素
+			var meinv = document.getElementById('meinv');
+			var countDown = document.getElementById('countDown');
+			var btnBuy = document.getElementById('btnBuy');
+			
+
+			 // 1）指定结束时间
+			 var end = '2018-8-10 16:33:30';
+
+			 showTime();
+
+			 var timer = setInterval(showTime,1000);
+
+			 function showTime(){
+			 	// 2）不断拿当前时间跟结束时间对比，计算差值（单位：s）
+			 	var offset = Math.round((Date.parse(end) - Date.now())/1000);
+			 	
+
+			 	// 5）倒计时结束时
+				// 	* 停止定时器
+				// 	* 替换购买按钮
+				// 	* 隐藏倒计时
+
+				if(offset<=0){
+					clearInterval(timer);
+
+					btnBuy.src = 'img/btn_buy.jpg';
+
+					meinv.src = 'img/g1.jpg';
+
+					countDown.style.display = 'none';
+				}
+
+			 	// 3）把差值转换成《剩余时间》
+			 	var sec = offset%60;
+			 	var min = Math.floor(offset/60)%60;
+			 	var hour = Math.floor(offset/60/60)%24;
+			 	var day = Math.floor(offset/60/60/24);
+
+			 	// 补0操作
+			 	sec = sec<10 ? '0'+sec : sec;
+			 	min = min<10 ? '0'+min : min;
+			 	hour = hour<10 ? '0'+hour : hour;
+
+			 	// 4）拼接时间格式，写入页面
+			 	countDown.innerHTML = day + '天 ' + hour + '时' + min + '分' + sec + '秒';
+			 }
+	</script>
+</body>
+</html>

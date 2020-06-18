@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04滚动动轮播图</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		.banner img{display: block;}
+		.banner{position:relative;width:810px;height:320px;overflow:hidden;}
+		.banner ul{position:absolute;overflow:hidden;;}
+		.banner ul li{float:left;}
+		.banner .page{position:absolute;right:0;bottom:0;padding:10px;}
+		.banner .page span{display:inline-block;margin:0 5px;width:30px;height:30px;line-height:30px;background-color:rgba(0,0,0,.6);text-align:center;color:#fff;border-radius: 50%;box-shadow:0 0 10px rgba(0,0,0,.5);}
+		.banner .page span.active{background-color: rgba(255,0,0,.8)}
+
+		.banner > span{display:none;position:absolute;left:0;top:50%;transform: translate(0,-50%);padding:50px 16px;background-color: rgba(0,0,0,0.5);color:#fff;}
+		.banner .btn-next{left:auto;right:0;}
+		.banner > span:hover{background-color: rgba(255,0,0,0.8)}
+		.banner:hover > span{display: block;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded',()=>{
+			/*
+				1）设置ul宽度，达到水平排列的效果
+				2）水平轮播效果
+				3）移入移出，清除轮播效果
+				4）添加分页效果
+					* 点击分页切换
+				5）无缝滚动
+					* 把第一张复制到最后
+					* 当滚动到复制那张图片时，瞬间重置回初始状态，并把index改成1
+
+				6）添加前后按钮，实现上一张、下一张的效果
+
+				index		left
+				0			0
+				1			-810
+				2			-1620
+				4			-2430
+				...
+
+				公式：left = index*banner.clientWidth
+			 */
+			
+
+			let banner = document.querySelector('.banner');
+			let ul = banner.children[0];
+
+			// 图片数量
+			let len = ul.children.length;
+
+			// 默认索引值
+			let index = 0;
+
+			// 1）设置ul宽度，达到水平排列的效果
+			ul.style.width = banner.clientWidth*len + 'px';
+
+			// 每隔3s显示一张图片
+			let timer = setInterval(()=>{
+				index++;
+
+				if(index>=len){
+					index = 0;
+				}
+
+				// ul.style.left = index * banner.clientWidth + 'px';
+				animate(ul,{left:-index * banner.clientWidth});
+			},3000);
+			
+		});
+			
+	</script>
+</head>
+<body>
+	<h1>11水平无缝滚动轮播图</h1>
+	<div class="banner">
+		<ul>
+			<li><img src="img/001.jpg"></li>
+			<li><img src="img/002.jpg"></li>
+			<li><img src="img/003.jpg"></li>
+			<li><img src="img/004.jpg"></li>
+		</ul>
+	</div>
+</body>
+</html>

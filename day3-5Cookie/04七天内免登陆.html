@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>04七天内免登陆</title>
+	<style type="text/css">
+		    body{
+			    background-color:rgb(177, 208,224); font: normal 12px Trebuchet MS; color:#000;
+		    }
+		    form{ 
+			    width:220px; padding:10px;
+			    background-color:#DDEEF6; 
+			    box-shadow: 0px 0px 10px 0px #888888;
+			    border:1px solid #DDEEF6;
+			    border-radius:6px;
+			    margin: auto;
+		    }
+		    .roundedCorners-textbox{ 
+				border:1px solid #999; width:160px;
+		    }
+			.checkbox {
+				margin-left: 30px;
+				border:1px solid #999; width:20px;
+			}
+	</style>
+</head>
+<script>
+	window.onload = function(){
+		/*
+			04七天内免登陆
+				1)点击提交按钮时，判断是否勾选"7天内免登陆"选项
+					* 勾选：保存username，password到cookie，并跳转页面
+					* 不勾选：跳转页面
+				2）页面刷新时，检查cookie是否存在
+					* 获取cookie
+					* 存在：直接跳转到登录成功页面
+					* 不存在：停留到当前页面
+
+		 */
+		var btnSubmit = document.getElementById('btnSubmit');
+		var checkbox = document.getElementsByClassName('checkbox')[0];
+		var username = document.getElementById('username');
+		var password = document.getElementById('password');
+
+		// 给按钮绑定事件
+		btnSubmit.onclick = function(e){
+			// 获取输入的值
+			var _username = username.value;
+			var _password = password.value;
+
+			// 判断是否勾选
+			// checked
+			if(checkbox.checked){
+				// 写入cookie，并保留7天(expires)
+
+				// 先获取当前事件
+				var d = new Date();
+				d.setDate(d.getDate()+7);
+
+				document.cookie = 'username=' + _username + ';expires=' + d.toUTCString();
+				document.cookie = 'password=' + _password + ';expires=' + d.toUTCString();
+			}
+		}
+
+		// 页面刷新，自动登录
+		var currentUserName,currentPassword;
+		var allCookie = document.cookie;
+
+		// String -> Array
+		allCookie = allCookie.split('; ');
+
+		// 遍历所有cookie，找出username,password
+		allCookie.forEach(function(item){
+			// 拆分name和value
+			var arr = item.split('=');
+
+			// 获取username,password的值
+			if(arr[0] === 'username'){
+				currentUserName = arr[1];
+			}else if(arr[0] === 'password'){
+				currentPassword = arr[1];
+			}
+		});
+
+		// 如果currentUserName和currentPassword都有值
+		// 自动登录
+		if(currentUserName && currentPassword){
+			location.href = '04success.html';
+		}
+	}
+</script>
+<body>
+	<form action="04success.html" method="get">	
+		<label>账号</label>
+		<input id="username" name="username" type="text" /><br /><br />
+		<label>密码</label>
+		<input id="password" name="password" type="password" /><br /><br />	
+    	<label><input type="checkbox" class="checkbox" />
+		7天内免登陆</label>
+    	<br/><br/>
+		<input type="submit" value="确定" id="btnSubmit" />
+		<input type="reset" value="清空" />
+	</form>	
+</body>
+</html>

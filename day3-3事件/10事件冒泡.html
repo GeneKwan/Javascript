@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件冒泡</title>
+	<style>
+		.box{width:200px;height:100px;background-color: #58bc58;}
+	</style>
+	<script>
+		/*
+			10事件冒泡
+				* 事件处理函数
+			
+				* 事件冒泡：事件会沿着DOM树向这个元素的父级传播（默认）
+					* 大部分事件都会冒泡到父级元素，直到window/document，或者被处理
+
+				* 停止事件传播（被处理）
+					* e.stopPropagation();
+
+				* 事件源对象：触发事件的元素
+					* 事件源对象在事件传播过程中不会改变
+					* 获取：e.target
+		 */
+		window.onload = function(){
+			var box = document.getElementsByClassName('box')[0];
+
+			box.onclick = function(){
+				console.log('box');
+			}
+
+			
+			// document
+			document.onclick = function(e){
+				console.log('document');
+				console.log(e.target)
+			}
+
+			// html
+			document.documentElement.onclick = function(e){
+				console.log('html');
+				console.log(e.target)
+			}
+
+
+			// body
+			document.body.onclick = function(e){
+				e = e || window.event;
+
+				console.log('body');
+
+				// 被处理：停止事件的传播
+				// e.stopPropagation();
+			}
+
+
+			// window
+			window.onclick = function(e){
+				console.log('window');
+				console.log(e.target)
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>10事件冒泡</h1>
+	<div class="box">
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01DOM文档加载的顺序</title>
+	<link rel="stylesheet" href="css/page.css">
+	<script src="js/page.js"></script>
+	<script>
+		console.log('页面');
+		/*
+			01DOM文档加载的顺序
+				* 解析HTML结构。
+				* 加载外部脚本和样式表文件。
+				* 解析并执行脚本代码。
+				* DOM树构建完成（浏览器：html->node）
+				* 加载图片等外部文件。
+				* 页面加载完毕（window.onload执行）
+		 */
+		// window.onload = function(){
+		// 	var h1 = document.getElementsByTagName('h1')[0];
+
+		// 	console.log(h1);
+			
+		// }
+
+	</script>
+</head>
+<body>
+	<h1>01DOM文档加载的顺序</h1>
+	<!-- 图片很大，加载需要5分钟 -->
+	<img src="img/g1.jpg">
+	<img src="img/g2.jpg">
+	<p>页面完成</p>
+</body>
+</html>

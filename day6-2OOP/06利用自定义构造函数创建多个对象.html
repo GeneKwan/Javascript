@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06利用自定义构造函数创建多个对象</title>
+	<script>
+		/*
+			06利用自定义构造函数创建多个对象
+		 */
+		
+			// 创建自定义构造函数
+			let Person = function(name,age,gender){
+				// 属性
+				this.name = name;
+				this.age = age;
+				this.gender = gender;
+
+				// 方法
+				this.eat = function(){
+					// 这里的this指向：对象方法中的this指向实例
+					console.log(`hello everyone my name is ${this.name}，我超能吃`);
+				}
+
+				this.sleep = function(){
+					console.log('sleep');
+				}
+
+				this.coding = function(){
+					console.log(`我是${this.name},今年${this.age}，我会敲代码`);
+				}
+			}
+
+
+			let laoxie = new Person('laoxie',18,'男');
+			let tiantian = new Person('tiantian',28,'男');
+			let zhuzhu = new Person('zhuzhu',30,'女');
+
+			console.log(laoxie);
+			console.log(tiantian);
+			console.log(zhuzhu);
+			tiantian.eat();
+
+	</script>
+</head>
+<body>
+	<h1>06利用自定义构造函数创建多个对象</h1>
+</body>
+</html>

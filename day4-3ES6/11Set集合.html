@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11Set集合</title>
+	<script>
+		/*
+			Set集合
+				* 类似于数组，但是成员的值都是唯一的，可自动去重（恒等的值）
+				* 方法
+					* add(value)：添加某个值，返回Set结构本身。
+					* delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+					* has(value)：返回一个布尔值，表示Set集合中是否存在该值。
+					* clear()：清除所有成员，没有返回值。
+
+				* 遍历
+					* for..of
+					* forEach()
+
+
+			数组扩展
+				* Array.from()
+		 */
+		
+		// 构造函数方式定义set集合
+		let imgs = new Set(); 
+	    imgs.add(1); 
+	    imgs.add(1);
+	    imgs.add(5);
+	    imgs.add("5"); 
+	    imgs.add(1);
+	    imgs.add(2);
+
+	    var o = {name:'xx'}
+	    imgs.add(o)
+	    imgs.add(o)
+
+	    console.log(imgs);
+
+
+	    // 数组去重
+	    var arr = [1, 2, 3, 4, 5, 5, 5, 5];
+	    var res = new Set(arr);
+	    // 把结果转换成数组
+	    // Array.from()
+	    res = Array.from(res);
+	    console.log(res);
+
+
+	    // 遍历
+	    let mySet = new Set();
+	    mySet.add(10);
+	    mySet.add(10);
+	    mySet.add(20);
+	    mySet.add(10);
+	    mySet.add(30);
+	    mySet.add(50);
+	    console.log(mySet);
+	    for(let item of mySet){
+	    	console.log(item)
+	    }
+	</script>
+</head>
+<body>
+	<h1>11Set集合</h1>
+</body>
+</html>

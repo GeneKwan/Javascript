@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02常用事件</title>
+	<style>
+		#box{width:200px;border:2px solid #f60;background-color: #ffc;text-align:center;padding:20px;}
+	</style>
+	
+</head>
+<body>
+	<h1>02常用事件</h1>
+	<div id="box">
+		顶我
+	</div>
+	<img src="img/g5.jpg">
+	<div>价格：<span id="price">5998</span></div>
+	<input type="number" id="qty">
+	<div id="total"></div>
+	<script>
+		/*
+			02常用事件
+				* onclick：点击事件
+				* ondblclick：双击事件
+				* onmouseover：鼠标移入事件（移入元素那一瞬间）
+				* onmouseout:鼠标移开事件
+				* onchange：内容改变事件（一般用于表单元素，表单内容改变并失去焦点时触发）
+				* oninput:输入内容时触发
+
+
+			要懂得：事件什么时候执行
+		 */
+		
+		var box = document.getElementById('box');
+
+		function myclick(){
+			console.log('单击');
+		}
+
+		myclick();
+
+		box.onclick = myclick;
+
+		// 双击
+		box.ondblclick = function(){
+			console.log('双击666');
+		}
+
+		// 鼠标移入
+		box.onmouseover = function(){
+			console.log('over');
+		}
+
+		// 鼠标移出
+		box.onmouseout = function(){
+			console.log('out');
+		}
+
+		// 商品价格自动计算
+		var price = document.getElementById('price');
+		var total = document.getElementById('total');
+		var qty = document.getElementById('qty');
+
+		// 改变数量qty时，立即计算商品总价
+		qty.oninput = function(){
+			// console.log(qty.value , price.innerHTML)
+
+			// 把总价写入页面#total
+			total.innerHTML = (qty.value*price.innerHTML).toFixed(2);
+		}
+
+
+	</script>
+</body>
+</html>

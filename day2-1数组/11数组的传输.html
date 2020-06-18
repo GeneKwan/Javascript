@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11数组的传输</title>
+	<script>
+		/*
+			11数组的传输
+				* 引用数据类型的传递
+		 */
+		
+		var arr = [10,20,30];
+
+		function sum(a){
+			// var a = arr;
+			// a = a.slice(0);
+
+			a.push(40);
+
+			console.log('a:',a);//[10,20,30,40]
+		}
+
+		sum(arr);
+		console.log('arr:',arr);
+
+
+		// 
+		function add(){
+			arr.push(50);
+		}
+
+		add()
+	</script>
+</head>
+<body>
+	<h1>11数组的传输</h1>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09元素的操作-属性</title>
+	<style>
+		#box{width:200px;background-color: #f90;border:2px solid #f00;}
+	</style>
+	<script>
+		/*
+			节点就是一个对象：
+
+			09元素的操作-属性
+				* 标准属性（影响html结构）
+					* 全局属性
+					* 私有属性
+
+				* html属性操作
+					* ele.getAttribute(attr) //获取元素html中attr的属性值（自定义属性获取）
+					* ele.setAttribute(attr,val); //设置html中元素的属性
+					* ele.removeAttribute(attr) //删除html中的属性attr
+					* ele.hasAttribute(attr) //判断html中是否存在属性attr，返回boolean
+		 */
+		
+		window.onload = function(){
+			// 得到一个元素节点
+			var box = document.getElementById('box');
+
+			// 修改id属性
+			// 标准属性：会影响html结构
+			// box.id = 'laoxie';
+			box.className = 'box';
+			box.src = 'img/g5.jpg';
+
+			// 自定义属性：不会影响到html结构
+			box.username = 'laoxie';
+			console.log('html->',box.alt);
+			console.log('html->',box.idx);
+
+			// 在js中获取/设置html属性
+			console.log('getAttribute获取标准属性：',box.getAttribute('alt'));
+			console.log('getAttribute获取非标准属性：',box.getAttribute('data-age'));
+
+			// 设置html属性
+			box.setAttribute('work','html5的工作');
+		}
+	</script>
+</head>
+<body>
+	<h1>09元素的操作-属性</h1>
+	<img src="img/g3.jpg" id="box" alt="美女" idx="10" data-age="18">
+</body>
+</html>

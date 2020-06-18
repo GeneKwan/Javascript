@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04系统弹窗</title>
+	<style>
+		table{width:100%;border:1px solid #ddd;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:3px 5px;}
+	</style>
+	<script>
+		/*
+			04系统弹窗
+				* alert()	//弹出对话框
+				* confirm(msg)//弹出警告框，返回布尔值
+					* 确定：返回true
+					* 取消：返回false
+				* prompt(msg,default)//弹出输入框，返回消息或null
+					* 确定：返回输入的信息
+					* 取消：返回null
+				* open()
+				* print()
+
+
+			window事件
+				* onscroll
+				* onload : 页面加载事件，页面所有内容（包括元素、图片...）加载完成后执行
+		 */
+		
+		window.onload = function(){
+			/*
+				* 避免污染全局环境
+				* 延迟代码执行
+			 */
+			var btnDel = document.getElementById('btnDel');
+			var btnPrint = document.getElementById('btnPrint');
+
+			console.log(btnDel);
+
+			btnDel.onclick = function(){
+				if(confirm('你确定删除这条数据吗？')){
+					console.log('删除成功');
+				}
+			}
+
+			// 打印
+			btnPrint.onclick = function(){
+				print();
+			}
+
+				// for(var i=0;i<5;i++){
+				// 	var top = Math.random()*window.innerWidth;
+				// 	var left = Math.random()*window.innerHeight;
+				// 	var width = Math.random()*window.innerWidth;
+				// 	var height = Math.random()*window.innerHeight;
+				// 	open('http://www.qq.com','qq'+i,'width='+width+',height='+height+',top='+top+',left='+left+'')
+					
+				// }
+			
+		}
+		
+		
+	</script>
+	
+</head>
+<body>
+	<!-- table>tbody>tr*5>td{$}+td{单元格$$}*3+td>button{删除} -->
+	<table>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>单元格01</td>
+				<td>单元格02</td>
+				<td>单元格03</td>
+				<td><button id="btnDel">删除</button></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>单元格01</td>
+				<td>单元格02</td>
+				<td>单元格03</td>
+				<td><button>删除</button></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>单元格01</td>
+				<td>单元格02</td>
+				<td>单元格03</td>
+				<td><button>删除</button></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>单元格01</td>
+				<td>单元格02</td>
+				<td>单元格03</td>
+				<td><button>删除</button></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>单元格01</td>
+				<td>单元格02</td>
+				<td>单元格03</td>
+				<td><button>删除</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<button id="btnPrint">打印</button>
+</body>
+</html>

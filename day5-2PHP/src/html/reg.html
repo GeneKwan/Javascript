@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册</title>
+	<script>
+		document.addEventListener('DOMContentLoaded',()=>{
+			let username = document.querySelector('#username');
+			let password = document.querySelector('#password');
+
+			// 失去焦点，验证用户名是否已经存在
+			username.onblur = ()=>{
+				// 获取输入的值
+				let _username = username.value;
+
+				let xhr = new XMLHttpRequest();//readyState=0
+
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState === 4){
+						if(xhr.responseText === 'no'){
+							alert('用户名已存在');
+						}
+					}
+				}
+
+				xhr.open('get','../api/reg.php?username='+_username,true);//readyState=1
+
+				xhr.send();//readyState=2
+			}
+		})
+	</script>
+</head>
+<body>
+	<h1>用户注册</h1>
+	<div class="form-group">
+		<label for="username">用户名：</label>
+		<input type="text" id="username" name="username">
+	</div>
+	<div class="form-group">
+		<label for="password">用户名：</label>
+		<input type="password" id="password" name="password">
+	</div>
+	<button class="btnReg">注册</button>
+</body>
+</html>

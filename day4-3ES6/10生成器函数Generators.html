@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10生成器函数Generators</title>
+	<script>
+		/*
+			10生成器函数Generators
+				* 关键字
+					* return 终止函数的执行
+					* yield 暂停函数的执行（只能在生成器函数中使用）
+		 */
+		
+		// document.addEventListener('DOMContentLoaded',function(){
+			// function sum(){
+
+			// }
+
+			let sum = ()=>{
+				console.log(666);
+			}
+
+			let res = sum();//undefined
+
+  			// 生成器函数
+			function* show(){
+				console.log(1);
+				yield 'laoxie';//yield与return类似，暂停函数的执行并返回'laoxie'
+
+				console.log(2);
+				yield 'tiantian';
+
+				return 'end';
+
+				console.log(3);
+				yield 'zhuzhu';
+
+
+			}
+
+			// 生成器函数调用
+			// 不会执行函数内的代码，而是返回一个暂停对象：迭代器
+			// * 迭代器是一个对象，包含一个next方法，
+			// * 调用next()方法：用于执行函数内的代码，并返回相应的值{value,done}
+
+			let it = show();//返回一个迭代器对象
+			console.log(it);
+
+			// it.next();//{value:'laoxie',done:false}
+			// it.next();//
+
+
+			for(let item of it){
+				console.log('val:',item);
+			}
+
+
+			let person = {
+				name:'tiantian',
+				age:28,
+				gender:'male',
+				// 给对象添加迭代器的格式
+				// [Symbol('Symbol.iterator')]:show()
+				[{}]:666
+			}
+
+			for(let key in person){
+				console.log(typeof key)
+			}
+		//})
+	</script>
+</head>
+<body>
+	<h1>10生成器函数Generators</h1>
+</body>
+</html>

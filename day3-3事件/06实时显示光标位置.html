@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实时显示光标位置</title>
+	<style>
+		body{padding-bottom:1500px;}
+		.pos{position:absolute;left:0;bottom:0;padding:15px 10px;font-size:12px;}
+		.pos p{margin:5px 0;}
+	</style>
+	<script>
+		/*
+			实时显示光标位置
+				* 事件：mousemove
+				* 给谁绑定这个事件：document
+
+				* 光标位置
+					* clientX/clientY	光标相对于浏览器可视区域的位置，也就是浏览器坐标
+					* screenX/screenY   光标指针相对于电脑屏幕的水平/垂直坐标
+					* pageX/pageY		鼠标相对于文档的位置（IE8-不兼容）
+						* pageY = clientY + 滚动条滚动过的距离
+		 */
+		
+		 window.onload = function(){
+		 	var pos = document.getElementsByClassName('pos')[0];
+		 	
+		 	// 给document绑定mousemove
+		 	document.onmousemove = function(e){
+		 		// 在这获取光标位置
+		 		// console.log(e.clientX,e.clientY);
+
+		 		pos.innerHTML = '<p>'+e.clientX + ',' + e.clientY +'</p>' + 
+		 						'<p>'+e.pageX + ',' + e.pageY +'</p>' + 
+		 						'<p>'+e.screenX + ',' + e.screenY +'</p>';
+		 	}
+		 }
+
+	</script>
+</head>
+<body>
+	<h1>实时显示光标位置</h1>
+	<div class="pos"></div>
+</body>
+</html>

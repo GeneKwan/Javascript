@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04对象扩展</title>
+	<script>
+		/*
+			04对象扩展
+				* Object.assign(target,obj1,obj2,…objN)
+		 */
+		
+		/*
+			对象的复制
+				* 浅复制
+					1) 遍历复制
+					2）Object.assign(target,obj1,obj2,…objN);
+				* 深复制
+					3）封装函数clone()递归调用
+					4）JSON方法复制
+		 */
+		
+		var person = {
+			name:'tiantian',
+			age:28,
+			gender:'男',
+			score:{
+				english:88,
+				math:96,
+				chinese:108
+			}
+		}
+
+		// 1) 遍历复制
+		var copyPerson = {};
+		for(var key in person){
+			copyPerson[key] = person[key];
+		}
+
+		// 2）ES6:Object.assign()
+		var copyPerson2 = {};
+		Object.assign(copyPerson2,person);
+		console.log(copyPerson2);
+
+
+		// 3）JSON.parse()+JSON.stringify()
+		var copyPerson3 = JSON.parse(JSON.stringify(person));
+
+	</script>
+</head>
+<body>
+	<h1>04对象扩展</h1>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10垃圾回收机制</title>
+	<script>
+		/*
+			10垃圾回收机制
+				* 变量访问规则
+				* 变量可以往外查找却不能往函数内查找
+
+				闭包写法：在函数的内部定义一个函数并返回
+
+
+			垃圾回收器
+		 */
+		
+		let username = 'laoxie';
+		
+		function outer(){
+	       var num=10;
+
+	      	return function(){
+		       num++
+		       console.log(num);
+	       }
+	    }
+
+	    // 普通函数
+	    // outer();//11
+	    // outer();//11
+	    // outer();//11
+
+	    // 闭包函数
+	    let fn = outer();//无输出
+	    fn();//11
+	    fn();//12
+	    fn();//13
+	</script>
+</head>
+<body>
+	<h1>10垃圾回收机制</h1>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单元格拖拽交换位置</title>
+	<style>
+		/*.container{width:450px;height:300px;position:relative;}*/
+		.container div{position:absolute;left:0;top:0;width:140px;height:80px;line-height:80px;background-color: #f00;border-radius:5px;text-align:center;font-size:40px;}
+	</style>
+	<script>
+		window.onload = function(){
+			var container = document.getElementsByClassName('container')[0];
+			var item = container.children;
+
+			for(let i=0;i<item.length;i++){
+
+			// 要达到按下并移动鼠标效果,必须嵌套事件
+			item[i].onmousedown = function(evt){
+				// 按下时记录光标位置与，事件源对象的偏移量
+				var ox = evt.offsetX;
+				var oy = evt.offsetY;
+
+				console.log(item[i]);
+
+				document.onmousemove = function(e){
+					// 在mousemove中不断改变tt的left,top
+
+					item[i].style.left = e.pageX - ox + 'px';
+					item[i].style.top = e.pageY - oy + 'px';
+
+					e.preventDefault();
+				}
+			}
+
+			// 鼠标松开，清除mousemove事件
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+		<div>D</div>
+		<div>E</div>
+		<div>F</div>
+		<div>G</div>
+		<div>H</div>
+		<div>I</div>
+	</div>
+</body>
+</html>

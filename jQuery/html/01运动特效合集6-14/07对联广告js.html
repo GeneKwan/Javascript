@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 600px;
+				height: 2000px;
+				background: #d8d8d8;
+				margin: 0 auto;
+			}
+			#box div{
+				width: 50px;
+				height: 100px;
+				background: red;
+				color: #fff;
+				position: absolute;
+				top: 0;
+			}
+			#box #left{
+				left: 50%;
+				/*360=600/2+50+10*/
+				margin-left: -360px;
+			}
+			#box #right{
+				right: 50%;
+				margin-right: -360px;
+			}
+		</style>
+		<script src="myjquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			window.onload=function(){
+				console.log(sreenHW('iW'));
+				console.log(sreenHW('iH'));
+				
+				getid('left').style.top=getid('right').style.top=(sreenHW('iH')-getid('left').offsetHeight)/2+'px';
+			}
+			
+			window.onscroll=function(){
+				//滚动距离
+				var scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+				//目标点：滚动距离+（可视区高度-盒子高度）/2
+				var iTarget=parseInt(scrollTop+(sreenHW('iH')-getid('left').offsetHeight)/2);
+				
+				startmove(getid('left'),{'top':iTarget});
+				startmove(getid('right'),{'top':iTarget});
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div id="left">
+				left
+			</div>
+			<div id="right">
+				right
+			</div>
+		</div>
+	</body>
+</html>

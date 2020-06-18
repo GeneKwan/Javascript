@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>嵌套循环</title>
+	<script>
+		/*
+			嵌套循环
+		
+				* 执行过程（外层循环跑1次，内层训话跑5次）
+					* x=0
+						y=0
+						y=1
+						y=2
+						y=3
+						y=4
+					* x=1
+						y=0
+						y=1
+						y=2
+						y=3
+						y=4
+					* x=2
+						
+					* x=3
+						y=0
+						y=1
+						y=2
+						y=3
+						y=4
+					* x=4
+						y=0
+						y=1
+						y=2
+						y=3
+						y=4
+
+			循环标识：给循环代码添加标识
+				* break：默认跳出当前循环
+				* break <lable> 跳出label所在循环
+		 */
+		
+		// 简单嵌套
+		wai:for(var x=0;x<5;x++){
+			nei:for(var y=0;y<5;y++){
+				if(x===2){
+					break wai;
+				}
+				console.log(x,y);//25
+			}
+		}
+
+
+		
+	</script>
+</head>
+<body>
+	<h1>嵌套循环</h1>
+</body>
+</html>

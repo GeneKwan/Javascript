@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04新闻提示信息</title>
+	<style>
+		/*#box{width:0;height:0;border:30px solid transparent;border-bottom-color:#f60;}*/
+		.details{display:none;position:absolute;padding:10px;width:200px;border:1px solid #f60;background-color: #ffc;}
+		.details::before,.details::after{
+			content:'';
+			position:absolute;top:-20px;left:15px;
+			border:10px solid transparent;border-bottom-color:#f60;
+		}
+		.details::after{top:-18px;border-bottom-color:#ffc;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				* 鼠标移入
+					* 显示
+					* 写入内容：a的title属性
+					* 删除title属性
+				* 鼠标移出
+					* 隐藏
+					* 恢复title属性
+				* 鼠标移动
+					* 改变left,top
+
+
+					光标位置：pageX/pageY
+			 */
+			
+			// 获取页面元素
+			var newslist = document.getElementsByClassName('newslist')[0];
+			var links = newslist.getElementsByTagName('a');
+			var details = newslist.nextElementSibling;
+
+			for(var i=0;i<links.length;i++){
+				links[i].onmouseover = function(){
+					// 写入内容：a的title属性
+					details.innerText = this.title;
+
+					// * 显示
+					details.style.display = 'block';
+
+					// * 删除title属性
+					this.mytitle = this.title;
+					this.removeAttribute('title');
+				}
+
+				// 鼠标移出
+				links[i].onmouseout = function(){
+					// * 隐藏
+					details.style.display = 'none';
+
+					// * 恢复title属性
+					this.title = this.mytitle;
+				}
+
+				// 鼠标移动
+				links[i].onmousemove = function(e){
+					// 改变details的left,top值
+					details.style.left = e.pageX -30 + 'px';
+					details.style.top = e.pageY+30 + 'px';
+
+				}
+			}
+
+			
+		}
+	</script>
+</head>
+<body>
+	<h1>新闻提示信息</h1>
+	<ul class="newslist">
+		<li><a href="#" title="小明由于调戏女老师再次被滚粗教室">教室文化</a></li>
+		<li><a href="#" title="iPhone10发布,屏幕高度亮瞎了所有小伙伴">iphone10发布会</a></li>
+		<li><a href="#" title="为了弘扬乐于助人的精神，中国人大开会决定授予老王“中国好邻居”称号">关于老王</a></li>
+	</ul>
+	<div class="details"></div>
+	<!-- <div id="box"></div> -->
+</body>
+</html>

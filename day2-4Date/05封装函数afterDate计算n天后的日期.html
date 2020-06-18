@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装一个函数afterDate(date,n)，得到日期date的n天后的日期</title>
+
+</head>
+<body>
+	<h1>封装一个函数afterDate(date,n)，得到日期date的n天后的日期</h1>
+
+	<script>
+		/*
+			封装一个函数afterDate(date,n)，得到日期date的n天后的日期
+				* 封装函数afterDate
+				* 返回n天后的日期（String）
+
+
+				思路：
+					1）以指定日期创建时间对象
+					2）获取当前日期，再加上n
+					3）设置新的日期
+		 */
+		
+
+		function afterDate(date,n){
+			// 1）以指定日期创建时间对象
+			var d = new Date(date);//
+
+			// 获取当前日期
+			var currentDate = d.getDate();//10
+
+			// 3）设置新的日期
+			// 超出最大日期会自动改变月份
+			d.setDate(currentDate+n);
+
+
+
+			// return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+			return d.toLocaleDateString().replace(/\//g,'-');
+		}
+
+		afterDate('2018-8-10',25);//2018-8-15
+		
+	</script>
+</body>
+</html>

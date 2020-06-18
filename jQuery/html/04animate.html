@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#con {
+				width: 200px;
+				height: 200px;
+				background: red;
+				/*opacity: 0;*/
+			}
+			#box{
+				width: 80px;
+			}
+			#btn{
+				width: 80px;
+				height: 40px;
+				background: #d8d8d8;
+			}
+		</style>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				/*
+				 animate()
+				 第一个参数：属性名：目标值  {'width':200,'height':200} 必须写的
+				 第二个参数：时间  默认 400 fast normal slow 1000
+				 第三个参数：运动形式 swing 慢快慢  linear匀速
+				 第四个参数：回调函数  链式运动
+				 
+				 * */
+				
+				$('#btn').click(function(){
+					$('#con').animate({'width':400},2000,'linear').delay(1000).animate({'height':400},2000,'linear');;
+
+//					$('#con').animate({'height':200},1000);
+//					$('#con').animate({'opacity':1},1000);
+				});
+				
+				$('#btn2').click(function(){
+					//stop(参数一,参数二);
+					//第一个参数：不再执行下面的动画，清空动画队列
+					//第二参数：让当前运动马上到达目标值
+					
+//					$('#con').stop();//停止当前的运动  w
+//					$('#con').stop(true);//停止所有的运动
+//					$('#con').stop(true,true);//让当前运动马上到达目标值
+					$('#con').stop(false,false);//
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button" name="btn" id="btn" value="运动" />
+			<input type="button" name="btn2" id="btn2" value="停止" />
+			
+			<div id="con">
+
+			</div>
+		</div>
+	</body>
+</html>

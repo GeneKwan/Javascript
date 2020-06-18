@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01window对象</title>
+	<script>
+		/*
+			window是一个对象：{}
+				* 默认包含非常多属性
+				* window可省略
+					* 建议省略
+						* 全局方法：定义在window下的方法
+						* 对象
+					* 不建议省略
+						* 属性：window.innerWidth
+						* 事件
+
+			全局作用域(window)
+				* 定义在全局环境下的变量都会成为window对象的属性,用delete无法删除
+				* 把变量定义在函数内，可以有效减少全局环境下的变量冲突，避免污染全局环境
+				* window对象可以在代码中省略，如window.alert()可以写成alert();
+				* 在函数内部不用var声明的变量会成为全局变量，即window对象的属性
+		 */
+		
+		// 用delete无法删除
+		var timer = 666;
+
+		// 匿名函数的执行
+		(function(){
+			// 全局变量：全局作用域下定义的变量
+			var username = 'laoxie';
+
+			console.log(username);
+
+			// window可省略
+			// window.alert();
+			// window.document.getElementById()
+
+			// window不建议省略
+			// * 属性
+			console.log(window.innerWidth);
+
+
+			// 不使用var声明变量（禁止）
+			// 用delete可以删除
+			yourname = 'tiantian';
+
+		})();
+
+	</script>
+</head>
+<body>
+	<h1>01window对象</h1>
+</body>
+</html>
